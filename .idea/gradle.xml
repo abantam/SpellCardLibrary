@@ -7,8 +7,8 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="C:\Users\takeshi\AndroidStudioProjects\SpellCardLibrary" />
-            <option value="C:\Users\takeshi\AndroidStudioProjects\SpellCardLibrary\app" />
+            <option value="D:\SpellCardLibrary" />
+            <option value="D:\SpellCardLibrary\app" />
           </set>
         </option>
       </GradleProjectSettings>

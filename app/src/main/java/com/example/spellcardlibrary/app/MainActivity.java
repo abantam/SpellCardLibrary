@@ -1,8 +1,11 @@
 package com.example.spellcardlibrary.app;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TabHost;
+
+import java.util.ArrayList;
 
 public class MainActivity extends Activity {
 
@@ -17,13 +20,19 @@ public class MainActivity extends Activity {
 
         //タブに作品名を割り当てる
         String[] workname = getResources().getStringArray(R.array.workname);
+        String[] classlist = getResources().getStringArray(R.array.classlist);
         TabHost.TabSpec spec;
+        Intent i;
+        int j = 0;
         for(String wn : workname) {
             spec = host.newTabSpec(wn);
-            spec.setContent(R.id.test);
+            spec.setContent(new Intent(this, classlist[j].getClass()));
             spec.setIndicator(wn);
             host.addTab(spec);
+            j++;
         }
+
+
 
     }
 }

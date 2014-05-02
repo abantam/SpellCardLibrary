@@ -23,24 +23,22 @@
         <item>東方輝針城</item>
     </string-array>
 
-    <string-array name="classlist">
-        <item>Table_kouma</item>
-        <item>Table_youmu</item>
-        <item>Table_suimu</item>
-        <item>Table_eiya</item>
-        <item>Table_kaei</item>
-        <item>Table_bunka</item>
-        <item>Table_fuzin</item>
-        <item>Table_hisou</item>
-        <item>Table_tirei</item>
-        <item>Table_seiren</item>
-        <item>Table_tensoku</item>
-        <item>Table_ds</item>
-        <item>Table_daisen</item>
-        <item>Table_sinrei</item>
-        <item>Table_sinki</item>
-        <item>Table_kisin</item>
-    </string-array>
+    <string name="title_activity_table_kouma">Table_kouma</string>
+    <string name="title_activity_table_youmu">Table_youmu</string>
+    <string name="title_activity_table_suimu">Table_suimu</string>
+    <string name="title_activity_table_eiya">Table_eiya</string>
+    <string name="title_activity_table_kaei">Table_kaei</string>
+    <string name="title_activity_table_bunka">Table_bunka</string>
+    <string name="title_activity_table_fuzin">Table_fuzin</string>
+    <string name="title_activity_table_hisou">Table_hisou</string>
+    <string name="title_activity_table_tirei">Table_tirei</string>
+    <string name="title_activity_table_seiren">Table_seiren</string>
+    <string name="title_activity_table_tensoku">Table_tensoku</string>
+    <string name="title_activity_table_ds">Table_ds</string>
+    <string name="title_activity_table_daisen">Table_daisen</string>
+    <string name="title_activity_table_sinrei">Table_sinrei</string>
+    <string name="title_activity_table_sinki">Table_sinki</string>
+    <string name="title_activity_table_kisin">Table_kisin</string>
 
 
 </resources>

@@ -1,13 +1,13 @@
 package com.example.spellcardlibrary.app;
 
-import android.app.Activity;
+import android.app.ActivityGroup;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TabHost;
 
 import java.util.ArrayList;
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActivityGroup {
 
     //各タブの起動するアクティビティを保持したクラス
     Class classlist[] = {
@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
 
         //タブホストのインスタンス化
         TabHost host = (TabHost)findViewById(R.id.tabhost);
-        host.setup();
+        host.setup(this.getLocalActivityManager());
 
         //タブに作品名を割り当てる
         String[] workname = getResources().getStringArray(R.array.workname);

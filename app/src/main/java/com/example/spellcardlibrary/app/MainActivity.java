@@ -44,10 +44,13 @@ public class MainActivity extends ActivityGroup {
         //タブに作品名を割り当てる
         String[] workname = getResources().getStringArray(R.array.workname);
         TabHost.TabSpec spec;
+        Intent i;
         for(int it = 0; it < classlist.length; it++) {
 
             //インテントを作成
-            intentList.add(new Intent(this, classlist[it]));
+            i = new Intent(this, classlist[it]);
+            i.getStringExtra(workname[it]);
+            intentList.add(i);
 
             //タブを作成しインテントを設定
             spec = host.newTabSpec(workname[it]);

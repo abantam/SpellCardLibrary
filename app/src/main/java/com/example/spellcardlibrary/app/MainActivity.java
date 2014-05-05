@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class MainActivity extends ActivityGroup {
 
     //各タブの起動するアクティビティを保持したクラス
-    Class classlist[] = {
+    private Class classlist[] = {
             Table_kouma.class,
             Table_youmu.class,
             Table_suimu.class,
@@ -30,7 +30,10 @@ public class MainActivity extends ActivityGroup {
     };
 
     //各タブに割り当てられたアクティビティを起動するためのインテント群
-    ArrayList<Intent> intentList = new ArrayList<Intent>();
+    private ArrayList<Intent> intentList = new ArrayList<Intent>();
+
+    //リソースから持ってきた作品名を格納した配列
+    private String[] workname = getResources().getStringArray(R.array.workname);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +45,6 @@ public class MainActivity extends ActivityGroup {
         host.setup(this.getLocalActivityManager());
 
         //タブに作品名を割り当てる
-        String[] workname = getResources().getStringArray(R.array.workname);
         TabHost.TabSpec spec;
         Intent i;
         for(int it = 0; it < classlist.length; it++) {
@@ -58,8 +60,5 @@ public class MainActivity extends ActivityGroup {
             spec.setIndicator(workname[it]);
             host.addTab(spec);
         }
-
-
-
     }
 }

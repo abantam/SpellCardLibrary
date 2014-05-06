@@ -51,7 +51,7 @@ public class MainActivity extends ActivityGroup {
 
             //インテントを作成
             i = new Intent(this, classlist[it]);
-            i.getStringExtra(workname[it]);
+            i.putExtra(workname[it], workname[it]);
             intentList.add(i);
 
             //タブを作成しインテントを設定

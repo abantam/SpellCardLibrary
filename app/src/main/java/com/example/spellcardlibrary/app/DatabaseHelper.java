@@ -47,7 +47,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         boolean dbExist = checkDatabaseExists();
         if(dbExist); //すでにデータベースは作成されている
         else {
-            getReadableDatabase();
+            getReadableDatabase(); //データベースをオープンする
             try {
                 copyDatabaseFromAsset();
                 String dbPath = mDatabasePath.getAbsolutePath();

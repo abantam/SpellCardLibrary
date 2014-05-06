@@ -29,7 +29,8 @@ public class Table_kouma extends Activity {
         Intent intent = getIntent();
         String workname = intent.getStringExtra("東方紅魔郷");
 
-        makeList("SELECT * FROM" + workname);
+        makeList("SELECT * FROM " + workname);
+        setMainView();
     }
 
     private void makeList(String query) {
@@ -46,7 +47,7 @@ public class Table_kouma extends Activity {
 
     private void setMainView() {
         mainView = (ListView)findViewById(R.id.mainView);
-        SimpleAdapter adapter = new SimpleAdapter(this, scList, android.R.layout.simple_list_item_1,
+        SimpleAdapter adapter = new SimpleAdapter(this, scList, R.layout.listview_layout,
                 new String[]{"Number", "scName"}, new int[]{R.id.number, R.id.scname});
         mainView.setAdapter(adapter);
     }

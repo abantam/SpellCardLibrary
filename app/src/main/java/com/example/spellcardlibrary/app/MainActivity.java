@@ -33,7 +33,24 @@ public class MainActivity extends ActivityGroup {
     private ArrayList<Intent> intentList = new ArrayList<Intent>();
 
     //リソースから持ってきた作品名を格納した配列
-    private String[] workname = getResources().getStringArray(R.array.workname);
+    private String[] workname = {
+            "東方紅魔郷",
+            "東方妖々夢",
+            "東方萃夢想",
+            "東方永夜抄",
+            "東方花映塚",
+            "東方文花帖",
+            "東方風神録",
+            "東方緋想天",
+            "東方地霊殿",
+            "東方星蓮船",
+            "東方非想天則",
+            "ダブルスポイラー",
+            "妖精大戦争",
+            "東方神霊廟",
+            "東方心綺楼",
+            "東方輝針城",
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

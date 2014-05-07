@@ -30,9 +30,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private SQLiteDatabase mDatabase;
 
     //データベースのバージョン
-    private final static int DB_VERSION = 1;
+    private final static int DB_VERSION = 17;
 
-    private final Context mContext;
+    private Context mContext;
     private File mDatabasePath;
 
     //ヘルパークラスのコンストラクタを呼び出す
@@ -75,27 +75,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase checkDb = null;
         try {
-            checkDb = SQLiteDatabase.openDatabase(dbPath, null, SQLiteDatabase.OPEN_READONLY);
+            //checkDb = SQLiteDatabase.openDatabase(dbPath, null, SQLiteDatabase.OPEN_READONLY);
         }catch(SQLiteException e) {
             //何らかの理由でデータベースがオープンできない
         }
 
         //データベースはまだ存在しない
         if(checkDb == null) return false;
+        else return true;
 
-        int oldVersion = checkDb.getVersion();
-        int newVersion = DB_VERSION;
-
-        //データベースは存在していて最新
-        if(oldVersion == newVersion) {
-            checkDb.close();
-            return true;
-        }
-
-        //データベースは存在しているが最新ではないので削除
-        File f = new File(dbPath);
-        f.delete();
-        return false;
+//        int oldVersion = checkDb.getVersion();
+//        int newVersion = DB_VERSION;
+//
+//        //データベースは存在していて最新
+//        if(oldVersion == newVersion) {
+//            checkDb.close();
+//            return true;
+//        }else {
+//            //データベースは存在しているが最新ではないので削除
+//            File f = new File(dbPath);
+//            f.delete();
+//            return false;
+//        }
     }
 
     private void copyDatabaseFromAsset() throws IOException {
@@ -120,7 +121,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //データベースをオープンする。オープンできない場合はSQLiteExceptionを投げる。
     public SQLiteDatabase openDatabase() throws SQLiteException {
-        return getReadableDatabase();
+        return getWritableDatabase();
     }
 
     @Override

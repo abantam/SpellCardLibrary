@@ -27,14 +27,14 @@ public class Table_kouma extends Activity {
         setContentView(R.layout.activity_table_kouma);
 
         //データベースのオブジェクトを取得
-        DatabaseHelper databaseHelper = helper = new DatabaseHelper(this);
+        helper = new DatabaseHelper(this);
         try {
             helper.createEmptyDatabase();
             db = helper.openDatabase();
         }catch(IOException ioe) {
-
+            throw new Error("Unable to create database");
         }catch(SQLiteException sqle) {
-
+            throw sqle;
         }
 
         makeList();

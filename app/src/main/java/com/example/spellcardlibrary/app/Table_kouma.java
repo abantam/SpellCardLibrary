@@ -4,10 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -15,6 +18,7 @@ public class Table_kouma extends Activity {
 
     private ListView mainView;
     private SQLiteDatabase db;
+    private DatabaseHelper helper;
     private ArrayList<HashMap<String, String>> scList = new ArrayList<HashMap<String, String>>();
 
     @Override
@@ -23,18 +27,27 @@ public class Table_kouma extends Activity {
         setContentView(R.layout.activity_table_kouma);
 
         //データベースのオブジェクトを取得
-        db = new DatabaseHelper(this).getReadableDatabase();
+        DatabaseHelper databaseHelper = helper = new DatabaseHelper(this);
+        try {
+            helper.createEmptyDatabase();
+            db = helper.openDatabase();
+        }catch(IOException ioe) {
+
+        }catch(SQLiteException sqle) {
+
+        }
+
+        makeList();
+        setMainView();
+    }
+
+    private void makeList() {
 
         //インテントを取得したあと作品名を取得
         Intent intent = getIntent();
         String workname = intent.getStringExtra("東方紅魔郷");
 
-        makeList("SELECT * FROM " + workname);
-        setMainView();
-    }
-
-    private void makeList(String query) {
-        Cursor c = db.rawQuery(query, null);
+        Cursor c = db.query(null, null, null, null, null, null, null);
         c.moveToFirst();
 
         for(int i = 0; i < c.getCount(); i++) {

@@ -1,6 +1,7 @@
 package com.example.spellcardlibrary.app;
 
 import android.content.Context;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -17,89 +18,94 @@ import java.io.OutputStream;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    //データベース名
-    private final static String DB_NAME = "database";
+    private static String DB_NAME = "my_database";
+    private static String DB_NAME_ASSET = "my_database.db";
+    private static final int DATABASE_VERSION = 17;
 
-    //assetに格納されているデータベース名
-    private final static String DB_NAME_ASSET = "database.db";
-
-    //データベースのコピー先のパス
-    private final static String DB_PATH = "/data/data/com.example.spellcardlibrary.app/database/";
-
-    //データベースのオブジェクトを格納するフィールド
     private SQLiteDatabase mDatabase;
+    private final Context mContext;
+    private final File mDatabasePath;
 
-    //データベースのバージョン
-    private final static int DB_VERSION = 17;
-
-    private Context mContext;
-    private File mDatabasePath;
-
-    //ヘルパークラスのコンストラクタを呼び出す
     public DatabaseHelper(Context context) {
-        super(context, DB_NAME, null, DB_VERSION);
+        super(context, DB_NAME, null, DATABASE_VERSION);
         mContext = context;
         mDatabasePath = mContext.getDatabasePath(DB_NAME);
     }
 
-    //assetに格納されたデータベースをコピーするため空のデータベースを作成する。
+    /**
+     * asset に格納したデータベースをコピーするための空のデータベースを作成する
+     */
     public void createEmptyDatabase() throws IOException {
-        boolean dbExist = checkDatabaseExists();
-        if(dbExist); //すでにデータベースは作成されている
-        else {
-            getReadableDatabase(); //データベースをオープンする
+        boolean dbExist = checkDataBaseExists();
+
+        if (dbExist) {
+            // すでにデータベースは作成されている
+        } else {
+            // このメソッドを呼ぶことで、空のデータベースがアプリのデフォルトシステムパスに作られる
+            getReadableDatabase();
+
             try {
-                copyDatabaseFromAsset();
+                // asset に格納したデータベースをコピーする
+                copyDataBaseFromAsset();
+
                 String dbPath = mDatabasePath.getAbsolutePath();
                 SQLiteDatabase checkDb = null;
                 try {
-                    checkDb = SQLiteDatabase.openDatabase(dbPath, null, SQLiteDatabase.OPEN_READONLY);
-                }catch(SQLiteException e) {
-                    //何らかの理由でデータベースがオープンできない
+                    checkDb = SQLiteDatabase.openDatabase(dbPath, null, SQLiteDatabase.OPEN_READWRITE);
+                } catch (SQLiteException e) {
                 }
-                if(checkDb != null) {
-                    checkDb.setVersion(DB_VERSION);
+
+                if (checkDb != null) {
+                    checkDb.setVersion(DATABASE_VERSION);
                     checkDb.close();
                 }
-            } catch(IOException e) {
+
+            } catch (IOException e) {
                 throw new Error("Error copying database");
             }
         }
     }
 
-    //再コピーを防ぐためにすでにデータベースがあるかどうか判定する。
-    private boolean checkDatabaseExists() {
-
-        //データベースのパスを取得
+    /**
+     * 再コピーを防止するために、すでにデータベースがあるかどうか判定する
+     *
+     * @return 存在している場合 {@code true}
+     */
+    private boolean checkDataBaseExists() {
         String dbPath = mDatabasePath.getAbsolutePath();
 
         SQLiteDatabase checkDb = null;
         try {
-            //checkDb = SQLiteDatabase.openDatabase(dbPath, null, SQLiteDatabase.OPEN_READONLY);
-        }catch(SQLiteException e) {
-            //何らかの理由でデータベースがオープンできない
+            checkDb = SQLiteDatabase.openDatabase(dbPath, null, SQLiteDatabase.OPEN_READONLY);
+        } catch (SQLiteException e) {
+            // データベースはまだ存在していない
         }
 
-        //データベースはまだ存在しない
-        if(checkDb == null) return false;
-        else return true;
+        if (checkDb == null) {
+            // データベースはまだ存在していない
+            return false;
+        }
 
-//        int oldVersion = checkDb.getVersion();
-//        int newVersion = DB_VERSION;
-//
-//        //データベースは存在していて最新
-//        if(oldVersion == newVersion) {
-//            checkDb.close();
-//            return true;
-//        }else {
-//            //データベースは存在しているが最新ではないので削除
-//            File f = new File(dbPath);
-//            f.delete();
-//            return false;
-//        }
+        int oldVersion = checkDb.getVersion();
+        int newVersion = DATABASE_VERSION;
+
+        if (oldVersion == newVersion) {
+            // データベースは存在していて最新
+            checkDb.close();
+            return true;
+        }
+
+        // データベースが存在していて最新ではないので削除
+        File f = new File(dbPath);
+        f.delete();
+        return false;
     }
 
-    private void copyDatabaseFromAsset() throws IOException {
+    /**
+     * asset に格納したデーだベースをデフォルトのデータベースパスに作成したからのデータベースにコピーする
+     */
+    private void copyDataBaseFromAsset() throws IOException{
+
         // asset 内のデータベースファイルにアクセス
         InputStream mInput = mContext.getAssets().open(DB_NAME_ASSET);
 
@@ -119,18 +125,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         mInput.close();
     }
 
-    //データベースをオープンする。オープンできない場合はSQLiteExceptionを投げる。
-    public SQLiteDatabase openDatabase() throws SQLiteException {
-        return getWritableDatabase();
+    public SQLiteDatabase openDatabase() throws SQLException {
+        return getReadableDatabase();
     }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
+    public void onCreate(SQLiteDatabase db) {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    }
 
+    @Override
+    public synchronized void close() {
+        if(mDatabase != null)
+            mDatabase.close();
+
+        super.close();
     }
 }

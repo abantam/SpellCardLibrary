@@ -35,6 +35,7 @@ public class Table_kouma extends Activity {
         super.onDestroy();
     }
 
+    //assetsからデータベースをコピー
     private void setDatabase() {
         mDbHelper = new DatabaseHelper(this);
         try {
@@ -47,15 +48,18 @@ public class Table_kouma extends Activity {
         }
     }
 
+    //コピーしたデータベースからリストを作成
     private void makeList() {
 
         //インテントを取得したあと作品名を取得
         Intent intent = getIntent();
         String workname = intent.getStringExtra("東方紅魔郷");
 
+        //データベース内のカーソルを設定
         Cursor c = db.query(workname, null, null, null, null, null, null);
         c.moveToFirst();
 
+        //カーソルを1つずつ動かして一時変数にデータを格納
         for(int i = 0; i < c.getCount(); i++, c.moveToNext()) {
             HashMap<String, String> temp = new HashMap<String, String>();
             temp.put("Number", c.getString(1));
@@ -64,6 +68,7 @@ public class Table_kouma extends Activity {
         }
     }
 
+    //リストビューをセットしてリストを表示
     private void setMainView() {
         mainView = (ListView)findViewById(R.id.mainView);
         SimpleAdapter adapter = new SimpleAdapter(this, scList, R.layout.listview_layout,

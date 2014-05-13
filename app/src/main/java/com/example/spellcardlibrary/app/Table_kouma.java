@@ -19,11 +19,13 @@ public class Table_kouma extends Activity {
 
     private DatabaseHelper mDbHelper;
     private SQLiteDatabase db;
+    //private StationCodeDao mStationCodeDao;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setDatabase();
+        findData(1);
     }
 
     @Override
@@ -44,10 +46,10 @@ public class Table_kouma extends Activity {
         }
     }
 
-    private static final String[] COLUMNS = {"_id", "name", "address", "tel"};
+    private static final String[] COLUMNS = {"*"};
 
     private Cursor findData(int id) {
-        Cursor cursor = db.query("東方紅魔郷", COLUMNS, "where _id=" + id, null, null, null, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM 東方紅魔郷 ", null);
         return cursor;
     }
 }

@@ -18,8 +18,8 @@ import java.io.OutputStream;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static String DB_NAME = "my_database";
-    private static String DB_NAME_ASSET = "my_database.db";
+    private static String DB_NAME = "database.db";
+    private static String DB_NAME_ASSET = "database.db";
     private static final int DATABASE_VERSION = 17;
 
     private SQLiteDatabase mDatabase;

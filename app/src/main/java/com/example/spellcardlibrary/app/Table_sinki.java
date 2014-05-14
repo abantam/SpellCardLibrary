@@ -53,7 +53,7 @@ public class Table_sinki extends Activity {
 
         //インテントを取得したあと作品名を取得
         Intent intent = getIntent();
-        String workname = intent.getStringExtra("東方紅魔郷");
+        String workname = intent.getStringExtra("東方心綺楼");
 
         //データベース内のカーソルを設定
         Cursor c = db.query(workname, null, null, null, null, null, null);

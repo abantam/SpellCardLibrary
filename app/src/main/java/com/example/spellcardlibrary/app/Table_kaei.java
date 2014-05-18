@@ -62,8 +62,8 @@ public class Table_kaei extends Activity {
         //カーソルを1つずつ動かして一時変数にデータを格納
         for(int i = 0; i < c.getCount(); i++, c.moveToNext()) {
             HashMap<String, String> temp = new HashMap<String, String>();
-            temp.put("Number", c.getString(1));
-            temp.put("scName", c.getString(2));
+            temp.put("Number", null);
+            temp.put("scName", c.getString(1));
             scList.add(temp);
         }
     }

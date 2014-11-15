@@ -8,9 +8,9 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.spellcardlibrary.app.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,68 +18,72 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.spellcardlibrary.app.Table_kouma"
+            android:name=".Table_kouma"
             android:label="@string/title_activity_table_kouma" >
         </activity>
         <activity
-            android:name="com.example.spellcardlibrary.app.Table_youmu"
+            android:name=".Table_youmu"
             android:label="@string/title_activity_table_youmu" >
         </activity>
         <activity
-            android:name="com.example.spellcardlibrary.app.Table_suimu"
+            android:name=".Table_suimu"
             android:label="@string/title_activity_table_suimu" >
         </activity>
         <activity
-            android:name="com.example.spellcardlibrary.app.Table_eiya"
+            android:name=".Table_eiya"
             android:label="@string/title_activity_table_eiya" >
         </activity>
         <activity
-            android:name="com.example.spellcardlibrary.app.Table_kaei"
+            android:name=".Table_kaei"
             android:label="@string/title_activity_table_kaei" >
         </activity>
         <activity
-            android:name="com.example.spellcardlibrary.app.Table_bunka"
+            android:name=".Table_bunka"
             android:label="@string/title_activity_table_bunka" >
         </activity>
         <activity
-            android:name="com.example.spellcardlibrary.app.Table_fuzin"
+            android:name=".Table_fuzin"
             android:label="@string/title_activity_table_fuzin" >
         </activity>
         <activity
-            android:name="com.example.spellcardlibrary.app.Table_hisou"
+            android:name=".Table_hisou"
             android:label="@string/title_activity_table_hisou" >
         </activity>
         <activity
-            android:name="com.example.spellcardlibrary.app.Table_tirei"
+            android:name=".Table_tirei"
             android:label="@string/title_activity_table_tirei" >
         </activity>
         <activity
-            android:name="com.example.spellcardlibrary.app.Table_seiren"
+            android:name=".Table_seiren"
             android:label="@string/title_activity_table_seiren" >
         </activity>
         <activity
-            android:name="com.example.spellcardlibrary.app.Table_tensoku"
+            android:name=".Table_tensoku"
             android:label="@string/title_activity_table_tensoku" >
         </activity>
         <activity
-            android:name="com.example.spellcardlibrary.app.Table_ds"
+            android:name=".Table_ds"
             android:label="@string/title_activity_table_ds" >
         </activity>
         <activity
-            android:name="com.example.spellcardlibrary.app.Table_daisen"
+            android:name=".Table_daisen"
             android:label="@string/title_activity_table_daisen" >
         </activity>
         <activity
-            android:name="com.example.spellcardlibrary.app.Table_sinrei"
+            android:name=".Table_sinrei"
             android:label="@string/title_activity_table_sinrei" >
         </activity>
         <activity
-            android:name="com.example.spellcardlibrary.app.Table_sinki"
+            android:name=".Table_sinki"
             android:label="@string/title_activity_table_sinki" >
         </activity>
         <activity
-            android:name="com.example.spellcardlibrary.app.Table_kisin"
+            android:name=".Table_kisin"
             android:label="@string/title_activity_table_kisin" >
+        </activity>
+        <activity
+            android:name=".Table_amnjk"
+            android:label="@string/title_activity_table_amnjk" >
         </activity>
     </application>
 

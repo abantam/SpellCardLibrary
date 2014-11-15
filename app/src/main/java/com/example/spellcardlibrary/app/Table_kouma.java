@@ -41,6 +41,7 @@ public class Table_kouma extends Activity {
         try {
             mDbHelper.createEmptyDatabase();
             db = mDbHelper.openDatabase();
+
         } catch (IOException ioe) {
             throw new Error("Unable to create database");
         } catch (SQLException sqle) {

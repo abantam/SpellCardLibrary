@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Table_tensoku extends Activity {
+public class Table_amnjk extends Activity {
 
     private ListView mainView;
     private SQLiteDatabase db;
@@ -23,7 +23,7 @@ public class Table_tensoku extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_table_kouma);
+        setContentView(R.layout.activity_table_amnjk);
         setDatabase();
         makeList();
         setMainView();
@@ -36,14 +36,14 @@ public class Table_tensoku extends Activity {
     }
 
     //assetsからデータベースをコピー
-    private void setDatabase() {
+    public void setDatabase() {
         mDbHelper = new DatabaseHelper(this);
         try {
             mDbHelper.createEmptyDatabase();
             db = mDbHelper.openDatabase();
-        } catch (IOException ioe) {
+        }catch(IOException ioe) {
             throw new Error("Unable to create database");
-        } catch (SQLException sqle) {
+        }catch(SQLException sqle) {
             throw sqle;
         }
     }
@@ -51,9 +51,9 @@ public class Table_tensoku extends Activity {
     //コピーしたデータベースからリストを作成
     private void makeList() {
 
-        //インテントを取得したあと作品名を取得
+        //インテントを取得した後作品名を取得
         Intent intent = getIntent();
-        String workname = intent.getStringExtra("東方非想天則");
+        String workname = intent.getStringExtra("弾幕アマノジャク");
 
         //データベース内のカーソルを設定
         Cursor c = db.query(workname, null, null, null, null, null, null);
@@ -62,19 +62,17 @@ public class Table_tensoku extends Activity {
         //カーソルを1つずつ動かして一時変数にデータを格納
         for(int i = 0; i < c.getCount(); i++, c.moveToNext()) {
             HashMap<String, String> temp = new HashMap<String, String>();
-            temp.put("Number", null);
-            temp.put("scName", c.getString(1));
+            temp.put("Number", c.getString(1));
+            temp.put("scList", c.getString(2));
             scList.add(temp);
         }
     }
 
-
     //リストビューをセットしてリストを表示
     private void setMainView() {
         mainView = (ListView)findViewById(R.id.mainView);
-        SimpleAdapter adapter = new SimpleAdapter(this, scList, R.layout.listview_layout,
-                new String[]{"Number", "scName"}, new int[]{R.id.number, R.id.scname});
+        SimpleAdapter adapter = new SimpleAdapter(this, scList, R.layout.listview_layout, new String[]{"Number", "scName"}, new int[]{R.id.number, R.id.scname});
         mainView.setAdapter(adapter);
     }
-}
 
+}

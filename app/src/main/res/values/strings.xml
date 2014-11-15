@@ -3,7 +3,6 @@
 
     <string name="app_name">SpellCardLibrary</string>
     <string name="hello_world">Hello world!</string>
-
     <string name="kouma">東方紅魔郷</string>
     <string name="youmu">東方妖々夢</string>
     <string name="suimu">東方萃夢想</string>
@@ -20,7 +19,6 @@
     <string name="sinrei">東方神霊廟</string>
     <string name="sinki">東方心綺楼</string>
     <string name="kisin">東方輝針城</string>
-
     <string name="title_activity_table_kouma">Table_kouma</string>
     <string name="title_activity_table_youmu">Table_youmu</string>
     <string name="title_activity_table_suimu">Table_suimu</string>
@@ -37,6 +35,7 @@
     <string name="title_activity_table_sinrei">Table_sinrei</string>
     <string name="title_activity_table_sinki">Table_sinki</string>
     <string name="title_activity_table_kisin">Table_kisin</string>
-
+    <string name="title_activity_table_amnjk">Table_amnjk</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

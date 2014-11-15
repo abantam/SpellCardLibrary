@@ -27,6 +27,7 @@ public class MainActivity extends ActivityGroup {
             Table_sinrei.class,
             Table_sinki.class,
             Table_kisin.class,
+            Table_amnjk.class,
     };
 
     //各タブに割り当てられたアクティビティを起動するためのインテント群
@@ -50,6 +51,7 @@ public class MainActivity extends ActivityGroup {
             "東方神霊廟",
             "東方心綺楼",
             "東方輝針城",
+            "弾幕アマノジャク",
     };
 
     @Override

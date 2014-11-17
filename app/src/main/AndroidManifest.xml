@@ -89,6 +89,10 @@
             android:name=".SCInfo"
             android:label="@string/title_activity_scinfo" >
         </activity>
+        <activity
+            android:name=".BaseTable"
+            android:label="@string/title_activity_base_table" >
+        </activity>
     </application>
 
 </manifest>

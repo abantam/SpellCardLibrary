@@ -37,5 +37,6 @@
     <string name="title_activity_table_kisin">Table_kisin</string>
     <string name="title_activity_table_amnjk">Table_amnjk</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_scinfo">SCInfo</string>
 
 </resources>

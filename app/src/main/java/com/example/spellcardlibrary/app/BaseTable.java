@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -76,13 +78,14 @@ public class BaseTable extends Activity {
                 new String[]{"Number", "scName"}, new int[]{R.id.number, R.id.scname});
         mainView.setAdapter(adapter);
 
-//        mainView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent i = new Intent(Table_kouma.this, SCInfo.class);
-//                i.putExtra("scName", position);
-//                startActivity(i);
-//            }
-//        });
+        //リストビューを選択したときに画面遷移
+        mainView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(BaseTable.this, SCInfo.class);
+                i.putExtra("scName", position);
+                startActivity(i);
+            }
+        });
     }
 
 

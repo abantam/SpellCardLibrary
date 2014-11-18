@@ -9,27 +9,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends ActivityGroup {
 
-    //各タブの起動するアクティビティを保持したクラス
-    private Class classlist[] = {
-            Table_kouma.class,
-            Table_youmu.class,
-            Table_suimu.class,
-            Table_eiya.class,
-            Table_kaei.class,
-            Table_bunka.class,
-            Table_fuzin.class,
-            Table_hisou.class,
-            Table_tirei.class,
-            Table_seiren.class,
-            Table_tensoku.class,
-            Table_ds.class,
-            Table_daisen.class,
-            Table_sinrei.class,
-            Table_sinki.class,
-            Table_kisin.class,
-            Table_amnjk.class,
-    };
-
     //各タブに割り当てられたアクティビティを起動するためのインテント群
     private ArrayList<Intent> intentList = new ArrayList<Intent>();
 
@@ -66,7 +45,7 @@ public class MainActivity extends ActivityGroup {
         //タブに作品名を割り当てる
         TabHost.TabSpec spec;
         Intent i;
-        for(int it = 0; it < classlist.length; it++) {
+        for(int it = 0; it < workname.length; it++) {
 
             //インテントを作成
             i = new Intent(this, BaseTable.class);

@@ -24,7 +24,7 @@ public class BaseTable extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_table_kouma);
+        setContentView(R.layout.activity_base_table);
         setDatabase();
         makeList();
         setMainView();

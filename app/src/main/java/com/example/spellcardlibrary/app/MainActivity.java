@@ -69,8 +69,8 @@ public class MainActivity extends ActivityGroup {
         for(int it = 0; it < classlist.length; it++) {
 
             //インテントを作成
-            i = new Intent(this, classlist[it]);
-            i.putExtra(workname[it], workname[it]);
+            i = new Intent(this, BaseTable.class);
+            i.putExtra("作品名", workname[it]);
             intentList.add(i);
 
             //タブを作成しインテントを設定

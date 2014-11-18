@@ -24,7 +24,10 @@ public class BaseTable extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base_table);
+        setContentView(R.layout.activity_table_kouma);
+        setDatabase();
+        makeList();
+        setMainView();
     }
 
     @Override
@@ -51,7 +54,7 @@ public class BaseTable extends Activity {
 
         //インテントを取得したあと作品名を取得
         Intent intent = getIntent();
-        String workname = intent.getStringExtra("東方紅魔郷");
+        String workname = intent.getStringExtra("作品名");
 
         //データベース内のカーソルを設定
         Cursor c = db.query(workname, null, null, null, null, null, null);

@@ -19,9 +19,10 @@ import java.util.HashMap;
 public class BaseTable extends Activity {
 
     private ListView mainView;//リストビュー
-    private SQLiteDatabase db;//データベースを格納
+    private static SQLiteDatabase db;//データベースを格納
     private DatabaseHelper mDbHelper;
     private ArrayList<HashMap<String, String>> scList = new ArrayList<HashMap<String, String>>();
+    private String workname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +57,7 @@ public class BaseTable extends Activity {
 
         //インテントを取得したあと作品名を取得
         Intent intent = getIntent();
-        String workname = intent.getStringExtra("作品名");
+        workname = intent.getStringExtra("作品名");
 
         //データベース内のカーソルを設定
         Cursor c = db.query(workname, null, null, null, null, null, null);
@@ -82,11 +83,15 @@ public class BaseTable extends Activity {
         mainView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(BaseTable.this, SCInfo.class);
+                i.putExtra("workname", workname);
                 i.putExtra("scName", position);
                 startActivity(i);
             }
         });
     }
 
-
+    //データベースを返す
+    public static SQLiteDatabase getDatabase() {
+        return db;
+    }
 }

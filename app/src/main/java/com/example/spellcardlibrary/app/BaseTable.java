@@ -83,8 +83,7 @@ public class BaseTable extends Activity {
         mainView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(BaseTable.this, SCInfo.class);
-                i.putExtra("workname", workname);
-                i.putExtra("scName", position);
+                i.putExtra("query", "SELECT * FROM " + workname + " WHERE _id = " + (position + 1));
                 startActivity(i);
             }
         });

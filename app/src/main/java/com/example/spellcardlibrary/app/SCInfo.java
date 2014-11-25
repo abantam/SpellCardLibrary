@@ -18,12 +18,11 @@ public class SCInfo extends Activity {
         setContentView(R.layout.activity_scinfo);
 
         Intent i = getIntent();
-        String workname = i.getStringExtra("workname");
-        String scname = i.getStringExtra("scName");
+        String query = i.getStringExtra("query");
 
         //BaseTableからデータベースを取得
         db = BaseTable.getDatabase();
-        Cursor c = db.query(workname, new String[]{"スペルカード名"}, null, null, null, null, null);
+        Cursor c = db.rawQuery(query, null);
         c.moveToFirst();
 
         TextView name = (TextView)findViewById(R.id.name);

@@ -1,12 +1,29 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.spellcardlibrary.app.SCInfo">
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <TableRow>
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableRow>
 
-</RelativeLayout>
+    <!--使用キャラ-->
+    <TableRow>
+        <TextView
+            android:id="@+id/charname"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/title_charname"/>
+        <TextView
+            android:id="@+id/charnameValue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableRow>
+
+
+
+</TableLayout>

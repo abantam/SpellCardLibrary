@@ -17,6 +17,7 @@ public class SCInfo extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scinfo);
 
+        //インテントを取得
         Intent i = getIntent();
         String query = i.getStringExtra("query");
 

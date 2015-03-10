@@ -2,7 +2,8 @@
 <resources>
 
     <string name="app_name">SpellCardLibrary</string>
-    <string name="hello_world">Hello world!</string>
+
+    <!--作品名-->
     <string name="kouma">東方紅魔郷</string>
     <string name="youmu">東方妖々夢</string>
     <string name="suimu">東方萃夢想</string>
@@ -19,6 +20,8 @@
     <string name="sinrei">東方神霊廟</string>
     <string name="sinki">東方心綺楼</string>
     <string name="kisin">東方輝針城</string>
+    <string name="amnjk">弾幕アマノジャク</string>
+
     <string name="title_activity_table_kouma">Table_kouma</string>
     <string name="title_activity_table_youmu">Table_youmu</string>
     <string name="title_activity_table_suimu">Table_suimu</string>
@@ -39,5 +42,10 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_scinfo">SCInfo</string>
     <string name="title_activity_base_table">BaseTable</string>
+
+    <string name="title_charname">使用キャラ</string>
+    <string name="title_workname">作品名</string>
+    <string name="title_time">制限時間</string>
+    <string name="title_maxSCB">SCB最大値</string>
 
 </resources>

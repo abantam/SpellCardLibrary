@@ -25,6 +25,32 @@
             android:layout_height="match_parent" />
     </TableRow>
 
+    <!--出現難易度-->
+    <TableRow>
+        <TextView
+            android:id="@+id/difficulty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/title_difficulty"/>
+        <TextView
+            android:id="@+id/difficultyValue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </TableRow>
+
+    <!--出現ステージ-->
+    <TableRow>
+        <TextView
+            android:id="@+id/stage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/title_stage"/>
+        <TextView
+            android:id="@+id/stageValue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </TableRow>
+
 
 
 </TableLayout>

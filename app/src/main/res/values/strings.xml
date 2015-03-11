@@ -45,7 +45,10 @@
 
     <string name="title_charname">使用キャラ</string>
     <string name="title_workname">作品名</string>
+    <string name="title_difficulty">出現難易度</string>
+    <string name="title_stage">出現ステージ</string>
     <string name="title_time">制限時間</string>
     <string name="title_maxSCB">SCB最大値</string>
+    <string name="title_redSCB">SCB減少量</string>
 
 </resources>

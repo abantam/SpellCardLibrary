@@ -31,6 +31,9 @@ public class SCInfo extends Activity {
 
         TextView charname = (TextView)findViewById(R.id.charnameValue);
         charname.setText(c.getString(3));
+
+        TextView difficulty = (TextView)findViewById(R.id.difficultyValue);
+        difficulty.setText(c.getString(4));
     }
 
     @Override

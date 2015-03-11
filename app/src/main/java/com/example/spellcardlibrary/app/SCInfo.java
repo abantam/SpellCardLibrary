@@ -28,11 +28,14 @@ public class SCInfo extends Activity {
 
         TextView name = (TextView)findViewById(R.id.name);
         name.setText(c.getString(2));
+
+        TextView charname = (TextView)findViewById(R.id.charnameValue);
+        charname.setText(c.getString(3));
     }
 
     @Override
     public void onDestroy() {
-        db.close();
+        //db.close();
         super.onDestroy();
     }
 

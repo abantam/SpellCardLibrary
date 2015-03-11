@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.spellcardlibrary.app.SCInfo">
 
+    <!--スペルカード名-->
     <TableRow>
         <TextView
             android:id="@+id/name"

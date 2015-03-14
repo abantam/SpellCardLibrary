@@ -49,6 +49,6 @@
     <string name="title_stage">出現ステージ</string>
     <string name="title_time">制限時間</string>
     <string name="title_maxSCB">SCB最大値</string>
-    <string name="title_redSCB">SCB減少量</string>
+    <string name="title_redSCB">SCB減少値</string>
 
 </resources>

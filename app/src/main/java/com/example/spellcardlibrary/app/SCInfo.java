@@ -34,6 +34,18 @@ public class SCInfo extends Activity {
 
         TextView difficulty = (TextView)findViewById(R.id.difficultyValue);
         difficulty.setText(c.getString(4));
+
+        TextView stage = (TextView)findViewById(R.id.stageValue);
+        stage.setText(c.getString(5));
+
+        TextView time = (TextView)findViewById(R.id.timeValue);
+        time.setText(c.getString(6));
+
+        TextView maxSCB = (TextView)findViewById(R.id.maxSCBValue);
+        maxSCB.setText(c.getString(7));
+
+        TextView redSCB = (TextView)findViewById(R.id.redSCBValue);
+        redSCB.setText(c.getString(8));
     }
 
     @Override

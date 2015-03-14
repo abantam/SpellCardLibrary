@@ -51,6 +51,44 @@
             android:layout_height="match_parent"/>
     </TableRow>
 
+    <!--制限時間-->
+    <TableRow>
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/title_time"/>
+        <TextView
+            android:id="@+id/timeValue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </TableRow>
+
+    <!--SCB最大値-->
+    <TableRow>
+        <TextView
+            android:id="@+id/maxSCB"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/title_maxSCB"/>
+        <TextView
+            android:id="@+id/maxSCBValue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </TableRow>
+
+    <!--SCB減少値-->
+    <TableRow>
+        <TextView
+            android:id="@+id/redSCB"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/title_redSCB"/>
+        <TextView
+            android:id="@+id/redSCBValue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </TableRow>
 
 
 </TableLayout>

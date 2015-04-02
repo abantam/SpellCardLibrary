@@ -79,6 +79,16 @@ public class BaseTable extends Activity {
                 new String[]{"Number", "scName"}, new int[]{R.id.number, R.id.scname});
         mainView.setAdapter(adapter);
 
+        /*
+        端末の画面サイズに合わせてフォントサイズを最適化する
+        参考文献：http://cleanings.j
+         */
+        /*WindowManager wm = (WindowManager)getSystemService(WINDOW_SERVICE);
+        Display disp = wm.getDefaultDisplay();
+        float width = disp.getWidth();
+        float scale = width / 480;
+        TextView text = (TextView)findViewById(R.id.)*/
+
         //リストビューを選択したときに画面遷移
         mainView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

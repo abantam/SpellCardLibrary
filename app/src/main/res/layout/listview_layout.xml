@@ -9,13 +9,13 @@
         android:id="@+id/number"
         android:layout_width="50dip"
         android:layout_height="wrap_content"
-        android:textSize="20px"/>
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/scname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20px"/>
+        android:textSize="20sp"/>
 
 
 </LinearLayout>

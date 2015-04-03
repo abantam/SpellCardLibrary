@@ -6,10 +6,12 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -102,5 +104,11 @@ public class BaseTable extends Activity {
     //データベースを返す
     public static SQLiteDatabase getDatabase() {
         return db;
+    }
+
+    //スクロール制御
+    private void scrollController(TextView tv) {
+        tv.setSingleLine();
+        tv.setEllipsize(TextUtils.TruncateAt.MARQUEE);
     }
 }

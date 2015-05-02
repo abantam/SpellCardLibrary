@@ -6,10 +6,12 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -63,12 +65,24 @@ public class BaseTable extends Activity {
         Cursor c = db.query(workname, null, null, null, null, null, null);
         c.moveToFirst();
 
-        //カーソルを1つずつ動かして一時変数にデータを格納
-        for(int i = 0; i < c.getCount(); i++, c.moveToNext()) {
-            HashMap<String, String> temp = new HashMap<String, String>();
-            temp.put("Number", c.getString(1));
-            temp.put("scName", c.getString(2));
-            scList.add(temp);
+        if(workname == "東方萃夢想" || workname == "東方緋想天" || workname == "東方非想天則" || workname == "東方心綺楼") {
+            //カーソルを1つずつ動かして一時変数にデータを格納
+            for(int i = 0; i < c.getCount(); i++, c.moveToNext()) {
+                HashMap<String, String> temp = new HashMap<String, String>();
+                //temp.put("Number", null);
+                temp.put("scName", c.getString(1));
+                scList.add(temp);
+            }
+
+        }else {
+
+            //カーソルを1つずつ動かして一時変数にデータを格納
+            for (int i = 0; i < c.getCount(); i++, c.moveToNext()) {
+                HashMap<String, String> temp = new HashMap<String, String>();
+                temp.put("Number", c.getString(1));
+                temp.put("scName", c.getString(2));
+                scList.add(temp);
+            }
         }
     }
 
@@ -78,6 +92,16 @@ public class BaseTable extends Activity {
         SimpleAdapter adapter = new SimpleAdapter(this, scList, R.layout.listview_layout,
                 new String[]{"Number", "scName"}, new int[]{R.id.number, R.id.scname});
         mainView.setAdapter(adapter);
+
+        /*
+        端末の画面サイズに合わせてフォントサイズを最適化する
+        参考文献：http://cleanings.j
+         */
+        /*WindowManager wm = (WindowManager)getSystemService(WINDOW_SERVICE);
+        Display disp = wm.getDefaultDisplay();
+        float width = disp.getWidth();
+        float scale = width / 480;
+        TextView text = (TextView)findViewById(R.id.)*/
 
         //リストビューを選択したときに画面遷移
         mainView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -89,8 +113,19 @@ public class BaseTable extends Activity {
         });
     }
 
+    //idがない作品のリストビュー作成
+    private void setMainViewForNoId() {
+
+    }
+
     //データベースを返す
     public static SQLiteDatabase getDatabase() {
         return db;
+    }
+
+    //スクロール制御
+    private void scrollController(TextView tv) {
+        tv.setSingleLine();
+        tv.setEllipsize(TextUtils.TruncateAt.MARQUEE);
     }
 }

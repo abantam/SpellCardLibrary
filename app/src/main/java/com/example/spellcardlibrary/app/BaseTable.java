@@ -65,12 +65,24 @@ public class BaseTable extends Activity {
         Cursor c = db.query(workname, null, null, null, null, null, null);
         c.moveToFirst();
 
-        //カーソルを1つずつ動かして一時変数にデータを格納
-        for(int i = 0; i < c.getCount(); i++, c.moveToNext()) {
-            HashMap<String, String> temp = new HashMap<String, String>();
-            temp.put("Number", c.getString(1));
-            temp.put("scName", c.getString(2));
-            scList.add(temp);
+        if(workname == "東方萃夢想" || workname == "東方緋想天" || workname == "東方非想天則" || workname == "東方心綺楼") {
+            //カーソルを1つずつ動かして一時変数にデータを格納
+            for(int i = 0; i < c.getCount(); i++, c.moveToNext()) {
+                HashMap<String, String> temp = new HashMap<String, String>();
+                //temp.put("Number", null);
+                temp.put("scName", c.getString(1));
+                scList.add(temp);
+            }
+
+        }else {
+
+            //カーソルを1つずつ動かして一時変数にデータを格納
+            for (int i = 0; i < c.getCount(); i++, c.moveToNext()) {
+                HashMap<String, String> temp = new HashMap<String, String>();
+                temp.put("Number", c.getString(1));
+                temp.put("scName", c.getString(2));
+                scList.add(temp);
+            }
         }
     }
 
@@ -99,6 +111,11 @@ public class BaseTable extends Activity {
                 startActivity(i);
             }
         });
+    }
+
+    //idがない作品のリストビュー作成
+    private void setMainViewForNoId() {
+
     }
 
     //データベースを返す

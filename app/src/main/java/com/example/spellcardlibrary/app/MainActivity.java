@@ -3,11 +3,17 @@ package com.example.spellcardlibrary.app;
 import android.app.ActivityGroup;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TabHost;
 
 import java.util.ArrayList;
 
 public class MainActivity extends ActivityGroup {
+
+    //メニューアイテム識別用ID
+    private static final int credit_ID = 0;
 
     //各タブに割り当てられたアクティビティを起動するためのインテント群
     private ArrayList<Intent> intentList = new ArrayList<Intent>();
@@ -58,5 +64,29 @@ public class MainActivity extends ActivityGroup {
             spec.setIndicator(workname[it]);
             host.addTab(spec);
         }
+    }
+
+    //オプションメニューの作成
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.optionsmenu, menu);
+
+        menu.add(Menu.NONE, credit_ID, Menu.NONE, "クレジット");
+
+        return true;
+    }
+
+    //メニューが選択された時の処理
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        //addした時のIDで識別
+        switch(item.getItemId()) {
+            case R.id.credit:
+                return true;
+        }
+        return false;
     }
 }

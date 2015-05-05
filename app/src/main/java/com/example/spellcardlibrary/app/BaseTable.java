@@ -70,13 +70,13 @@ public class BaseTable extends Activity {
             //カーソルを1つずつ動かして一時変数にデータを格納
             for (int i = 0; i < c.getCount(); i++, c.moveToNext()) {
                 HashMap<String, String> temp = new HashMap<String, String>();
-//                if(workname == "東方萃夢想" || workname == "東方緋想天" || workname == "東方非想天則" || workname == "東方心綺楼") {
-//                    temp.put("Number", null);
-//                    temp.put("scName", c.getString(1));
-//                }else {
+                if(workname == "東方萃夢想" || workname == "東方花映塚" || workname == "東方緋想天" || workname == "東方非想天則" || workname == "東方心綺楼") {
+                    temp.put("Number", null);
+                    temp.put("scName", c.getString(1));
+                }else {
                     temp.put("Number", c.getString(1));
                     temp.put("scName", c.getString(2));
-//                }
+                }
 
                 scList.add(temp);
             }

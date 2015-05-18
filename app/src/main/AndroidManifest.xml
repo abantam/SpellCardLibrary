@@ -17,7 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
+        <!--<activity
             android:name=".Table_kouma"
             android:label="@string/title_activity_table_kouma" >
         </activity>
@@ -84,7 +84,7 @@
         <activity
             android:name=".Table_amnjk"
             android:label="@string/title_activity_table_amnjk" >
-        </activity>
+        </activity> -->
         <activity
             android:name=".SCInfo"
             android:label="@string/title_activity_scinfo" >

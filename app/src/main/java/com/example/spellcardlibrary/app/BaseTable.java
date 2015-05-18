@@ -71,7 +71,7 @@ public class BaseTable extends Activity {
             for (int i = 0; i < c.getCount(); i++, c.moveToNext()) {
                 HashMap<String, String> temp = new HashMap<String, String>();
                 if(workname.equals("東方萃夢想") || workname.equals("東方花映塚") || workname.equals("東方緋想天") || workname.equals("東方非想天則") || workname.equals("東方心綺楼")) {
-                    temp.put("Number", c.getString(0));
+                    temp.put("Number", null);
                     temp.put("scName", c.getString(1));
                 }else {
                     temp.put("Number", c.getString(1));

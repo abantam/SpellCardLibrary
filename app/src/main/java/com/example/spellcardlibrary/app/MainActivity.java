@@ -85,6 +85,8 @@ public class MainActivity extends ActivityGroup {
         //addした時のIDで識別
         switch(item.getItemId()) {
             case R.id.credit:
+                Intent i = new Intent(MainActivity.this, Credit.class);
+                startActivity(i);
                 return true;
         }
         return false;

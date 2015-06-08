@@ -3,10 +3,12 @@ package com.example.spellcardlibrary.app;
 import android.app.ActivityGroup;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TabHost;
+import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 
@@ -17,6 +19,9 @@ public class MainActivity extends ActivityGroup {
 
     //各タブに割り当てられたアクティビティを起動するためのインテント群
     private ArrayList<Intent> intentList = new ArrayList<Intent>();
+
+    //スワイプでタブを切り替えるためのViewPager
+    ViewPager mViewPager;
 
     //リソースから持ってきた作品名を格納した配列
     private String[] workname = {
@@ -44,6 +49,11 @@ public class MainActivity extends ActivityGroup {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //PagerAdapterを生成
+        //mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
+        mViewPager = (ViewPager)findViewById(R.id.pager);
+        mViewPager.setAdapter(new SectionsPagerAdapter(getFragmentManager()));
+
         //タブホストのインスタンス化
         TabHost host = (TabHost)findViewById(R.id.tabhost);
         host.setup(this.getLocalActivityManager());
@@ -64,6 +74,22 @@ public class MainActivity extends ActivityGroup {
             spec.setIndicator(workname[it]);
             host.addTab(spec);
         }
+
+        host.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId) {
+                mViewPager.setCurrentItem(Integer.valueOf(tabId));
+            }
+        });
+
+        mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position):
+                host.setCurrentTab(position);
+            }
+        });
+
     }
 
     //オプションメニューの作成

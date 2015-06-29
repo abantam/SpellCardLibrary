@@ -112,10 +112,10 @@ public class MainActivity extends ActivityGroup {
         //addした時のIDで識別
         switch(item.getItemId()) {
             case R.id.action_search:
-                openSearch();
+                //openSearch();
                 return true;
             case R.id.action_settings:
-                openSettings();
+                //openSettings();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

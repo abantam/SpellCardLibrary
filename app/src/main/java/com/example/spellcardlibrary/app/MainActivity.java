@@ -3,13 +3,10 @@ package com.example.spellcardlibrary.app;
 import android.app.ActivityGroup;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TabHost;
-import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 
@@ -101,7 +98,8 @@ public class MainActivity extends ActivityGroup {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_activity_actions, menu);
 
-        //menu.add(Menu.NONE, credit_ID, Menu.NONE, "クレジット");
+        menu.add(Menu.NONE, R.id.action_search, Menu.NONE, "検索");
+        menu.add(Menu.NONE, R.id.action_settings, Menu.NONE, "設定");
 
         return super.onCreateOptionsMenu(menu);
     }

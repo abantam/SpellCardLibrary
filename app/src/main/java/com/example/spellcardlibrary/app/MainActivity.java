@@ -100,12 +100,14 @@ public class MainActivity extends ActivityGroup {
 
         menu.add(Menu.NONE, R.id.action_search, Menu.NONE, "検索");
         menu.add(Menu.NONE, R.id.action_settings, Menu.NONE, "設定");
+        menu.add(Menu.NONE, R.id.action_credit, Menu.NONE, R.string.action_credit);
 
         return super.onCreateOptionsMenu(menu);
     }
 
     //メニューが選択された時の処理
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent i = new Intent();
 
         //addした時のIDで識別
         switch(item.getItemId()) {
@@ -115,6 +117,8 @@ public class MainActivity extends ActivityGroup {
             case R.id.action_settings:
                 //openSettings();
                 return true;
+            case R.id.action_credit:
+                startActivity(new Intent(this, Credit.class));
             default:
                 return super.onOptionsItemSelected(item);
         }

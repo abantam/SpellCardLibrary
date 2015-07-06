@@ -52,6 +52,8 @@
     <string name="title_redSCB">SCB減少値</string>
     <string name="title_activity_character_select">CharacterSelect</string>
 
+    <string name="action_credit">クレジット</string>
+
     <!--キャラクター名-->
     <string name="reimu">博麗霊夢</string>
     <string name="marisa">霧雨魔理沙</string>

@@ -9,4 +9,8 @@
           android:title="@string/action_settings"
           android:showAsAction="never" />
 
+    <item android:id="@+id/action_credit"
+          android:title="@string/action_credit"
+          android:showAsAction="never" />
+
 </menu>

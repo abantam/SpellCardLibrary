@@ -1,8 +1,11 @@
 package com.example.spellcardlibrary.app;
 
 import android.app.ActivityGroup;
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -52,6 +55,11 @@ public class MainActivity extends ActivityGroup {
 //        mViewPager = (ViewPager)findViewById(R.id.pager);
 //        mViewPager.setAdapter(new PagerAdapter(getFragmentManager()));
 
+        android.app.FragmentManager manager = getFragmentManager();
+        final ViewPager viewPager = (ViewPager)findViewById(R.id.pager);
+        final MainFragmentAdapter adapter = new MainFragmentAdapter(manager);
+        viewPager.setAdapter(adapter);
+
         //タブホストのインスタンス化
         TabHost host = (TabHost)findViewById(R.id.tabhost);
         host.setup(this.getLocalActivityManager());
@@ -100,12 +108,14 @@ public class MainActivity extends ActivityGroup {
 
         menu.add(Menu.NONE, R.id.action_search, Menu.NONE, "検索");
         menu.add(Menu.NONE, R.id.action_settings, Menu.NONE, "設定");
+        menu.add(Menu.NONE, R.id.action_credit, Menu.NONE, R.string.action_credit);
 
         return super.onCreateOptionsMenu(menu);
     }
 
     //メニューが選択された時の処理
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent i = new Intent();
 
         //addした時のIDで識別
         switch(item.getItemId()) {
@@ -115,6 +125,8 @@ public class MainActivity extends ActivityGroup {
             case R.id.action_settings:
                 //openSettings();
                 return true;
+            case R.id.action_credit:
+                startActivity(new Intent(this, Credit.class));
             default:
                 return super.onOptionsItemSelected(item);
         }

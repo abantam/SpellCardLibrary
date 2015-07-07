@@ -20,6 +20,8 @@ public class MainFragmentAdapter extends FragmentPagerAdapter {
             default:
 
         }
+
+        return null;
     }
 
     @Override

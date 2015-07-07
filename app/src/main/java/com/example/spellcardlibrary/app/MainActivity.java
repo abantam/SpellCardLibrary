@@ -1,8 +1,11 @@
 package com.example.spellcardlibrary.app;
 
 import android.app.ActivityGroup;
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -51,6 +54,11 @@ public class MainActivity extends ActivityGroup {
         //mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 //        mViewPager = (ViewPager)findViewById(R.id.pager);
 //        mViewPager.setAdapter(new PagerAdapter(getFragmentManager()));
+
+        android.app.FragmentManager manager = getFragmentManager();
+        final ViewPager viewPager = (ViewPager)findViewById(R.id.pager);
+        final MainFragmentAdapter adapter = new MainFragmentAdapter(manager);
+        viewPager.setAdapter(adapter);
 
         //タブホストのインスタンス化
         TabHost host = (TabHost)findViewById(R.id.tabhost);

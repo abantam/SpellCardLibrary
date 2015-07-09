@@ -1,10 +1,10 @@
 package com.example.spellcardlibrary.app;
 
 import android.app.ActivityGroup;
-import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,7 +22,7 @@ public class MainActivity extends ActivityGroup {
     private ArrayList<Intent> intentList = new ArrayList<Intent>();
 
     //スワイプでタブを切り替えるためのViewPager
-    //ViewPager mViewPager;
+    ViewPager mViewPager;
 
     //リソースから持ってきた作品名を格納した配列
     private String[] workname = {
@@ -51,14 +51,14 @@ public class MainActivity extends ActivityGroup {
         setContentView(R.layout.activity_main);
 
         //PagerAdapterを生成
-        //mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
-//        mViewPager = (ViewPager)findViewById(R.id.pager);
-//        mViewPager.setAdapter(new PagerAdapter(getFragmentManager()));
+        MainFragmentAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
+        mViewPager = (ViewPager)findViewById(R.id.pager);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        android.app.FragmentManager manager = getFragmentManager();
-        final ViewPager viewPager = (ViewPager)findViewById(R.id.pager);
-        final MainFragmentAdapter adapter = new MainFragmentAdapter(manager);
-        viewPager.setAdapter(adapter);
+//        android.app.FragmentManager manager = getFragmentManager();
+//        final ViewPager viewPager = (ViewPager)findViewById(R.id.pager);
+//        final MainFragmentAdapter adapter = new MainFragmentAdapter(manager);
+//        viewPager.setAdapter(adapter);
 
         //タブホストのインスタンス化
         TabHost host = (TabHost)findViewById(R.id.tabhost);

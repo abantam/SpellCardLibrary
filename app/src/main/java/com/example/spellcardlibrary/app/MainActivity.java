@@ -51,9 +51,9 @@ public class MainActivity extends ActivityGroup {
         setContentView(R.layout.activity_main);
 
         //PagerAdapterを生成
-        MainFragmentAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
-        mViewPager = (ViewPager)findViewById(R.id.pager);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+//        MainFragmentAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
+//        mViewPager = (ViewPager)findViewById(R.id.pager);
+//        mViewPager.setAdapter(mSectionsPagerAdapter);
 
 //        android.app.FragmentManager manager = getFragmentManager();
 //        final ViewPager viewPager = (ViewPager)findViewById(R.id.pager);

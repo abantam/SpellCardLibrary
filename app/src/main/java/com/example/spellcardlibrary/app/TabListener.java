@@ -8,6 +8,7 @@ import android.app.FragmentTransaction;
 
 /**
  * Created by admin on 2015/07/10.
+ * éQçlï∂å£ÅFhttp://yan-note.blogspot.jp/2012/10/android-fragmenttab.html
  */
 public class TabListener<T extends Fragment> implements ActionBar.TabListener {
 

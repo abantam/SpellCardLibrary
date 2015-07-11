@@ -1,6 +1,9 @@
 package com.example.spellcardlibrary.app;
 
+import android.app.ActionBar;
+import android.app.Activity;
 import android.app.ActivityGroup;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +16,7 @@ import android.widget.TabHost;
 
 import java.util.ArrayList;
 
-public class MainActivity extends ActivityGroup {
+public class MainActivity extends Activity {
 
     //メニューアイテム識別用ID
     private static final int credit_ID = 0;
@@ -25,30 +28,26 @@ public class MainActivity extends ActivityGroup {
     ViewPager mViewPager;
 
     //リソースから持ってきた作品名を格納した配列
-    private String[] workname = {
-            "東方紅魔郷",
-            "東方妖々夢",
-            "東方萃夢想",
-            "東方永夜抄",
-            "東方花映塚",
-            "東方文花帖",
-            "東方風神録",
-            "東方緋想天",
-            "東方地霊殿",
-            "東方星蓮船",
-            "東方非想天則",
-            "ダブルスポイラー",
-            "妖精大戦争",
-            "東方神霊廟",
-            "東方心綺楼",
-            "東方輝針城",
-            "弾幕アマノジャク",
-    };
+    private String[] titles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //作品名を取得
+        titles = getResources().getStringArray(R.array.titles);
+
+        //ActionBarを作成
+        final ActionBar actionBar = getActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+        //タブをセット
+        for(String title : titles) {
+            actionBar.addTab(actionBar.newTab().setText(title).setTabListener(new TabListener<Table_kouma>(this, title, Table_kouma.class)));
+        }
+
+
 
         //PagerAdapterを生成
 //        MainFragmentAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
@@ -60,26 +59,26 @@ public class MainActivity extends ActivityGroup {
 //        final MainFragmentAdapter adapter = new MainFragmentAdapter(manager);
 //        viewPager.setAdapter(adapter);
 
-        //タブホストのインスタンス化
-        TabHost host = (TabHost)findViewById(R.id.tabhost);
-        host.setup(this.getLocalActivityManager());
-
-        //タブに作品名を割り当てる
-        TabHost.TabSpec spec;
-        Intent i;
-        for(int it = 0; it < workname.length; it++) {
-
-            //インテントを作成
-            i = new Intent(this, BaseTable.class);
-            i.putExtra("作品名", workname[it]);
-            intentList.add(i);
-
-            //タブを作成しインテントを設定
-            spec = host.newTabSpec(workname[it]);
-            spec.setContent(intentList.get(it));
-            spec.setIndicator(workname[it]);
-            host.addTab(spec);
-        }
+//        //タブホストのインスタンス化
+//        TabHost host = (TabHost)findViewById(R.id.tabhost);
+//        host.setup(this.getLocalActivityManager());
+//
+//        //タブに作品名を割り当てる
+//        TabHost.TabSpec spec;
+//        Intent i;
+//        for(int it = 0; it < workname.length; it++) {
+//
+//            //インテントを作成
+//            i = new Intent(this, BaseTable.class);
+//            i.putExtra("作品名", workname[it]);
+//            intentList.add(i);
+//
+//            //タブを作成しインテントを設定
+//            spec = host.newTabSpec(workname[it]);
+//            spec.setContent(intentList.get(it));
+//            spec.setIndicator(workname[it]);
+//            host.addTab(spec);
+//        }
 
 //        host.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
 //            @Override
@@ -97,6 +96,8 @@ public class MainActivity extends ActivityGroup {
 //        });
 
     }
+
+
 
     //オプションメニューの作成
     @Override

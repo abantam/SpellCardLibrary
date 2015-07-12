@@ -31,7 +31,7 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener {
         if(mFragment == null) {
             mFragment = Fragment.instantiate(mActivity, mClass.getName());
             FragmentManager fm = mActivity.getFragmentManager();
-            fm.beginTransaction().add(R.id.fragment1, mFragment, mTag).commit();
+            fm.beginTransaction().add(R.id.action_bar, mFragment, mTag).commit();
         }else {
             if(mFragment.isDetached()) {
                 FragmentManager fm = mActivity.getFragmentManager();

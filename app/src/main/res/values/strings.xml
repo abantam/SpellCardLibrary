@@ -4,6 +4,24 @@
     <string name="app_name">SpellCardLibrary</string>
 
     <!--作品名-->
+    <!--<string name="kouma">東方紅魔郷</string>-->
+    <!--<string name="youmu">東方妖々夢</string>-->
+    <!--<string name="suimu">東方萃夢想</string>-->
+    <!--<string name="eiya">東方永夜抄</string>-->
+    <!--<string name="kaei">東方花映塚</string>-->
+    <!--<string name="bunka">東方文花帖</string>-->
+    <!--<string name="fuzin">東方風神録</string>-->
+    <!--<string name="hisou">東方緋想天</string>-->
+    <!--<string name="tirei">東方地霊殿</string>-->
+    <!--<string name="seiren">東方星蓮船</string>-->
+    <!--<string name="ds">ダブルスポイラー</string>-->
+    <!--<string name="tensoku">東方非想天則</string>-->
+    <!--<string name="daisen">妖精大戦争</string>-->
+    <!--<string name="sinrei">東方神霊廟</string>-->
+    <!--<string name="sinki">東方心綺楼</string>-->
+    <!--<string name="kisin">東方輝針城</string>-->
+    <!--<string name="amnjk">弾幕アマノジャク</string>-->
+
     <string-array name="titles">
         <item>東方紅魔郷</item>
         <item>東方妖々夢</item>
@@ -23,7 +41,6 @@
         <item>東方輝針城</item>
         <item>弾幕アマノジャク</item>
     </string-array>
-
 
     <string name="title_activity_table_kouma">Table_kouma</string>
     <string name="title_activity_table_youmu">Table_youmu</string>

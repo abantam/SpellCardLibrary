@@ -38,15 +38,16 @@ public class MainActivity extends Activity {
         //作品名を取得
         titles = getResources().getStringArray(R.array.titles);
 
+        titles = new String[]{getResources().getString(R.string.kouma)};
+
         //ActionBarを作成
         final ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         //タブをセット
-        for(String title : titles) {
+        for (String title : titles) {
             actionBar.addTab(actionBar.newTab().setText(title).setTabListener(new TabListener<Table_kouma>(this, title, Table_kouma.class)));
         }
-
 
 
         //PagerAdapterを生成
@@ -98,7 +99,6 @@ public class MainActivity extends Activity {
     }
 
 
-
     //オプションメニューの作成
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -119,7 +119,7 @@ public class MainActivity extends Activity {
         Intent i = new Intent();
 
         //addした時のIDで識別
-        switch(item.getItemId()) {
+        switch (item.getItemId()) {
             case R.id.action_search:
                 //openSearch();
                 return true;

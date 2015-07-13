@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemes.android.com/apk/res/android" >
+
+    <item android:id="@+id/action_search"
+          android:icon="@drawable/ic_launcher"
+          android:title="@string/app_name"
+          android:showAsAction="ifRoom" />
+
+    <item android:id="@+id/action_settings"
+          android:title="設定"
+          android:showAsAction="never" />
+
+    <item android:id="@+id/action_credit"
+          android:title="@string/action_credit"
+          android:showAsAction="never" />
+
+</menu>

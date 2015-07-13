@@ -71,6 +71,8 @@
     <string name="title_maxSCB">SCB最大値</string>
     <string name="title_redSCB">SCB減少値</string>
     <string name="title_activity_character_select">CharacterSelect</string>
+    <string name="title_activity_scinfo">詳細情報</string>
+    <string name="title_activity_base_table">基盤</string>
 
     <string name="action_credit">クレジット</string>
 

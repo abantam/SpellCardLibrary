@@ -6,7 +6,7 @@
           android:showAsAction="ifRoom" />
 
     <item android:id="@+id/action_settings"
-          android:title="@string/action_settings"
+          android:title="設定"
           android:showAsAction="never" />
 
     <item android:id="@+id/action_credit"

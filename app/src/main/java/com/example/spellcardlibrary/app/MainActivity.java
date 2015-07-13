@@ -2,17 +2,12 @@ package com.example.spellcardlibrary.app;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.ActivityGroup;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.TabHost;
 
 import java.util.ArrayList;
 
@@ -38,7 +33,7 @@ public class MainActivity extends Activity {
         //作品名を取得
         titles = getResources().getStringArray(R.array.titles);
 
-        titles = new String[]{getResources().getString(R.string.kouma)};
+        //titles = new String[]{getResources().getString(R.string.kouma)};
 
         //ActionBarを作成
         final ActionBar actionBar = getActionBar();

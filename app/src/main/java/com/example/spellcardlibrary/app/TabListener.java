@@ -8,7 +8,7 @@ import android.app.FragmentTransaction;
 
 /**
  * Created by admin on 2015/07/10.
- * Ql•¶Œ£Fhttp://yan-note.blogspot.jp/2012/10/android-fragmenttab.html
+ * å‚è€ƒæ–‡çŒ®ï¼šhttp://yan-note.blogspot.jp/2012/10/android-fragmenttab.html
  */
 public class TabListener<T extends Fragment> implements ActionBar.TabListener {
 
@@ -22,11 +22,11 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener {
         mTag = tag;
         mClass = clz;
 
-        //FragmentManager‚©‚çFragment‚ğ’T‚·
+        //FragmentManagerã‹ã‚‰Fragmentã‚’æ¢ã™
         mFragment = mActivity.getFragmentManager().findFragmentByTag(mTag);
     }
 
-    //ƒ^ƒu‚ª‘I‘ğ‚³‚ê‚½‚Ìˆ—
+    //ã‚¿ãƒ–ãŒé¸æŠã•ã‚ŒãŸæ™‚ã®å‡¦ç†
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
         if(mFragment == null) {
             mFragment = Fragment.instantiate(mActivity, mClass.getName());
@@ -40,7 +40,7 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener {
         }
     }
 
-    //ƒ^ƒu‚Ì‘I‘ğ‚ª‰ğœ‚³‚ê‚½‚Ìˆ—
+    //ã‚¿ãƒ–ã®é¸æŠãŒè§£é™¤ã•ã‚ŒãŸæ™‚ã®å‡¦ç†
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
         if(mFragment != null) {
             FragmentManager fm = mActivity.getFragmentManager();
@@ -48,7 +48,7 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener {
         }
     }
 
-    //ƒ^ƒu‚ª“ñ“x–ÚˆÈ~‚É‘I‘ğ‚³‚ê‚½‚Ìˆ—
+    //ã‚¿ãƒ–ãŒäºŒåº¦ç›®ä»¥é™ã«é¸æŠã•ã‚ŒãŸæ™‚ã®å‡¦ç†
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
 
     }

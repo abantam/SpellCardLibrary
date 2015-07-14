@@ -6,6 +6,7 @@
     tools:context="${packageName}.${activityClass}">
 
     <LinearLayout
+        android:id="@+id/parentLL"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >

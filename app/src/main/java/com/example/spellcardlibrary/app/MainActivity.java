@@ -20,7 +20,7 @@ public class MainActivity extends Activity {
     private ArrayList<Intent> intentList = new ArrayList<Intent>();
 
     //スワイプでタブを切り替えるためのViewPager
-    ViewPager mViewPager;
+    //ViewPager mViewPager;
 
     //リソースから持ってきた作品名を格納した配列
     private String[] titles;

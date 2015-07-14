@@ -8,7 +8,7 @@ import android.app.FragmentTransaction;
 
 /**
  * Created by admin on 2015/07/10.
- * 参考文献：http://yan-note.blogspot.jp/2012/10/android-fragmenttab.html
+ * 蜿り�譁�鍵�喇ttp://yan-note.blogspot.jp/2012/10/android-fragmenttab.html
  */
 public class TabListener<T extends Fragment> implements ActionBar.TabListener {
 
@@ -22,16 +22,16 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener {
         mTag = tag;
         mClass = clz;
 
-        //FragmentManagerからFragmentを探す
+        //FragmentManager縺九ｉFragment繧呈爾縺�
         mFragment = mActivity.getFragmentManager().findFragmentByTag(mTag);
     }
 
-    //タブが選択された時の処理
+    //繧ｿ繝悶′驕ｸ謚槭＆繧後◆譎ゅ�蜃ｦ逅�
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
         if(mFragment == null) {
             mFragment = Fragment.instantiate(mActivity, mClass.getName());
             FragmentManager fm = mActivity.getFragmentManager();
-            fm.beginTransaction().add(R.id.action_bar, mFragment, mTag).commit();
+            fm.beginTransaction().add(R.id.parentLL, mFragment, mTag).commit();
         }else {
             if(mFragment.isDetached()) {
                 FragmentManager fm = mActivity.getFragmentManager();
@@ -40,7 +40,7 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener {
         }
     }
 
-    //タブの選択が解除された時の処理
+    //繧ｿ繝悶�驕ｸ謚槭′隗｣髯､縺輔ｌ縺滓凾縺ｮ蜃ｦ逅�
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
         if(mFragment != null) {
             FragmentManager fm = mActivity.getFragmentManager();
@@ -48,7 +48,7 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener {
         }
     }
 
-    //タブが二度目以降に選択された時の処理
+    //繧ｿ繝悶′莠悟ｺｦ逶ｮ莉･髯阪↓驕ｸ謚槭＆繧後◆譎ゅ�蜃ｦ逅�
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
 
     }

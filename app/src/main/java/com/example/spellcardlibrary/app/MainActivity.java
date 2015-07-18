@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,7 +21,7 @@ public class MainActivity extends Activity {
     private ArrayList<Intent> intentList = new ArrayList<Intent>();
 
     //スワイプでタブを切り替えるためのViewPager
-    //ViewPager mViewPager;
+    ViewPager mViewPager;
 
     //リソースから持ってきた作品名を格納した配列
     private String[] titles;
@@ -33,8 +34,6 @@ public class MainActivity extends Activity {
         //作品名を取得
         titles = getResources().getStringArray(R.array.titles);
 
-        //titles = new String[]{getResources().getString(R.string.kouma)};
-
         //ActionBarを作成
         final ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -44,12 +43,11 @@ public class MainActivity extends Activity {
             actionBar.addTab(actionBar.newTab().setText(title).setTabListener(new TabListener<Table_kouma>(this, title, Table_kouma.class)));
         }
 
-
         //PagerAdapterを生成
 //        MainFragmentAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 //        mViewPager = (ViewPager)findViewById(R.id.pager);
 //        mViewPager.setAdapter(mSectionsPagerAdapter);
-
+//
 //        android.app.FragmentManager manager = getFragmentManager();
 //        final ViewPager viewPager = (ViewPager)findViewById(R.id.pager);
 //        final MainFragmentAdapter adapter = new MainFragmentAdapter(manager);

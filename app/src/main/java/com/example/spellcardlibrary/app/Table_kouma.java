@@ -16,7 +16,7 @@ import java.io.IOException;
 /**
  * Created by admin on 2015/07/09.
  */
-public class Table_kouma extends Fragment {
+public class Table_kouma extends ListFragment {
 
     private DatabaseHelper mDbHelper;
     private SQLiteDatabase db;
@@ -30,7 +30,7 @@ public class Table_kouma extends Fragment {
 
         //setDatabase();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, data);
-        //setListAdapter(adapter);
+        setListAdapter(adapter);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class Table_kouma extends Fragment {
         return inflater.inflate(R.layout.table, container, false);
     }
 
-    //Activityとこ�?�Fragmentとの紐付けを行う
+    //Activityとこ�?�Fragmentとの紐付けを行う
 //    @Override
 //    public void onAttach(Activity activity) {
 //        super.onAttach(activity);
@@ -49,7 +49,7 @@ public class Table_kouma extends Fragment {
 //        }
 //    }
 
-    //�?ータベ�?�スにアクセス
+    //�?ータベ�?�スにアクセス
 //    private void setDatabase() {
 //        mDbHelper = new DatabaseHelper(this);
 //        try {

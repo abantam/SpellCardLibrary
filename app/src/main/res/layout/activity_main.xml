@@ -6,11 +6,12 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-    <FrameLayout
+    <ListView
+        android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </FrameLayout>
+    </ListView>
 
 </LinearLayout>
 

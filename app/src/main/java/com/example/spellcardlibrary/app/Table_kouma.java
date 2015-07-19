@@ -22,6 +22,8 @@ public class Table_kouma extends Fragment {
     private SQLiteDatabase db;
     private static final String[] data={"a", "b"};
 
+    public Table_kouma() {}
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +38,7 @@ public class Table_kouma extends Fragment {
         return inflater.inflate(R.layout.table, container, false);
     }
 
-    //ActivityとこのFragmentとの紐付けを行う
+    //Activityとこ�?�Fragmentとの紐付けを行う
 //    @Override
 //    public void onAttach(Activity activity) {
 //        super.onAttach(activity);
@@ -47,7 +49,7 @@ public class Table_kouma extends Fragment {
 //        }
 //    }
 
-    //データベースにアクセス
+    //�?ータベ�?�スにアクセス
 //    private void setDatabase() {
 //        mDbHelper = new DatabaseHelper(this);
 //        try {

@@ -28,7 +28,7 @@ public class Table_kouma extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //setDatabase();
+        setDatabase();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, data);
         setListAdapter(adapter);
     }
@@ -50,15 +50,15 @@ public class Table_kouma extends ListFragment {
 //    }
 
     //データベースにアクセス
-//    private void setDatabase() {
-//        mDbHelper = new DatabaseHelper(this);
-//        try {
-//            mDbHelper.createEmptyDatabase();
-//            db = mDbHelper.openDatabase();
-//        }catch(IOException ioe) {
-//
-//        }catch(SQLException sqle) {
-//
-//        }
-//    }
+    private void setDatabase() {
+        mDbHelper = new DatabaseHelper(this);
+        try {
+            mDbHelper.createEmptyDatabase();
+            db = mDbHelper.openDatabase();
+        }catch(IOException ioe) {
+
+        }catch(SQLException sqle) {
+
+        }
+    }
 }

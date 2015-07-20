@@ -38,7 +38,7 @@ public class Table_kouma extends ListFragment {
         return inflater.inflate(R.layout.table, container, false);
     }
 
-    //Activityとこ�?�Fragmentとの紐付けを行う
+    //ActivityとこのFragmentとの紐付けを行う
 //    @Override
 //    public void onAttach(Activity activity) {
 //        super.onAttach(activity);
@@ -49,7 +49,7 @@ public class Table_kouma extends ListFragment {
 //        }
 //    }
 
-    //�?ータベ�?�スにアクセス
+    //データベースにアクセス
 //    private void setDatabase() {
 //        mDbHelper = new DatabaseHelper(this);
 //        try {

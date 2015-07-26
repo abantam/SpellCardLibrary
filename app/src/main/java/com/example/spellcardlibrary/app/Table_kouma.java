@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.SimpleAdapter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,16 +26,26 @@ public class Table_kouma extends ListFragment {
     private DatabaseHelper mDbHelper;
     private SQLiteDatabase db;
     private ArrayList<HashMap<String, String>> scList;
+    private String title;//作品名
 
     public Table_kouma() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        scList = new ArrayList<HashMap<String, String>>();
         setDatabase();
 
-        Cursor c = db.query("東方紅魔郷", new String[]{"_id","スペルカード名"}, null, null, null, null, null);
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        //View view = inflater.inflate(R.layout.table, container, false);
+        //Activityから作品名を受け取る
+        title = savedInstanceState.getString("title");
+
+        Cursor c = db.query(title, null, null, null, null, null, null);
         c.moveToFirst();
 
         //カーソルを1つずつ動かして一時変数にデータを格納
@@ -44,19 +55,17 @@ public class Table_kouma extends ListFragment {
 //                temp.put("Number", null);
 //                temp.put("scName", c.getString(1));
 //            }else {
-                temp.put("Number", c.getString(1));
-                temp.put("scName", c.getString(2));
+            temp.put("Number", c.getString(1));
+            temp.put("scName", c.getString(2));
 //            }
 
             scList.add(temp);
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, data);
+        SimpleAdapter adapter = new SimpleAdapter(getActivity(), scList, R.layout.listview_layout,
+                new String[]{"Number", "scName"}, new int[]{R.id.number, R.id.scname});
         setListAdapter(adapter);
-    }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.table, container, false);
     }
 

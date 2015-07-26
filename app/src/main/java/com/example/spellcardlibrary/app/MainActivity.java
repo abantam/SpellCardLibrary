@@ -2,9 +2,10 @@ package com.example.spellcardlibrary.app;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
+import android.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -40,6 +41,16 @@ public class MainActivity extends Activity {
 
         //タブをセット
         for (String title : titles) {
+            //fragmentに作品名を渡す
+            FragmentManager fm = getFragmentManager();
+            FragmentTransaction t = fm.beginTransaction();
+            Table_kouma fragment = new Table_kouma();
+            Bundle bundle = new Bundle();
+            bundle.putString("title", title);
+            fragment.setArguments(bundle);
+            t.add(R.id.parentLL, fragment, "title");
+            t.commit();
+
             actionBar.addTab(actionBar.newTab().setText(title).setTabListener(new TabListener<Table_kouma>(this, title, Table_kouma.class)));
         }
 

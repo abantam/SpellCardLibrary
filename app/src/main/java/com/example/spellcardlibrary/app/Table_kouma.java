@@ -41,9 +41,10 @@ public class Table_kouma extends ListFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //View view = inflater.inflate(R.layout.table, container, false);
+        View view = inflater.inflate(R.layout.table, container, false);
+
         //Activityから作品名を受け取る
-        title = savedInstanceState.getString("title");
+        title = getArguments().getString("title");
 
         Cursor c = db.query(title, null, null, null, null, null, null);
         c.moveToFirst();
@@ -79,6 +80,11 @@ public class Table_kouma extends ListFragment {
 //
 //        }
 //    }
+
+    @Override
+    public void onStart() {
+
+    }
 
     //データベースにアクセス
     private void setDatabase() {

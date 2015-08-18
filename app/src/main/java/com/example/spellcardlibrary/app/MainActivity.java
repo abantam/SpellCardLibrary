@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -47,10 +48,10 @@ public class MainActivity extends Activity {
             Table_kouma fragment = new Table_kouma();
             Bundle bundle = new Bundle();
             bundle.putString("title", title);
+            //fragmentに値を書き込む
             fragment.setArguments(bundle);
             t.add(R.id.parentLL, fragment, "title");
             t.commit();
-
             actionBar.addTab(actionBar.newTab().setText(title).setTabListener(new TabListener<Table_kouma>(this, title, Table_kouma.class)));
         }
 

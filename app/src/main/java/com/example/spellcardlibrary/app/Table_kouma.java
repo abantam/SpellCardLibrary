@@ -3,6 +3,7 @@ package com.example.spellcardlibrary.app;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.ListFragment;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,6 +18,8 @@ import android.widget.SimpleAdapter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import com.example.spellcardlibrary.app.SerializedIntent;
 
 /**
  * Created by admin on 2015/07/09.
@@ -44,7 +47,8 @@ public class Table_kouma extends ListFragment {
         View view = inflater.inflate(R.layout.table, container, false);
 
         //Activityから作品名を受け取る
-        title = getArguments().getString("title");
+        SerializedIntent intent = (SerializedIntent)getArguments().getSerializable("title");
+        title = intent.getStringExtra("title");
 
         Cursor c = db.query(title, null, null, null, null, null, null);
         c.moveToFirst();

@@ -46,8 +46,10 @@ public class MainActivity extends Activity {
             FragmentManager fm = getFragmentManager();
             FragmentTransaction t = fm.beginTransaction();
             Table_kouma fragment = new Table_kouma();
+            SerializedIntent si = new SerializedIntent();
+            si.putExtra("title", title);
             Bundle bundle = new Bundle();
-            bundle.putString("title", title);
+            bundle.putSerializable("title", si);
             //fragmentに値を書き込む
             fragment.setArguments(bundle);
             t.add(R.id.parentLL, fragment, "title");

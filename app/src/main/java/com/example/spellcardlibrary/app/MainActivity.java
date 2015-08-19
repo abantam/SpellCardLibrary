@@ -41,19 +41,21 @@ public class MainActivity extends Activity {
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         //タブをセット
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        Table_kouma fragment = new Table_kouma();
         for (String title : titles) {
             //fragmentに作品名を渡す
-            FragmentManager fm = getFragmentManager();
-            FragmentTransaction t = fm.beginTransaction();
-            Table_kouma fragment = new Table_kouma();
+//            FragmentManager fm = getFragmentManager();
+//            FragmentTransaction t = fm.beginTransaction();
+//            Table_kouma fragment = new Table_kouma();
             SerializedIntent si = new SerializedIntent();
             si.putExtra("title", title);
             Bundle bundle = new Bundle();
             bundle.putSerializable("title", si);
             //fragmentに値を書き込む
             fragment.setArguments(bundle);
-            t.add(R.id.parentLL, fragment, "title");
-            t.commit();
+            ft.add(R.id.parentLL, fragment, "title");
+            ft.commit();
             actionBar.addTab(actionBar.newTab().setText(title).setTabListener(new TabListener<Table_kouma>(this, title, Table_kouma.class)));
         }
 

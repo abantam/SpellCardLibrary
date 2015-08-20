@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,6 +28,9 @@ public class MainActivity extends Activity {
     //リソースから持ってきた作品名を格納した配列
     private String[] titles;
 
+    //各タブごとのFragmentTransaction
+    private ArrayList<FragmentTransaction> fTransactions;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,18 +44,27 @@ public class MainActivity extends Activity {
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         //タブをセット
+//        FragmentManager fm = getFragmentManager();
+//        fTransactions = new ArrayList<FragmentTransaction>();
+//        FragmentTransaction ft = getFragmentManager().beginTransaction();
+//        Table_kouma fragment = new Table_kouma();
         for (String title : titles) {
             //fragmentに作品名を渡す
-            FragmentManager fm = getFragmentManager();
-            FragmentTransaction t = fm.beginTransaction();
-            Table_kouma fragment = new Table_kouma();
-            Bundle bundle = new Bundle();
-            bundle.putString("title", title);
-            fragment.setArguments(bundle);
-            t.add(R.id.parentLL, fragment, "title");
-            t.commit();
+//            FragmentTransaction temp = fm.beginTransaction();
+//            Table_kouma fragment = new Table_kouma();
+//            SerializedIntent si = new SerializedIntent();
+//            si.putExtra("title", title);
+//            Bundle bundle = new Bundle();
+//            bundle.putString("title", title);
+//            //fragmentに値を書き込む
+//            fragment.setArguments(bundle);
+//            temp.add(R.id.parentLL, fragment, "title");
+            actionBar.addTab(actionBar.newTab()
+                    .setText(title)
+                    .setTabListener(new TabListener<Table_kouma>(this, title, Table_kouma.class)));
 
-            actionBar.addTab(actionBar.newTab().setText(title).setTabListener(new TabListener<Table_kouma>(this, title, Table_kouma.class)));
+//            temp.commit();
+//            fTransactions.add(temp);
         }
 
         //PagerAdapterを生成

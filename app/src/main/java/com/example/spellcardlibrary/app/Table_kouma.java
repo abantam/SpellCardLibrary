@@ -47,29 +47,28 @@ public class Table_kouma extends ListFragment {
         View view = inflater.inflate(R.layout.table, container, false);
 
         //Activityから作品名を受け取る
-//        SerializedIntent intent = (SerializedIntent)getArguments().getSerializable("title");
-//        title = intent.getStringExtra("title");
-//
-//        Cursor c = db.query(title, null, null, null, null, null, null);
-//        c.moveToFirst();
-//
-//        //カーソルを1つずつ動かして一時変数にデータを格納
-//        for (int i = 0; i < c.getCount(); i++, c.moveToNext()) {
-//            HashMap<String, String> temp = new HashMap<String, String>();
-////            if(workname.equals("東方萃夢想") || workname.equals("東方花映塚") || workname.equals("東方緋想天") || workname.equals("東方非想天則") || workname.equals("東方心綺楼")) {
-////                temp.put("Number", null);
-////                temp.put("scName", c.getString(1));
-////            }else {
-//            temp.put("Number", c.getString(1));
-//            temp.put("scName", c.getString(2));
-////            }
-//
-//            scList.add(temp);
-//        }
-//
-//        SimpleAdapter adapter = new SimpleAdapter(getActivity(), scList, R.layout.listview_layout,
-//                new String[]{"Number", "scName"}, new int[]{R.id.number, R.id.scname});
-//        setListAdapter(adapter);
+        title = getArguments().getString("title");
+
+        Cursor c = db.query(title, null, null, null, null, null, null);
+        c.moveToFirst();
+
+        //カーソルを1つずつ動かして一時変数にデータを格納
+        for (int i = 0; i < c.getCount(); i++, c.moveToNext()) {
+            HashMap<String, String> temp = new HashMap<String, String>();
+//            if(workname.equals("東方萃夢想") || workname.equals("東方花映塚") || workname.equals("東方緋想天") || workname.equals("東方非想天則") || workname.equals("東方心綺楼")) {
+//                temp.put("Number", null);
+//                temp.put("scName", c.getString(1));
+//            }else {
+            temp.put("Number", c.getString(1));
+            temp.put("scName", c.getString(2));
+//            }
+
+            scList.add(temp);
+        }
+
+        SimpleAdapter adapter = new SimpleAdapter(getActivity(), scList, R.layout.listview_layout,
+                new String[]{"Number", "scName"}, new int[]{R.id.number, R.id.scname});
+        setListAdapter(adapter);
 
         return inflater.inflate(R.layout.table, container, false);
     }

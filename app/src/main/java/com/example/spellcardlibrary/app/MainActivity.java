@@ -44,27 +44,28 @@ public class MainActivity extends Activity {
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         //タブをセット
-//        FragmentManager fm = getFragmentManager();
-//        fTransactions = new ArrayList<FragmentTransaction>();
-//        FragmentTransaction ft = getFragmentManager().beginTransaction();
-//        Table_kouma fragment = new Table_kouma();
+        FragmentManager fm = getFragmentManager();
+        fTransactions = new ArrayList<FragmentTransaction>();
         for (String title : titles) {
             //fragmentに作品名を渡す
-//            FragmentTransaction temp = fm.beginTransaction();
-//            Table_kouma fragment = new Table_kouma();
-//            SerializedIntent si = new SerializedIntent();
-//            si.putExtra("title", title);
-//            Bundle bundle = new Bundle();
-//            bundle.putString("title", title);
-//            //fragmentに値を書き込む
-//            fragment.setArguments(bundle);
-//            temp.add(R.id.parentLL, fragment, "title");
+            FragmentTransaction ft = fm.beginTransaction();
+            Table_kouma fragment = new Table_kouma();
+            Bundle bundle = new Bundle();
+            bundle.putString("title", title);
+
+            //fragmentに渡す値をセット
+            fragment.setArguments(bundle);
+            ft.add(R.id.parentLL, fragment, title);
+            ft.commit();
+
+            //FragmentTransactionをグローバル変数にセット
+            fTransactions.add(ft);
+
+            //actionBarにfragmentをセット
             actionBar.addTab(actionBar.newTab()
                     .setText(title)
                     .setTabListener(new TabListener<Table_kouma>(this, title, Table_kouma.class)));
 
-//            temp.commit();
-//            fTransactions.add(temp);
         }
 
         //PagerAdapterを生成

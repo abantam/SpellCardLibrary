@@ -47,8 +47,7 @@ public class Table_kouma extends ListFragment {
         View view = inflater.inflate(R.layout.table, container, false);
 
         //Activityから作品名を受け取る
-        SerializedIntent intent = (SerializedIntent)getArguments().getSerializable("title");
-        title = intent.getStringExtra("title");
+        title = getArguments().getString("title");
 
         Cursor c = db.query(title, null, null, null, null, null, null);
         c.moveToFirst();

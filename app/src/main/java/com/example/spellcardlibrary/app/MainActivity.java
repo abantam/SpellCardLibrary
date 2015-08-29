@@ -41,21 +41,19 @@ public class MainActivity extends Activity {
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         //タブをセット
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        Table_kouma fragment = new Table_kouma();
-        for (String title : titles) {
-            //fragmentに作品名を渡す
-//            FragmentManager fm = getFragmentManager();
-//            FragmentTransaction t = fm.beginTransaction();
-//            Table_kouma fragment = new Table_kouma();
-            SerializedIntent si = new SerializedIntent();
-            si.putExtra("title", title);
+        FragmentManager manager = getFragmentManager();
+
+        for(String title : titles) {
             Bundle bundle = new Bundle();
-            bundle.putSerializable("title", si);
-            //fragmentに値を書き込む
+            bundle.putString("title", title);
+
+            Table_kouma fragment = new Table_kouma();
             fragment.setArguments(bundle);
-            ft.add(R.id.parentLL, fragment, "title");
-            ft.commit();
+
+            FragmentTransaction t = manager.beginTransaction();
+            t.add(R.id.parentLL, fragment, "fragment");
+            t.commit();
+
             actionBar.addTab(actionBar.newTab().setText(title).setTabListener(new TabListener<Table_kouma>(this, title, Table_kouma.class)));
         }
 
@@ -104,6 +102,10 @@ public class MainActivity extends Activity {
 //                host.setCurrentTab(position);
 //            }
 //        });
+
+    }
+
+    private void makeFragment(String title) {
 
     }
 

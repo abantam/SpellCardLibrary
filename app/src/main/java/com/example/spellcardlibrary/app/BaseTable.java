@@ -1,6 +1,7 @@
 package com.example.spellcardlibrary.app;
 
 import android.app.Activity;
+import android.app.ListFragment;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class BaseTable extends Activity {
+public class BaseTable extends ListFragment {
 
     private ListView mainView;//リストビュー
     private static SQLiteDatabase db;//データベースを格納
@@ -27,9 +28,9 @@ public class BaseTable extends Activity {
     private String workname;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base_table);
+        //setContentView(R.layout.activity_base_table);
         setDatabase();
         makeList();
         setMainView();
@@ -43,7 +44,7 @@ public class BaseTable extends Activity {
 
     //assetsからデータベースをコピー
     private void setDatabase() {
-        mDbHelper = new DatabaseHelper(this);
+        mDbHelper = new DatabaseHelper(getActivity());
         try {
             mDbHelper.createEmptyDatabase();
             db = mDbHelper.openDatabase();
@@ -57,10 +58,8 @@ public class BaseTable extends Activity {
     //コピーしたデータベースからリストを作成
     private void makeList() {
 
-        //インテントを取得したあと作品名を取得
-        Intent intent = getIntent();
-        workname = intent.getStringExtra("作品名");
-
+        //作品名を取得
+        workname = getArguments().getString("title");
         //データベース内のカーソルを設定
         Cursor c = db.query(workname, null, null, null, null, null, null);
         c.moveToFirst();
@@ -85,8 +84,8 @@ public class BaseTable extends Activity {
 
     //リストビューをセットしてリストを表示
     private void setMainView() {
-        mainView = (ListView)findViewById(R.id.mainView);
-        SimpleAdapter adapter = new SimpleAdapter(this, scList, R.layout.listview_layout,
+        //mainView = (ListView)findViewById(R.id.mainView);
+        SimpleAdapter adapter = new SimpleAdapter(getActivity(), scList, R.layout.activity_base_table,
                 new String[]{"Number", "scName"}, new int[]{R.id.number, R.id.scname});
         mainView.setAdapter(adapter);
 
@@ -101,13 +100,13 @@ public class BaseTable extends Activity {
         TextView text = (TextView)findViewById(R.id.)*/
 
         //リストビューを選択したときに画面遷移
-        mainView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(BaseTable.this, SCInfo.class);
-                i.putExtra("query", "SELECT * FROM " + workname + " WHERE _id = " + (position + 1));
-                startActivity(i);
-            }
-        });
+//        mainView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent i = new Intent(BaseTable.this, SCInfo.class);
+//                i.putExtra("query", "SELECT * FROM " + workname + " WHERE _id = " + (position + 1));
+//                startActivity(i);
+//            }
+//        });
     }
 
     //データベースを返す

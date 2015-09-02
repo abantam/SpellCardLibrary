@@ -39,14 +39,13 @@ public class Table_kouma extends ListFragment {
         scList = new ArrayList<HashMap<String, String>>();
         setDatabase();
 
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.table, container, false);
 
-        //Activityから作品名を受け取る
+       // Activityから作品名を受け取る
         title = getArguments().getString("title");
 
         Cursor c = db.query(title, null, null, null, null, null, null);
@@ -89,6 +88,12 @@ public class Table_kouma extends ListFragment {
         super.onStart();
     }
 
+    @Override
+    public void onDestroy() {
+        db.close();
+        super.onDestroy();
+    }
+
     //データベースにアクセス
     private void setDatabase() {
         mDbHelper = new DatabaseHelper(getActivity());
@@ -100,5 +105,30 @@ public class Table_kouma extends ListFragment {
         }catch(SQLException sqle) {
 
         }
+    }
+
+    //表をセットする
+    public void setScList() {
+
+        //データベースから情報を入手する
+        Cursor c = db.query(getTitle(), null, null, null, null, null, null, null);
+        for(c.moveToFirst(); c.isAfterLast(); c.moveToNext()) {
+            HashMap<String, String> temp = new HashMap<String, String>();
+            temp.put("Number", c.getString(1));
+            temp.put("scName", c.getString(2));
+            scList.add(temp);
+        }
+        SimpleAdapter adapter = new SimpleAdapter(getActivity(), scList, R.layout.listview_layout,
+                new String[]{"Number", "scName"}, new int[]{R.id.number, R.id.scname});
+        setListAdapter(adapter);
+    }
+
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String s) {
+        title = s;
     }
 }

@@ -31,7 +31,9 @@ public class MainActivity extends Activity {
     //各タブごとのFragmentTransaction
     private ArrayList<FragmentTransaction> fTransactions;
 
-    private ArrayList<Table_kouma> fragmentList;
+    private ArrayList<BaseTable> fragmentList;
+
+    private BaseTable table_kouma;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,20 +48,25 @@ public class MainActivity extends Activity {
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         //タブをセット
-        FragmentManager manager = getFragmentManager();
-        for(String title : titles) {
-            Bundle bundle = new Bundle();
-            bundle.putString("title", title);
-
-            BaseTable fragment = new BaseTable();
-            fragment.setArguments(bundle);
-
-            FragmentTransaction t = manager.beginTransaction();
-            t.add(R.id.parentLL, fragment, title);
-            t.commit();
-
-            actionBar.addTab(actionBar.newTab().setText(title).setTabListener(new TabListener<BaseTable>(this, title, BaseTable.class)));
-        }
+        actionBar.addTab(actionBar.newTab().setText("東方紅魔郷").setTabListener(new TabListener<Table_kouma>(this, "東方紅魔郷", Table_kouma.class)));
+        actionBar.addTab(actionBar.newTab().setText("東方妖々夢").setTabListener(new TabListener<BaseTable>(this, "東方紅魔郷", BaseTable.class)));
+        actionBar.addTab(actionBar.newTab().setText("東方萃夢想").setTabListener(new TabListener<BaseTable>(this, "東方紅魔郷", BaseTable.class)));
+        actionBar.addTab(actionBar.newTab().setText("東方永夜抄").setTabListener(new TabListener<BaseTable>(this, "東方紅魔郷", BaseTable.class)));
+        actionBar.addTab(actionBar.newTab().setText("東方花映塚").setTabListener(new TabListener<BaseTable>(this, "東方紅魔郷", BaseTable.class)));
+        actionBar.addTab(actionBar.newTab().setText("東方文花帖").setTabListener(new TabListener<BaseTable>(this, "東方紅魔郷", BaseTable.class)));
+        actionBar.addTab(actionBar.newTab().setText("東方風神録").setTabListener(new TabListener<BaseTable>(this, "東方紅魔郷", BaseTable.class)));
+        actionBar.addTab(actionBar.newTab().setText("東方緋想天").setTabListener(new TabListener<BaseTable>(this, "東方紅魔郷", BaseTable.class)));
+        actionBar.addTab(actionBar.newTab().setText("東方地霊殿").setTabListener(new TabListener<BaseTable>(this, "東方紅魔郷", BaseTable.class)));
+        actionBar.addTab(actionBar.newTab().setText("東方星蓮船").setTabListener(new TabListener<BaseTable>(this, "東方紅魔郷", BaseTable.class)));
+        actionBar.addTab(actionBar.newTab().setText("東方非想天則").setTabListener(new TabListener<BaseTable>(this, "東方紅魔郷", BaseTable.class)));
+        actionBar.addTab(actionBar.newTab().setText("ダブルスポイラー").setTabListener(new TabListener<BaseTable>(this, "東方紅魔郷", BaseTable.class)));
+        actionBar.addTab(actionBar.newTab().setText("妖精大戦争").setTabListener(new TabListener<BaseTable>(this, "東方紅魔郷", BaseTable.class)));
+        actionBar.addTab(actionBar.newTab().setText("東方神霊廟").setTabListener(new TabListener<BaseTable>(this, "東方紅魔郷", BaseTable.class)));
+        actionBar.addTab(actionBar.newTab().setText("東方心綺楼").setTabListener(new TabListener<BaseTable>(this, "東方紅魔郷", BaseTable.class)));
+        actionBar.addTab(actionBar.newTab().setText("東方輝針城").setTabListener(new TabListener<BaseTable>(this, "東方紅魔郷", BaseTable.class)));
+        actionBar.addTab(actionBar.newTab().setText("弾幕アマノジャク").setTabListener(new TabListener<BaseTable>(this, "東方紅魔郷", BaseTable.class)));
+        actionBar.addTab(actionBar.newTab().setText("東方深秘録").setTabListener(new TabListener<BaseTable>(this, "東方紅魔郷", BaseTable.class)));
+        actionBar.addTab(actionBar.newTab().setText("東方紺珠伝").setTabListener(new TabListener<BaseTable>(this, "東方紅魔郷", BaseTable.class)));
 
         //PagerAdapterを生成
 //        MainFragmentAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());

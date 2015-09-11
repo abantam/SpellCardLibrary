@@ -24,111 +24,29 @@ import com.example.spellcardlibrary.app.SerializedIntent;
 /**
  * Created by admin on 2015/07/09.
  */
-public class Table_kouma extends ListFragment {
+public class Table_kouma extends BaseTable {
 
-    private DatabaseHelper mDbHelper;
-    private SQLiteDatabase db;
-    private ArrayList<HashMap<String, String>> scList;
-    private String title;//作品名
+    public final String title = "東方紅魔郷";
 
     public Table_kouma() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        super.setTitle(title);
+//        super.setDatabase();
+//        super.makeList();
+//        super.setMainView();
         super.onCreate(savedInstanceState);
-        scList = new ArrayList<HashMap<String, String>>();
-        setDatabase();
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.table, container, false);
-
-       // Activityから作品名を受け取る
-        title = getArguments().getString("title");
-
-        Cursor c = db.query(title, null, null, null, null, null, null);
-        c.moveToFirst();
-
-        //カーソルを1つずつ動かして一時変数にデータを格納
-        for (int i = 0; i < c.getCount(); i++, c.moveToNext()) {
-            HashMap<String, String> temp = new HashMap<String, String>();
-//            if(workname.equals("東方萃夢想") || workname.equals("東方花映塚") || workname.equals("東方緋想天") || workname.equals("東方非想天則") || workname.equals("東方心綺楼")) {
-//                temp.put("Number", null);
-//                temp.put("scName", c.getString(1));
-//            }else {
-            temp.put("Number", c.getString(1));
-            temp.put("scName", c.getString(2));
-//            }
-
-            scList.add(temp);
-        }
-
-        SimpleAdapter adapter = new SimpleAdapter(getActivity(), scList, R.layout.listview_layout,
-                new String[]{"Number", "scName"}, new int[]{R.id.number, R.id.scname});
-        setListAdapter(adapter);
-
-        return inflater.inflate(R.layout.table, container, false);
-    }
-
-    //ActivityとこのFragmentとの紐付けを行う
-//    @Override
-//    public void onAttach(Activity activity) {
-//        super.onAttach(activity);
-//        try {
-//            TabListener listener = (TabListener)activity;
-//        }catch(ClassCastException e) {
-//
-//        }
-//    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
+        super.onCreateView(inflater, container, savedInstanceState);
+        return inflater.inflate(R.layout.activity_base_table, container, false);
     }
 
     @Override
     public void onDestroy() {
-        db.close();
         super.onDestroy();
-    }
-
-    //データベースにアクセス
-    private void setDatabase() {
-        mDbHelper = new DatabaseHelper(getActivity());
-        try {
-            mDbHelper.createEmptyDatabase();
-            db = mDbHelper.openDatabase();
-        }catch(IOException ioe) {
-
-        }catch(SQLException sqle) {
-
-        }
-    }
-
-    //表をセットする
-    public void setScList() {
-
-        //データベースから情報を入手する
-        Cursor c = db.query(getTitle(), null, null, null, null, null, null, null);
-        for(c.moveToFirst(); c.isAfterLast(); c.moveToNext()) {
-            HashMap<String, String> temp = new HashMap<String, String>();
-            temp.put("Number", c.getString(1));
-            temp.put("scName", c.getString(2));
-            scList.add(temp);
-        }
-        SimpleAdapter adapter = new SimpleAdapter(getActivity(), scList, R.layout.listview_layout,
-                new String[]{"Number", "scName"}, new int[]{R.id.number, R.id.scname});
-        setListAdapter(adapter);
-    }
-
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String s) {
-        title = s;
     }
 }

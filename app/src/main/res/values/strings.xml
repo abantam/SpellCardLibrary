@@ -80,4 +80,6 @@
     <string name="reimu">博麗霊夢</string>
     <string name="marisa">霧雨魔理沙</string>
 
+    <string name="no_data">データがありません</string>
+
 </resources>

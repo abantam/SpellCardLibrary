@@ -8,7 +8,10 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -32,8 +35,15 @@ public class BaseTable extends ListFragment {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_base_table);
         setDatabase();
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.v("aaa", workname);
         makeList();
         setMainView();
+        return inflater.inflate(R.layout.activity_base_table, container, false);
     }
 
     @Override
@@ -43,7 +53,7 @@ public class BaseTable extends ListFragment {
     }
 
     //assetsからデータベースをコピー
-    private void setDatabase() {
+    public void setDatabase() {
         mDbHelper = new DatabaseHelper(getActivity());
         try {
             mDbHelper.createEmptyDatabase();
@@ -56,10 +66,10 @@ public class BaseTable extends ListFragment {
     }
 
     //コピーしたデータベースからリストを作成
-    private void makeList() {
+    public void makeList() {
 
         //作品名を取得
-        workname = getArguments().getString("title");
+        //workname = getArguments().getString("title");
         //データベース内のカーソルを設定
         Cursor c = db.query(workname, null, null, null, null, null, null);
         c.moveToFirst();
@@ -69,13 +79,13 @@ public class BaseTable extends ListFragment {
             //カーソルを1つずつ動かして一時変数にデータを格納
             for (int i = 0; i < c.getCount(); i++, c.moveToNext()) {
                 HashMap<String, String> temp = new HashMap<String, String>();
-                if(workname.equals("東方萃夢想") || workname.equals("東方花映塚") || workname.equals("東方緋想天") || workname.equals("東方非想天則") || workname.equals("東方心綺楼")) {
-                    temp.put("Number", null);
-                    temp.put("scName", c.getString(1));
-                }else {
+//                if(workname.equals("東方萃夢想") || workname.equals("東方花映塚") || workname.equals("東方緋想天") || workname.equals("東方非想天則") || workname.equals("東方心綺楼")) {
+//                    temp.put("Number", null);
+//                    temp.put("scName", c.getString(1));
+//                }else {
                     temp.put("Number", c.getString(1));
                     temp.put("scName", c.getString(2));
-                }
+               // }
 
                 scList.add(temp);
             }
@@ -83,11 +93,11 @@ public class BaseTable extends ListFragment {
     }
 
     //リストビューをセットしてリストを表示
-    private void setMainView() {
+    public void setMainView() {
         //mainView = (ListView)findViewById(R.id.mainView);
         SimpleAdapter adapter = new SimpleAdapter(getActivity(), scList, R.layout.activity_base_table,
                 new String[]{"Number", "scName"}, new int[]{R.id.number, R.id.scname});
-        mainView.setAdapter(adapter);
+        setListAdapter(adapter);
 
         /*
         端末の画面サイズに合わせてフォントサイズを最適化する
@@ -105,6 +115,7 @@ public class BaseTable extends ListFragment {
 //                Intent i = new Intent(BaseTable.this, SCInfo.class);
 //                i.putExtra("query", "SELECT * FROM " + workname + " WHERE _id = " + (position + 1));
 //                startActivity(i);
+        
 //            }
 //        });
     }
@@ -118,5 +129,10 @@ public class BaseTable extends ListFragment {
     private void scrollController(TextView tv) {
         tv.setSingleLine();
         tv.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+    }
+
+    //作品名を登録
+    protected void setTitle(String title) {
+        workname = title;
     }
 }

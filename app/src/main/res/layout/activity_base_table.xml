@@ -2,12 +2,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="${packageName}.${activityClass}">
 
     <ListView
-        android:id="@+id/mainView"
+        android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
     </ListView>
+
+    <!-- データがない時に表示する-->
+    <TextView
+        android:id="@android:id/empty"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/no_data"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
 
 </LinearLayout>

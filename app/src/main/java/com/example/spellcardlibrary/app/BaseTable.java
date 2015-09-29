@@ -29,10 +29,41 @@ public class BaseTable extends ListFragment {
     private ArrayList<HashMap<String, String>> scList = new ArrayList<HashMap<String, String>>();
     private String title;//作品名
 
+    public BaseTable() {}
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        scList = new ArrayList<HashMap<String, String>>();
+        setDatabase();
+    }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        //データベースを操作するためのカーソルを作成
+        Cursor c = db.query(title, null, null, null, null, null, null);
+        c.moveToFirst();
+
+        //カーソルを一つずづ動かして一時変数にデータを格納
+        for(int i = 0; i < c.getCount(); i++, c.moveToNext()) {
+            HashMap<String, String> temp = new HashMap<String, String>();
+            temp.put("Number", c.getString(1));
+            temp.put("scName", c.getString(2));
+            scList.add(temp);
+        }
+
+        //アダプターにデータを格納してListViewにセット
+        SimpleAdapter adapter = new SimpleAdapter(getActivity(), scList, R.layout.listview_layout,
+                new String[]{"Number", "scName"}, new int[]{R.id.number, R.id.scname});
+        setListAdapter(adapter);
+
+        return inflater.inflate(R.layout.table, container, false);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
     }
 
     @Override
@@ -41,13 +72,6 @@ public class BaseTable extends ListFragment {
         super.onDestroy();
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //作品名を取得
-        title = getArguments().getString("title");
-
-        return container;
-    }
 
     //assetsからデータベースをコピー
     private void setDatabase() {

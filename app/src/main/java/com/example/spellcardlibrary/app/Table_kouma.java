@@ -29,7 +29,7 @@ public class Table_kouma extends ListFragment {
     private DatabaseHelper mDbHelper;
     private SQLiteDatabase db;
     private ArrayList<HashMap<String, String>> scList;
-    private String title;//作品名
+    private String title = "東方紅魔郷";//作品名
 
     public Table_kouma() {}
 
@@ -47,7 +47,7 @@ public class Table_kouma extends ListFragment {
         View view = inflater.inflate(R.layout.table, container, false);
 
         //Activityから作品名を受け取る
-        title = getArguments().getString("title");
+        //title = getArguments().getString("title");
 
         Cursor c = db.query(title, null, null, null, null, null, null);
         c.moveToFirst();
@@ -86,7 +86,7 @@ public class Table_kouma extends ListFragment {
 
     @Override
     public void onStart() {
-
+        super.onStart();
     }
 
     //データベースにアクセス

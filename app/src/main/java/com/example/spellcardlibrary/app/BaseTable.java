@@ -35,14 +35,15 @@ public class BaseTable extends ListFragment {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_base_table);
         setDatabase();
+        makeList();
+        setMainView();
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.v("aaa", workname);
-        makeList();
-        setMainView();
+
+
         return inflater.inflate(R.layout.activity_base_table, container, false);
     }
 
@@ -54,6 +55,7 @@ public class BaseTable extends ListFragment {
 
     //assetsからデータベースをコピー
     public void setDatabase() {
+        Log.v("aaa", workname);
         mDbHelper = new DatabaseHelper(getActivity());
         try {
             mDbHelper.createEmptyDatabase();

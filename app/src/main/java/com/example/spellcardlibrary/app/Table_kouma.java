@@ -41,7 +41,7 @@ public class Table_kouma extends BaseTable {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        super.onCreateView(inflater, container, savedInstanceState);
+        //super.onCreateView(inflater, container, savedInstanceState);
         return inflater.inflate(R.layout.activity_base_table, container, false);
     }
 

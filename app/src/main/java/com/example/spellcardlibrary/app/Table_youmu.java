@@ -8,16 +8,16 @@ import android.view.ViewGroup;
 /**
  * Created by admin on 2015/07/09.
  */
-public class Table_kouma extends BaseTable {
+public class Table_youmu extends BaseTable {
 
-    public Table_kouma() {
+    public Table_youmu() {
         super();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("æ±æ–¹ç´…é­”éƒ·");
+        setTitle("“Œ•û—dX–²");
     }
 
     @Override

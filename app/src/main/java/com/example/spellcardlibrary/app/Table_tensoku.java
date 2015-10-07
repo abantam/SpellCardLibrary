@@ -17,7 +17,7 @@ public class Table_tensoku extends BaseTable {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("“Œ•û”ñ‘z“V‘¥");
+        setTitle(getString(R.string.tensoku));
     }
 
     @Override

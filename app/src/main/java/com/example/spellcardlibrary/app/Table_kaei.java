@@ -17,7 +17,7 @@ public class Table_kaei extends BaseTable {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("“Œ•û‰Ô‰f’Ë");
+        setTitle(getString(R.string.kaei));
     }
 
     @Override

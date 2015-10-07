@@ -17,7 +17,7 @@ public class Table_daisen extends BaseTable {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("—d¸‘åí‘ˆ");
+        setTitle(getString(R.string.daisen));
     }
 
     @Override

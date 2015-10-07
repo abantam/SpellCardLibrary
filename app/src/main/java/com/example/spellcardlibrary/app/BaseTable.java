@@ -6,6 +6,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +42,7 @@ public class BaseTable extends ListFragment {
         //データベースを操作するためのカーソルを作成
         Cursor c = db.query(title, null, null, null, null, null, null);
         c.moveToFirst();
-
+Log.v(title, "title");
         //カーソルを一つずづ動かして一時変数にデータを格納
         for(int i = 0; i < c.getCount(); i++, c.moveToNext()) {
             HashMap<String, String> temp = new HashMap<String, String>();

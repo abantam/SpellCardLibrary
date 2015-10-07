@@ -17,7 +17,7 @@ public class Table_amnjk extends BaseTable {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("弾幕アマノジャク");
+        setTitle(getString(R.string.amnjk));
     }
 
     @Override

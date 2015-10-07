@@ -17,7 +17,7 @@ public class Table_kisin extends BaseTable {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("“Œ•û‹Pjé");
+        setTitle(getString(R.string.kisin));
     }
 
     @Override

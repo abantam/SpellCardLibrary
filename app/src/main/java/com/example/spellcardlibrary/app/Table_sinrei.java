@@ -17,7 +17,7 @@ public class Table_sinrei extends BaseTable {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("“Œ•û_—ì•_");
+        setTitle(getString(R.string.sinrei));
     }
 
     @Override

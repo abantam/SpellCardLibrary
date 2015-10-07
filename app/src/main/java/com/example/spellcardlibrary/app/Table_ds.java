@@ -17,7 +17,7 @@ public class Table_ds extends BaseTable {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("ダブルスポイラー");
+        setTitle(getString(R.string.ds));
     }
 
     @Override

@@ -42,18 +42,32 @@ public class MainActivity extends Activity {
 
         //タブをセット
         FragmentManager manager = getFragmentManager();
+        FragmentTransaction t = manager.beginTransaction();
 
 //        Bundle bundle = new Bundle();
 //        bundle.putString("title", "東方紅魔郷");
 
         Table_kouma fragment = new Table_kouma();
-        //fragment.setArguments(bundle);
-
-        FragmentTransaction t = manager.beginTransaction();
         t.add(R.id.parentLL, fragment, "fragment");
-        t.commit();
-
         actionBar.addTab(actionBar.newTab().setText("東方紅魔郷").setTabListener(new TabListener<Table_kouma>(this, "東方紅魔郷", Table_kouma.class)));
+
+        Table_youmu youmu = new Table_youmu();
+        t.add(R.id.parentLL, youmu, "youmu");
+        actionBar.addTab(actionBar.newTab().setText("東方妖々夢").setTabListener(new TabListener<Table_youmu>(this, "東方妖々夢", Table_youmu.class)));
+
+        Table_suimu suimu = new Table_suimu();
+        t.add(R.id.parentLL, suimu, "suimu");
+        actionBar.addTab(actionBar.newTab().setText("東方萃夢想").setTabListener(new TabListener<Table_suimu>(this, "東方萃夢想", Table_suimu.class)));
+
+        Table_eiya eiya = new Table_eiya();
+        t.add(R.id.parentLL, eiya, "eiya");
+        actionBar.addTab(actionBar.newTab().setText("東方永夜抄").setTabListener(new TabListener<Table_eiya>(this, "東方永夜抄", Table_eiya.class)));
+
+        Table_kaei kaei = new Table_kaei();
+        t.add(R.id.parentLL, kaei, "kaei");
+        t.commit();
+        actionBar.addTab(actionBar.newTab().setText("東方花映塚").setTabListener(new TabListener<Table_kaei>(this, "東方花映塚", Table_kaei.class)));
+
 
 //        for(String title : titles) {
 //            Bundle bundle = new Bundle();

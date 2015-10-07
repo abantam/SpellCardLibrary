@@ -17,7 +17,7 @@ public class Table_sinki extends BaseTable {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("“Œ•ûSãY˜O");
+        setTitle(getString(R.string.sinki));
     }
 
     @Override

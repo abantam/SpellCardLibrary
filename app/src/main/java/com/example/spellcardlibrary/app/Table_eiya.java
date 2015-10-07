@@ -17,7 +17,7 @@ public class Table_eiya extends BaseTable {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("“Œ•û‰i–é´");
+        setTitle(getString(R.string.eiya));
     }
 
     @Override

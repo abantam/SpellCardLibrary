@@ -42,30 +42,39 @@ public class MainActivity extends Activity {
 
         //タブをセット
         FragmentManager manager = getFragmentManager();
-        FragmentTransaction t = manager.beginTransaction();
+
 
 //        Bundle bundle = new Bundle();
 //        bundle.putString("title", "東方紅魔郷");
 
         Table_kouma fragment = new Table_kouma();
-        t.add(R.id.parentLL, fragment, "fragment");
+        FragmentTransaction t1 = manager.beginTransaction();
+        t1.add(R.id.parentLL, fragment, "fragment");
+        t1.commit();
         actionBar.addTab(actionBar.newTab().setText("東方紅魔郷").setTabListener(new TabListener<Table_kouma>(this, "東方紅魔郷", Table_kouma.class)));
 
         Table_youmu youmu = new Table_youmu();
-        t.add(R.id.parentLL, youmu, "youmu");
+        FragmentTransaction t2 = manager.beginTransaction();
+        t2.add(R.id.parentLL, youmu, "youmu");
+        t2.commit();
         actionBar.addTab(actionBar.newTab().setText("東方妖々夢").setTabListener(new TabListener<Table_youmu>(this, "東方妖々夢", Table_youmu.class)));
 
         Table_suimu suimu = new Table_suimu();
-        t.add(R.id.parentLL, suimu, "suimu");
+        FragmentTransaction t3 = manager.beginTransaction();
+        t3.add(R.id.parentLL, suimu, "suimu");
+        t3.commit();
         actionBar.addTab(actionBar.newTab().setText("東方萃夢想").setTabListener(new TabListener<Table_suimu>(this, "東方萃夢想", Table_suimu.class)));
 
         Table_eiya eiya = new Table_eiya();
-        t.add(R.id.parentLL, eiya, "eiya");
+        FragmentTransaction t4 = manager.beginTransaction();
+        t4.add(R.id.parentLL, eiya, "eiya");
+        t4.commit();
         actionBar.addTab(actionBar.newTab().setText("東方永夜抄").setTabListener(new TabListener<Table_eiya>(this, "東方永夜抄", Table_eiya.class)));
 
         Table_kaei kaei = new Table_kaei();
-        t.add(R.id.parentLL, kaei, "kaei");
-        t.commit();
+        FragmentTransaction t5 = manager.beginTransaction();
+        t5.add(R.id.parentLL, kaei, "kaei");
+        t5.commit();
         actionBar.addTab(actionBar.newTab().setText("東方花映塚").setTabListener(new TabListener<Table_kaei>(this, "東方花映塚", Table_kaei.class)));
 
 

@@ -42,7 +42,7 @@ public class BaseTable extends ListFragment {
         //データベースを操作するためのカーソルを作成
         Cursor c = db.query(title, null, null, null, null, null, null);
         c.moveToFirst();
-Log.v(title, "title");
+
         //カーソルを一つずづ動かして一時変数にデータを格納
         for(int i = 0; i < c.getCount(); i++, c.moveToNext()) {
             HashMap<String, String> temp = new HashMap<String, String>();

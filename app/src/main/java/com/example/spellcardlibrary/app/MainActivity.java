@@ -4,6 +4,8 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.app.FragmentManager;
 import android.support.v4.view.ViewPager;
@@ -12,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends Activity {
@@ -28,10 +31,16 @@ public class MainActivity extends Activity {
     //リソースから持ってきた作品名を格納した配列
     private String[] titles;
 
+    private static SQLiteDatabase db;//データベース
+    private DatabaseHelper mDbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //データベースを生成
+        setDatabase();
 
         //作品名を取得
         titles = getResources().getStringArray(R.array.titles);
@@ -43,9 +52,17 @@ public class MainActivity extends Activity {
         //タブをセット
         FragmentManager manager = getFragmentManager();
 
+        Bundle bundle = new Bundle();
+        bundle.putString("title", "東方紅魔郷");
 
-//        Bundle bundle = new Bundle();
-//        bundle.putString("title", "東方紅魔郷");
+        for(String title : titles) {
+            BaseTable fragment = new BaseTable();
+            fragment.setTitle(title);
+            FragmentTransaction ft = manager.beginTransaction();
+            ft.add(R.id.parentLL, fragment, "fragment");
+            ft.commit();
+            actionBar.addTab(actionBar.newTab().setText(title).setTabListener(new TabListener<BaseTable>(this, title, BaseTable.class)));
+        }
 
         Table_kouma fragment = new Table_kouma();
         FragmentTransaction t1 = manager.beginTransaction();
@@ -140,10 +157,24 @@ public class MainActivity extends Activity {
 
     }
 
-    private void makeFragment(String title) {
-
+    @Override
+    public void onDestroy() {
+        db.close();
+        super.onDestroy();
     }
 
+    //assetsからデータベースをコピー
+    private void setDatabase() {
+        mDbHelper = new DatabaseHelper(this);
+        try {
+            mDbHelper.createEmptyDatabase();
+            db = mDbHelper.openDatabase();
+        }catch(IOException ioe) {
+            throw new Error("Unable to create database");
+        }catch(SQLException sqle) {
+            throw sqle;
+        }
+    }
 
     //オプションメニューの作成
     @Override

@@ -1,66 +1,64 @@
 <LinearLayout
+    android:id="@+id/parentLL"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/parentLL"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-    <fragment
-        android:name="com.example.spellcardlibrary.app.Table_kouma"
-        android:tag="@string/kouma"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout="@layout/activity_main"/>
+    <!--<fragment-->
+        <!--android:name="com.example.spellcardlibrary.app.Table_kouma"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:tag="@string/kouma"-->
+        <!--tools:layout="@layout/activity_main"/>-->
 
-    <fragment
-        android:name="com.example.spellcardlibrary.app.Table_youmu"
-        android:id="@+id/youmu"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout="@layout/activity_main"/>
+    <!--<fragment-->
+        <!--android:id="@+id/youmu"-->
+        <!--android:name="com.example.spellcardlibrary.app.Table_youmu"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--tools:layout="@layout/activity_main"/>-->
 
 </LinearLayout>
 
-    <!--<TabHost xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--xmlns:tools="http://schemas.android.com/tools"-->
-    <!--android:id="@+id/tabhost"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--tools:context="${packageName}.${activityClass}">-->
+<!--<TabHost android:id="@+id/tabhost"-->
+         <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+         <!--xmlns:tools="http://schemas.android.com/tools"-->
+         <!--android:layout_width="match_parent"-->
+         <!--android:layout_height="match_parent"-->
+         <!--tools:context="${packageName}.${activityClass}">-->
 
     <!--<LinearLayout-->
-    <!--android:id="@+id/parentLL"-->
-    <!--android:orientation="vertical"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content" >-->
+        <!--android:id="@+id/parentLL"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="vertical">-->
 
-    <!--<HorizontalScrollView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content" >-->
+        <!--<HorizontalScrollView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
 
-    <!--<TabWidget-->
-    <!--android:id="@android:id/tabs"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content" >-->
+            <!--<TabWidget-->
+                <!--android:id="@android:id/tabs"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content">-->
 
-    <!--</TabWidget>-->
+            <!--</TabWidget>-->
 
-    <!--</HorizontalScrollView>-->
+        <!--</HorizontalScrollView>-->
 
-    <!--<FrameLayout-->
-    <!--android:id="@android:id/tabcontent"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent" >-->
+        <!--<FrameLayout-->
+            <!--android:id="@+id/tabcontent"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
 
-    <!--<TextView-->
-    <!--android:id="@+id/test"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:fontFamily="@string/abc_action_menu_overflow_description">-->
-    <!--</TextView>-->
+            <!--<fragment-->
+                <!--android:name="com.example.spellcardlibrary.app.BaseTable"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent" />-->
 
-    <!--</FrameLayout>-->
+        <!--</FrameLayout>-->
 
     <!--</LinearLayout>-->
 
@@ -69,6 +67,6 @@
     <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
     <!--&lt;!&ndash;android:layout_height="match_parent" />&ndash;&gt;-->
 
-    <!--</TabHost>-->
+<!--</TabHost>-->
 
 

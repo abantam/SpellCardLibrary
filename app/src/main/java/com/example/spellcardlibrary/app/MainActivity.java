@@ -49,8 +49,8 @@ public class MainActivity extends Activity {
         //タブをセット
         FragmentManager manager = getFragmentManager();
 
-//        Bundle bundle = new Bundle();
-//        bundle.putString("title", "東方紅魔郷");
+        Bundle bundle = new Bundle();
+        bundle.putString("title", "東方紅魔郷");
 
         BaseTable fragment = new BaseTable();
         //fragment.setArguments(bundle);

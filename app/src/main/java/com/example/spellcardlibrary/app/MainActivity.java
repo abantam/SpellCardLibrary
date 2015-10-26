@@ -4,6 +4,8 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.app.FragmentManager;
 import android.support.v4.view.ViewPager;
@@ -12,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends Activity {
@@ -27,6 +30,9 @@ public class MainActivity extends Activity {
 
     //リソースから持ってきた作品名を格納した配列
     private String[] titles;
+
+    private DatabaseHelper mDbHelper;
+    private SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +58,6 @@ public class MainActivity extends Activity {
         FragmentTransaction t = manager.beginTransaction();
         t.add(R.id.parentLL, fragment, "東方紅魔郷");
         t.commit();
-
         actionBar.addTab(actionBar.newTab().setText("東方紅魔郷").setTabListener(new TabListener<BaseTable>(this, "東方紅魔郷", BaseTable.class)));
 
         BaseTable youmu = new BaseTable();
@@ -123,8 +128,17 @@ public class MainActivity extends Activity {
 
     }
 
-    private void makeFragment(String title) {
-
+    //assetsからデータベースをコピー
+    private void setDatabase() {
+        mDbHelper = new DatabaseHelper(this);
+        try {
+            mDbHelper.createEmptyDatabase();
+            db = mDbHelper.openDatabase();
+        }catch(IOException ioe) {
+            throw new Error("Unable to create database");
+        }catch(SQLException sqle) {
+            throw sqle;
+        }
     }
 
 

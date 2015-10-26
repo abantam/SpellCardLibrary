@@ -46,28 +46,34 @@ public class MainActivity extends Activity {
 //        Bundle bundle = new Bundle();
 //        bundle.putString("title", "東方紅魔郷");
 
-        Table_kouma fragment = new Table_kouma();
-        //fragment.setArguments(bundle);
-
-        FragmentTransaction t = manager.beginTransaction();
-        t.add(R.id.parentLL, fragment, "fragment");
-        t.commit();
-
-        actionBar.addTab(actionBar.newTab().setText("東方紅魔郷").setTabListener(new TabListener<Table_kouma>(this, "東方紅魔郷", Table_kouma.class)));
-
-//        for(String title : titles) {
-//            Bundle bundle = new Bundle();
-//            bundle.putString("title", title);
+//        Table_kouma fragment = new Table_kouma();
+//        //fragment.setArguments(bundle);
 //
-//            Table_kouma fragment = new Table_kouma();
-//            fragment.setArguments(bundle);
+//        FragmentTransaction t = manager.beginTransaction();
+//        t.add(R.id.parentLL, fragment, "fragment");
+//        t.commit();
 //
-//            FragmentTransaction t = manager.beginTransaction();
-//            t.add(R.id.parentLL, fragment, "fragment");
-//            t.commit();
+//        actionBar.addTab(actionBar.newTab().setText("東方紅魔郷").setTabListener(new TabListener<Table_kouma>(this, "東方紅魔郷", Table_kouma.class)));
 //
-//            actionBar.addTab(actionBar.newTab().setText(title).setTabListener(new TabListener<Table_kouma>(this, title, Table_kouma.class)));
-//        }
+//        Table_youmu youmu = new Table_youmu();
+//        t = manager.beginTransaction();
+//        t.add(R.id.parentLL, youmu, "youmu");
+//        t.commit();
+//        actionBar.addTab(actionBar.newTab().setText("東方妖々夢").setTabListener(new TabListener<Table_youmu>(this, "東方妖々夢", Table_youmu.class)));
+
+        for(String title : titles) {
+            Bundle bundle = new Bundle();
+            bundle.putString("title", title);
+
+            BaseTable fragment = new BaseTable();
+            fragment.setArguments(bundle);
+
+            FragmentTransaction t = manager.beginTransaction();
+            t.add(R.id.parentLL, fragment, "fragment");
+            t.commit();
+
+            actionBar.addTab(actionBar.newTab().setText(title).setTabListener(new TabListener<Table_kouma>(this, title, Table_kouma.class)));
+        }
 
         //PagerAdapterを生成
 //        MainFragmentAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());

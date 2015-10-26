@@ -14,7 +14,7 @@
         tools:layout="@layout/activity_main"/>
 
     <fragment
-        android:name="com.example.spellcardlibrary.app.Table_kouma"
+        android:name="com.example.spellcardlibrary.app.Table_youmu"
         android:id="@+id/youmu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -1,5 +1,6 @@
 package com.example.spellcardlibrary.app;
 
+import android.app.Activity;
 import android.app.ListFragment;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -17,6 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/*FragmentからActivityにコールバックする方法：http://y-anz-m.blogspot.jp/2012/06/fragment-activity.html*/
 
 public class BaseTable extends ListFragment {
 
@@ -26,17 +28,36 @@ public class BaseTable extends ListFragment {
     private ArrayList<HashMap<String, String>> scList = new ArrayList<HashMap<String, String>>();
     private String title;//作品名
 
+    public interface OnOkBtnClickListener {
+        public void onOkClicked();
+    }
+
+    private OnOkBtnClickListener mListener;
+
     public BaseTable() {}
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        if(activity instanceof OnOkBtnClickListener == false) {
+            throw new ClassCastException();
+        }
+
+        mListener = ((OnOkBtnClickListener) activity);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         scList = new ArrayList<HashMap<String, String>>();
-        setDatabase();
+        //setDatabase();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+
 
         //データベースを操作するためのカーソルを作成
         Cursor c = db.query(title, null, null, null, null, null, null);

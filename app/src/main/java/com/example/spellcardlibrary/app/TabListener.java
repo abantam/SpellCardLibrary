@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.util.Log;
 
 /**
  * Created by admin on 2015/07/10.
@@ -38,6 +39,9 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener {
                 fm.beginTransaction().attach(mFragment).commit();
             }
         }
+
+        //Activityにデータベースの問い合わせをする
+
     }
 
     //タブの選択が解除された時の処理

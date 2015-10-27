@@ -17,7 +17,7 @@ import android.view.MenuItem;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class MainActivity extends Activity implements BaseTable.OnOkBtnClickListener {
+public class MainActivity extends Activity /*implements BaseTable.OnOkBtnClickListener*/ {
 
     //メニューアイテム識別用ID
     private static final int credit_ID = 0;
@@ -39,6 +39,9 @@ public class MainActivity extends Activity implements BaseTable.OnOkBtnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //データベースを生成
+        setDatabase();
+
         //作品名を取得
         titles = getResources().getStringArray(R.array.titles);
 
@@ -51,15 +54,15 @@ public class MainActivity extends Activity implements BaseTable.OnOkBtnClickList
 
         //タブを生成
         for(String title : titles) {
-//            Bundle bundle = new Bundle();
-//            bundle.putString("title", title);
-//
-//            BaseTable fragment = new BaseTable();
-//            fragment.setArguments(bundle);
-//
-//            FragmentTransaction t = manager.beginTransaction();
-//            t.add(R.id.parentLL, fragment, title);
-//            t.commit();
+            Bundle bundle = new Bundle();
+            bundle.putString("title", title);
+
+            BaseTable fragment = new BaseTable();
+            fragment.setArguments(bundle);
+
+            FragmentTransaction t = manager.beginTransaction();
+            t.add(R.id.parentLL, fragment, title);
+            t.commit();
 
             ActionBar.Tab tab = actionBar.newTab();
             tab.setText(title);
@@ -115,20 +118,20 @@ public class MainActivity extends Activity implements BaseTable.OnOkBtnClickList
 
     }
 
-    @Override
-    public void onOkClicked() {
-        Bundle bundle = new Bundle();
-        bundle.putString("title", title);
-
-        BaseTable fragment = new BaseTable();
-        fragment.setArguments(bundle);
-
-        FragmentTransaction t = manager.beginTransaction();
-        t.add(R.id.parentLL, fragment, title);
-        t.commit();
-
-        actionBar.addTab(actionBar.newTab().setText(title).setTabListener(new TabListener<BaseTable>(this, title, BaseTable.class)));
-    }
+//    @Override
+//    public void onOkClicked() {
+//        Bundle bundle = new Bundle();
+//        bundle.putString("title", title);
+//
+//        BaseTable fragment = new BaseTable();
+//        fragment.setArguments(bundle);
+//
+//        FragmentTransaction t = manager.beginTransaction();
+//        t.add(R.id.parentLL, fragment, title);
+//        t.commit();
+//
+//        actionBar.addTab(actionBar.newTab().setText(title).setTabListener(new TabListener<BaseTable>(this, title, BaseTable.class)));
+//    }
 
     //assetsからデータベースをコピー
     private void setDatabase() {
@@ -141,6 +144,11 @@ public class MainActivity extends Activity implements BaseTable.OnOkBtnClickList
         }catch(SQLException sqle) {
             throw sqle;
         }
+    }
+
+    //データベースの取得
+    public SQLiteDatabase getDatabase() {
+        return db;
     }
 
 

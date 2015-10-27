@@ -57,8 +57,6 @@ public class BaseTable extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-
-
         //データベースを操作するためのカーソルを作成
         Cursor c = db.query(title, null, null, null, null, null, null);
         c.moveToFirst();

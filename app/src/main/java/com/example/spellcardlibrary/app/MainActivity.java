@@ -49,35 +49,22 @@ public class MainActivity extends Activity implements BaseTable.OnOkBtnClickList
         //タブをセット
         FragmentManager manager = getFragmentManager();
 
-//        Bundle bundle = new Bundle();
-//        bundle.putString("title", "東方紅魔郷");
-//
-//        BaseTable fragment = new BaseTable();
-//        //fragment.setArguments(bundle);
-//
-//        FragmentTransaction t = manager.beginTransaction();
-//        t.add(R.id.parentLL, fragment, "東方紅魔郷");
-//        t.commit();
-//        actionBar.addTab(actionBar.newTab().setText("東方紅魔郷").setTabListener(new TabListener<BaseTable>(this, "東方紅魔郷", BaseTable.class)));
-//
-//        BaseTable youmu = new BaseTable();
-//        t = manager.beginTransaction();
-//        t.add(R.id.parentLL, youmu, "東方妖々夢");
-//        t.commit();
-//        actionBar.addTab(actionBar.newTab().setText("東方妖々夢").setTabListener(new TabListener<BaseTable>(this, "東方妖々夢", BaseTable.class)));
-
+        //タブを生成
         for(String title : titles) {
-            Bundle bundle = new Bundle();
-            bundle.putString("title", title);
+//            Bundle bundle = new Bundle();
+//            bundle.putString("title", title);
+//
+//            BaseTable fragment = new BaseTable();
+//            fragment.setArguments(bundle);
+//
+//            FragmentTransaction t = manager.beginTransaction();
+//            t.add(R.id.parentLL, fragment, title);
+//            t.commit();
 
-            BaseTable fragment = new BaseTable();
-            fragment.setArguments(bundle);
-
-            FragmentTransaction t = manager.beginTransaction();
-            t.add(R.id.parentLL, fragment, title);
-            t.commit();
-
-            actionBar.addTab(actionBar.newTab().setText(title).setTabListener(new TabListener<BaseTable>(this, title, BaseTable.class)));
+            ActionBar.Tab tab = actionBar.newTab();
+            tab.setText(title);
+            tab.setTabListener(new TabListener<BaseTable>(this, title, BaseTable.class));
+            actionBar.addTab(tab);
         }
 
         //PagerAdapterを生成

@@ -17,7 +17,7 @@ import android.view.MenuItem;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class MainActivity extends Activity /*implements BaseTable.OnOkBtnClickListener*/ {
+public class MainActivity extends Activity implements BaseTable.OnOkBtnClickListener {
 
     //メニューアイテム識別用ID
     private static final int credit_ID = 0;
@@ -132,6 +132,10 @@ public class MainActivity extends Activity /*implements BaseTable.OnOkBtnClickLi
 //
 //        actionBar.addTab(actionBar.newTab().setText(title).setTabListener(new TabListener<BaseTable>(this, title, BaseTable.class)));
 //    }
+
+    public void onOkClicked() {
+        
+    }
 
     //assetsからデータベースをコピー
     private void setDatabase() {

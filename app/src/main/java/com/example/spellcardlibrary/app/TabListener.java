@@ -41,7 +41,9 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener {
         }
 
         //Activityにデータベースの問い合わせをする
+        if(mFragment instanceof BaseTable) {
 
+        }
     }
 
     //タブの選択が解除された時の処理

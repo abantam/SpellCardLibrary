@@ -28,24 +28,24 @@ public class BaseTable extends ListFragment {
     private ArrayList<HashMap<String, String>> scList = new ArrayList<HashMap<String, String>>();
     private String title;//作品名
 
-    public interface OnOkBtnClickListener {
-        public void onOkClicked();
-    }
-
-    private OnOkBtnClickListener mListener;
+//    public interface OnOkBtnClickListener {
+//        public void onOkClicked();
+//    }
+//
+//    private OnOkBtnClickListener mListener;
 
     public BaseTable() {}
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-
-        if(activity instanceof OnOkBtnClickListener == false) {
-            throw new ClassCastException();
-        }
-
-        mListener = ((OnOkBtnClickListener) activity);
-    }
+//    @Override
+//    public void onAttach(Activity activity) {
+//        super.onAttach(activity);
+//
+//        if(activity instanceof OnOkBtnClickListener == false) {
+//            throw new ClassCastException();
+//        }
+//
+//        mListener = ((OnOkBtnClickListener) activity);
+//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

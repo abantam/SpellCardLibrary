@@ -17,7 +17,7 @@ import android.view.MenuItem;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class MainActivity extends Activity /*implements BaseTable.OnOkBtnClickListener*/ {
+public class MainActivity extends Activity implements OnDbAccessListener {
 
     //メニューアイテム識別用ID
     private static final int credit_ID = 0;
@@ -58,7 +58,7 @@ public class MainActivity extends Activity /*implements BaseTable.OnOkBtnClickLi
             bundle.putString("title", title);
 
             BaseTable fragment = new BaseTable();
-            fragment.setArguments(bundle);
+            //fragment.setArguments(bundle);
 
             FragmentTransaction t = manager.beginTransaction();
             t.add(R.id.parentLL, fragment, title);
@@ -133,8 +133,15 @@ public class MainActivity extends Activity /*implements BaseTable.OnOkBtnClickLi
 //        actionBar.addTab(actionBar.newTab().setText(title).setTabListener(new TabListener<BaseTable>(this, title, BaseTable.class)));
 //    }
 
-    public void onOkClicked() {
-        
+    @Override
+    public void onTabSelected() {
+        FragmentManager manager = getFragmentManager();
+        BaseTable fragment = (BaseTable)manager.findFragmentByTag("table");
+    }
+
+    @Override
+    public void onListSelected() {
+
     }
 
     //assetsからデータベースをコピー

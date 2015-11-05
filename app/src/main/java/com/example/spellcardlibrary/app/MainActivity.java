@@ -2,8 +2,10 @@ package com.example.spellcardlibrary.app;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -62,15 +64,15 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 
         //タブを生成
         for(String title : titles) {
-//            Bundle bundle = new Bundle();
-//            bundle.putString("title", title);
-//
-//            BaseTable fragment = new BaseTable();
-//            fragment.setArguments(bundle);
-//
-//            FragmentTransaction t = manager.beginTransaction();
-//            t.add(R.id.parentLL, fragment, title);
-//            t.commit();
+            Bundle bundle = new Bundle();
+            bundle.putString("title", title);
+
+            BaseTable fragment = new BaseTable();
+            fragment.setArguments(bundle);
+
+            FragmentTransaction t = manager.beginTransaction();
+            t.add(R.id.parentLL, fragment, title);
+            t.commit();
 
             ActionBar.Tab tab = actionBar.newTab();
             tab.setText(title);
@@ -146,16 +148,21 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction transaction) {
         /*tabPositionとtitlesの添え字は一致する*/
         int tabPosition = tab.getPosition();
-
+        String title = titles[selectedTabPosition];
         if(selectedTabPosition == tabPosition) {
-            String title = titles[selectedTabPosition];
+
             Bundle bundle = new Bundle();
             bundle.putString("title", title);
+
             BaseTable fragment = new BaseTable();
             fragment.setArguments(bundle);
+
+            transaction.add(R.id.parentLL, fragment, title);
+
         }
 
         selectedTabPosition = tabPosition;
+
     }
 
     @Override

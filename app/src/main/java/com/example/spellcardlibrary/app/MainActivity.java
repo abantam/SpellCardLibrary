@@ -17,7 +17,10 @@ import android.view.MenuItem;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class MainActivity extends Activity implements OnDbAccessListener {
+/*TabListenerの実装：http://t-horikiri.hatenablog.jp/entry/20121204/1354604306
+* TabListenerのカスタマイズ：http://yan-note.blogspot.jp/2012/10/android-fragmenttab.html*/
+
+public class MainActivity extends Activity implements ActionBar.TabListener {
 
     //メニューアイテム識別用ID
     private static final int credit_ID = 0;
@@ -30,6 +33,11 @@ public class MainActivity extends Activity implements OnDbAccessListener {
 
     //リソースから持ってきた作品名を格納した配列
     private String[] titles;
+
+    //現在選択しているタブの番号
+    private int selectedTabPosition = 0;
+
+    private ActionBar actionBar;
 
     private DatabaseHelper mDbHelper;
     private SQLiteDatabase db;
@@ -46,7 +54,7 @@ public class MainActivity extends Activity implements OnDbAccessListener {
         titles = getResources().getStringArray(R.array.titles);
 
         //ActionBarを作成
-        final ActionBar actionBar = getActionBar();
+        actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         //タブをセット
@@ -54,19 +62,20 @@ public class MainActivity extends Activity implements OnDbAccessListener {
 
         //タブを生成
         for(String title : titles) {
-            Bundle bundle = new Bundle();
-            bundle.putString("title", title);
-
-            BaseTable fragment = new BaseTable();
-            //fragment.setArguments(bundle);
-
-            FragmentTransaction t = manager.beginTransaction();
-            t.add(R.id.parentLL, fragment, title);
-            t.commit();
+//            Bundle bundle = new Bundle();
+//            bundle.putString("title", title);
+//
+//            BaseTable fragment = new BaseTable();
+//            fragment.setArguments(bundle);
+//
+//            FragmentTransaction t = manager.beginTransaction();
+//            t.add(R.id.parentLL, fragment, title);
+//            t.commit();
 
             ActionBar.Tab tab = actionBar.newTab();
             tab.setText(title);
-            tab.setTabListener(new TabListener<BaseTable>(this, title, BaseTable.class));
+            //tab.setTabListener(new TabListener<BaseTable>(this, title, BaseTable.class));
+            tab.setTabListener(this);
             actionBar.addTab(tab);
         }
 
@@ -134,13 +143,28 @@ public class MainActivity extends Activity implements OnDbAccessListener {
 //    }
 
     @Override
-    public void onTabSelected() {
-        FragmentManager manager = getFragmentManager();
-        BaseTable fragment = (BaseTable)manager.findFragmentByTag("table");
+    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction transaction) {
+        /*tabPositionとtitlesの添え字は一致する*/
+        int tabPosition = tab.getPosition();
+
+        if(selectedTabPosition == tabPosition) {
+            String title = titles[selectedTabPosition];
+            Bundle bundle = new Bundle();
+            bundle.putString("title", title);
+            BaseTable fragment = new BaseTable();
+            fragment.setArguments(bundle);
+        }
+
+        selectedTabPosition = tabPosition;
     }
 
     @Override
-    public void onListSelected() {
+    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction transaction) {
+
+    }
+
+    @Override
+    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction transaction) {
 
     }
 

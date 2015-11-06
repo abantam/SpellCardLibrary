@@ -18,6 +18,7 @@ import android.view.MenuItem;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /*TabListenerの実装：http://t-horikiri.hatenablog.jp/entry/20121204/1354604306
 * TabListenerのカスタマイズ：http://yan-note.blogspot.jp/2012/10/android-fragmenttab.html*/
@@ -27,9 +28,6 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
     //メニューアイテム識別用ID
     private static final int credit_ID = 0;
 
-    //各タブに割り当てられたアクティビティを起動するためのインテント群
-    private ArrayList<Intent> intentList = new ArrayList<Intent>();
-
     //スワイプでタブを切り替えるためのViewPager
     ViewPager mViewPager;
 
@@ -38,6 +36,11 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 
     //現在選択しているタブの番号
     private int selectedTabPosition = 0;
+
+    //フラグメントとタブの番号の対応表
+    private HashMap<Integer, String> fragmentAndTab = new HashMap<Integer, String>();
+
+    private BaseTable mFragment;
 
     private ActionBar actionBar;
 
@@ -62,6 +65,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         //タブをセット
         FragmentManager manager = getFragmentManager();
 
+        int count = 0;
         //タブを生成
         for(String title : titles) {
             Bundle bundle = new Bundle();
@@ -79,7 +83,12 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
             //tab.setTabListener(new TabListener<BaseTable>(this, title, BaseTable.class));
             tab.setTabListener(this);
             actionBar.addTab(tab);
+            fragmentAndTab.put(count, title);
+            count++;
         }
+
+        //初回起動時に0番目のタブを表示する
+        //actionBar.getTabAt(0).select();
 
         //PagerAdapterを生成
 //        MainFragmentAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
@@ -154,10 +163,11 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
             Bundle bundle = new Bundle();
             bundle.putString("title", title);
 
-            BaseTable fragment = new BaseTable();
-            fragment.setArguments(bundle);
+            mFragment = new BaseTable();
+            mFragment.setArguments(bundle);
 
-            transaction.add(R.id.parentLL, fragment, title);
+            transaction.add(R.id.parentLL, mFragment, title);
+            actionBar.addTab(tab);
 
         }
 
@@ -167,7 +177,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 
     @Override
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction transaction) {
-
+        transaction.remove(mFragment);
     }
 
     @Override

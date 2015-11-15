@@ -80,11 +80,11 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 
             ActionBar.Tab tab = actionBar.newTab();
             tab.setText(title);
-            //tab.setTabListener(new TabListener<BaseTable>(this, title, BaseTable.class));
-            tab.setTabListener(this);
+            tab.setTabListener(new TabListener<BaseTable>(fragment, manager, title));
+            //tab.setTabListener(this);
             actionBar.addTab(tab);
-            fragmentAndTab.put(count, title);
-            count++;
+            //fragmentAndTab.put(count, title);
+            //count++;
         }
 
         //初回起動時に0番目のタブを表示する
@@ -157,32 +157,48 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction transaction) {
         /*tabPositionとtitlesの添え字は一致する*/
         int tabPosition = tab.getPosition();
-        String title = titles[selectedTabPosition];
-        if(selectedTabPosition == tabPosition) {
+//        String title = titles[selectedTabPosition];
+//        selectedTabPosition = tabPosition;
+//        if(selectedTabPosition == tabPosition) {
+//
+//            Bundle bundle = new Bundle();
+//            bundle.putString("title", title);
+//
+//            mFragment = new BaseTable();
+//            mFragment.setArguments(bundle);
+//
+//            transaction.add(R.id.parentLL, mFragment, title);
+//            actionBar.addTab(tab);
+//
+//        }
 
-            Bundle bundle = new Bundle();
-            bundle.putString("title", title);
-
-            mFragment = new BaseTable();
-            mFragment.setArguments(bundle);
-
-            transaction.add(R.id.parentLL, mFragment, title);
-            actionBar.addTab(tab);
-
+        switch(tabPosition) {
+            case 0: makeSpellCardList(getFragmentManager(), "東方紅魔郷"); break;
         }
-
-        selectedTabPosition = tabPosition;
 
     }
 
     @Override
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction transaction) {
-        transaction.remove(mFragment);
+        //transaction.remove(mFragment);
     }
 
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction transaction) {
 
+    }
+
+    //タブに表示するリストを生成
+    private void makeSpellCardList(FragmentManager manager, String title) {
+        Bundle bundle = new Bundle();
+        bundle.putString(title, title);
+
+        BaseTable fragment = new BaseTable();
+        fragment.setArguments(bundle);
+
+        FragmentTransaction t = manager.beginTransaction();
+        t.add(R.id.parentLL, fragment, title);
+        t.commit();
     }
 
     //assetsからデータベースをコピー

@@ -14,28 +14,35 @@ import android.util.Log;
 public class TabListener<T extends Fragment> implements ActionBar.TabListener {
 
     private Fragment mFragment;
-    private final Activity mActivity;
-    private final String mTag;
-    private final Class<T> mClass;
+    private FragmentManager fm;
+    //private final Activity mActivity;
+    private String mTag;
+    //private final Class<T> mClass;
 
-    public TabListener(Activity activity, String tag, Class<T> clz) {
-        mActivity = activity;
+//    public TabListener(Activity activity, String tag, Class<T> clz) {
+//        mActivity = activity;
+//        mTag = tag;
+//        mClass = clz;
+//
+//        //FragmentManagerからFragmentを探す
+//        mFragment = mActivity.getFragmentManager().findFragmentByTag(mTag);
+//    }
+
+    public TabListener(Fragment fragment, FragmentManager manager, String tag) {
+        mFragment = fragment;
+        fm = manager;
         mTag = tag;
-        mClass = clz;
-
-        //FragmentManagerからFragmentを探す
-        mFragment = mActivity.getFragmentManager().findFragmentByTag(mTag);
     }
 
     //タブが選択された時の処理
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
         if(mFragment == null) {
-            mFragment = Fragment.instantiate(mActivity, mClass.getName());
-            FragmentManager fm = mActivity.getFragmentManager();
+            //mFragment = Fragment.instantiate(mActivity, mClass.getName());
+            //FragmentManager fm = mActivity.getFragmentManager();
             fm.beginTransaction().add(R.id.parentLL, mFragment, mTag).commit();
         }else {
             if(mFragment.isDetached()) {
-                FragmentManager fm = mActivity.getFragmentManager();
+                //FragmentManager fm = mActivity.getFragmentManager();
                 fm.beginTransaction().attach(mFragment).commit();
             }
         }
@@ -49,7 +56,7 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener {
     //タブの選択が解除された時の処理
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
         if(mFragment != null) {
-            FragmentManager fm = mActivity.getFragmentManager();
+            //FragmentManager fm = mActivity.getFragmentManager();
             fm.beginTransaction().detach(mFragment).commit();
         }
     }

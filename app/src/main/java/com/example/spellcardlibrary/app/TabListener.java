@@ -36,14 +36,20 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener {
 
     //タブが選択された時の処理
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
-        if(mFragment == null) {
-            //mFragment = Fragment.instantiate(mActivity, mClass.getName());
-            //FragmentManager fm = mActivity.getFragmentManager();
-            fm.beginTransaction().add(R.id.parentLL, mFragment, mTag).commit();
-        }else {
-            if(mFragment.isDetached()) {
+        String tabText = tab.getText().toString();
+
+        //選択したタブのテキストとタグが一致したら処理を行う
+        if(tabText == mTag) {
+            //Fragmentがまだない場合
+            if (mFragment == null) {
+                //mFragment = Fragment.instantiate(mActivity, mClass.getName());
                 //FragmentManager fm = mActivity.getFragmentManager();
-                fm.beginTransaction().attach(mFragment).commit();
+                fm.beginTransaction().add(R.id.parentLL, mFragment, mTag).commit();
+            } else {
+                if (mFragment.isDetached()) {
+                    //FragmentManager fm = mActivity.getFragmentManager();
+                    fm.beginTransaction().attach(mFragment).commit();
+                }
             }
         }
 
@@ -63,6 +69,6 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener {
 
     //タブが2度目以降に選択された時の処理
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
-
+        onTabSelected(tab, ft);
     }
 }

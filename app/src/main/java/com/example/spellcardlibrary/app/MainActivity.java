@@ -23,7 +23,7 @@ import java.util.HashMap;
 /*TabListenerの実装：http://t-horikiri.hatenablog.jp/entry/20121204/1354604306
 * TabListenerのカスタマイズ：http://yan-note.blogspot.jp/2012/10/android-fragmenttab.html*/
 
-public class MainActivity extends Activity implements ActionBar.TabListener {
+public class MainActivity extends Activity  {
 
     //メニューアイテム識別用ID
     private static final int credit_ID = 0;
@@ -153,40 +153,6 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 //        actionBar.addTab(actionBar.newTab().setText(title).setTabListener(new TabListener<BaseTable>(this, title, BaseTable.class)));
 //    }
 
-    @Override
-    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction transaction) {
-        /*tabPositionとtitlesの添え字は一致する*/
-        int tabPosition = tab.getPosition();
-//        String title = titles[selectedTabPosition];
-//        selectedTabPosition = tabPosition;
-//        if(selectedTabPosition == tabPosition) {
-//
-//            Bundle bundle = new Bundle();
-//            bundle.putString("title", title);
-//
-//            mFragment = new BaseTable();
-//            mFragment.setArguments(bundle);
-//
-//            transaction.add(R.id.parentLL, mFragment, title);
-//            actionBar.addTab(tab);
-//
-//        }
-
-        switch(tabPosition) {
-            case 0: makeSpellCardList(getFragmentManager(), "東方紅魔郷"); break;
-        }
-
-    }
-
-    @Override
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction transaction) {
-        //transaction.remove(mFragment);
-    }
-
-    @Override
-    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction transaction) {
-
-    }
 
     //タブに表示するリストを生成
     private void makeSpellCardList(FragmentManager manager, String title) {

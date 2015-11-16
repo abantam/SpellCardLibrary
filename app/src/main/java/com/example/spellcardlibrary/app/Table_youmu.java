@@ -17,7 +17,7 @@ public class Table_youmu extends BaseTable {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("東方妖々夢");
+        setTitle(getString(R.string.youmu));
     }
 
     @Override

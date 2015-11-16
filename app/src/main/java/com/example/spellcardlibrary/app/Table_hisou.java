@@ -17,7 +17,7 @@ public class Table_hisou extends BaseTable {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("東方緋想天");
+        setTitle(getString(R.string.hisou));
     }
 
     @Override

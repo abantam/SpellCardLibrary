@@ -17,7 +17,7 @@ public class Table_seiren extends BaseTable {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("“Œ•û¯˜@‘D");
+        setTitle(getString(R.string.seiren));
     }
 
     @Override

@@ -23,7 +23,7 @@ import java.util.HashMap;
 /*TabListenerの実装：http://t-horikiri.hatenablog.jp/entry/20121204/1354604306
 * TabListenerのカスタマイズ：http://yan-note.blogspot.jp/2012/10/android-fragmenttab.html*/
 
-public class MainActivity extends Activity  {
+public class MainActivity extends Activity implements ActionBar.TabListener {
 
     //メニューアイテム識別用ID
     private static final int credit_ID = 0;
@@ -39,6 +39,8 @@ public class MainActivity extends Activity  {
 
     //フラグメントとタブの番号の対応表
     private HashMap<Integer, String> fragmentAndTab = new HashMap<Integer, String>();
+
+    private FragmentManager manager;
 
     private BaseTable mFragment;
 
@@ -153,6 +155,33 @@ public class MainActivity extends Activity  {
 //        actionBar.addTab(actionBar.newTab().setText(title).setTabListener(new TabListener<BaseTable>(this, title, BaseTable.class)));
 //    }
 
+    //タブが選択された時の処理
+    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+        String tabText = tab.getText().toString();
+
+        Bundle bundle = new Bundle();
+        bundle.putString("title", tabText);
+
+        BaseTable fragment = new BaseTable();
+        fragment.setArguments(bundle);
+
+        FragmentTransaction t = manager.beginTransaction();
+        t.add(R.id.parentLL, fragment, tabText);
+        t.commit();
+    }
+
+    //タブの選択が解除された時の処理
+    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
+        if(mFragment != null) {
+            //FragmentManager fm = mActivity.getFragmentManager();
+            manager.beginTransaction().detach(mFragment).commit();
+        }
+    }
+
+    //タブが2度目以降に選択された時の処理
+    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
+        onTabSelected(tab, ft);
+    }
 
     //タブに表示するリストを生成
     private void makeSpellCardList(FragmentManager manager, String title) {

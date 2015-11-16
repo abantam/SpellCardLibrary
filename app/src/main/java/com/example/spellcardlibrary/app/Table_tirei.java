@@ -17,7 +17,7 @@ public class Table_tirei extends BaseTable {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("“Œ•û’n—ì“a");
+        setTitle(getString(R.string.tirei));
     }
 
     @Override

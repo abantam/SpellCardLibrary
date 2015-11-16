@@ -17,7 +17,7 @@ public class Table_kouma extends BaseTable {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("東方紅魔郷");
+        setTitle(getString(R.string.kouma));
     }
 
     @Override

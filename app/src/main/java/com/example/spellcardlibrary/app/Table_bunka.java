@@ -17,7 +17,7 @@ public class Table_bunka extends BaseTable {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("東方文花帖");
+        setTitle(getString(R.string.bunka));
     }
 
     @Override

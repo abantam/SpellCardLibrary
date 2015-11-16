@@ -17,7 +17,7 @@ public class Table_fuzin extends BaseTable {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("1�������_�^");
+        setTitle(getString(R.string.fuzin));
     }
 
     @Override

@@ -67,7 +67,6 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         //タブをセット
         FragmentManager manager = getFragmentManager();
 
-        int count = 0;
         //タブを生成
         for(String title : titles) {
             Bundle bundle = new Bundle();
@@ -184,7 +183,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
     }
 
     //タブに表示するリストを生成
-    private void makeSpellCardList(FragmentManager manager, String title) {
+    private BaseTable makeSpellCardList(FragmentManager manager, String title) {
         Bundle bundle = new Bundle();
         bundle.putString(title, title);
 
@@ -194,6 +193,8 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         FragmentTransaction t = manager.beginTransaction();
         t.add(R.id.parentLL, fragment, title);
         t.commit();
+
+        return fragment;
     }
 
     //assetsからデータベースをコピー

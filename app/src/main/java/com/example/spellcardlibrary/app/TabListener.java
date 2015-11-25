@@ -37,7 +37,7 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener {
     //タブが選択された時の処理
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
         String tabText = tab.getText().toString();
-
+Log.v(mTag, mTag);
         //選択したタブのテキストとタグが一致したら処理を行う
         //if(tabText == mTag) {
             //Fragmentがまだない場合
@@ -50,10 +50,6 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener {
             }
         //}
 
-        //Activityにデータベースの問い合わせをする
-        if(mFragment instanceof BaseTable) {
-
-        }
     }
 
     //タブの選択が解除された時の処理

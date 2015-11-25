@@ -23,7 +23,7 @@ import java.util.HashMap;
 /*TabListenerの実装：http://t-horikiri.hatenablog.jp/entry/20121204/1354604306
 * TabListenerのカスタマイズ：http://yan-note.blogspot.jp/2012/10/android-fragmenttab.html*/
 
-public class MainActivity extends Activity implements ActionBar.TabListener {
+public class MainActivity extends Activity /*implements ActionBar.TabListener*/ {
 
     //メニューアイテム識別用ID
     private static final int credit_ID = 0;
@@ -38,7 +38,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
     private int selectedTabPosition = 0;
 
     //フラグメントとタブの番号の対応表
-    private HashMap<Integer, String> fragmentAndTab = new HashMap<Integer, String>();
+    private HashMap<ActionBar.Tab, BaseTable> fragmentAndTab = new HashMap<ActionBar.Tab, BaseTable>();
 
     private FragmentManager manager;
 

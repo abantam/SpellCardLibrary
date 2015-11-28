@@ -37,8 +37,8 @@ public class MainActivity extends Activity /*implements ActionBar.TabListener*/ 
     //現在選択しているタブの番号
     private int selectedTabPosition = 0;
 
-    //フラグメントとタブの番号の対応表
-    private HashMap<ActionBar.Tab, BaseTable> fragmentAndTab = new HashMap<ActionBar.Tab, BaseTable>();
+    //フラグメントとタブの対応表
+    private HashMap<ActionBar.Tab, BaseTable> tabFragmentTable = new HashMap<ActionBar.Tab, BaseTable>();
 
     private FragmentManager manager;
 
@@ -65,7 +65,7 @@ public class MainActivity extends Activity /*implements ActionBar.TabListener*/ 
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         //タブをセット
-        FragmentManager manager = getFragmentManager();
+        manager = getFragmentManager();
 
         //タブを生成
         for(String title : titles) {
@@ -86,6 +86,9 @@ public class MainActivity extends Activity /*implements ActionBar.TabListener*/ 
             actionBar.addTab(tab);
             //fragmentAndTab.put(count, title);
             //count++;
+
+            //対応表にタブとフラグメントを登録
+            tabFragmentTable.put(tab, fragment);
         }
 
         //初回起動時に0番目のタブを表示する
@@ -139,30 +142,11 @@ public class MainActivity extends Activity /*implements ActionBar.TabListener*/ 
 
     }
 
-//    @Override
-//    public void onOkClicked() {
-//        Bundle bundle = new Bundle();
-//        bundle.putString("title", title);
-//
-//        BaseTable fragment = new BaseTable();
-//        fragment.setArguments(bundle);
-//
-//        FragmentTransaction t = manager.beginTransaction();
-//        t.add(R.id.parentLL, fragment, title);
-//        t.commit();
-//
-//        actionBar.addTab(actionBar.newTab().setText(title).setTabListener(new TabListener<BaseTable>(this, title, BaseTable.class)));
-//    }
-
     //タブが選択された時の処理
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
         String tabText = tab.getText().toString();
 
-        Bundle bundle = new Bundle();
-        bundle.putString("title", tabText);
-
-        BaseTable fragment = new BaseTable();
-        fragment.setArguments(bundle);
+        BaseTable fragment = tabFragmentTable.get(tab);
 
         FragmentTransaction t = manager.beginTransaction();
         t.add(R.id.parentLL, fragment, tabText);

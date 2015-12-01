@@ -34,28 +34,16 @@ public class MainActivity extends Activity /*implements ActionBar.TabListener*/ 
     //リソースから持ってきた作品名を格納した配列
     private String[] titles;
 
-    //現在選択しているタブの番号
-    private int selectedTabPosition = 0;
-
-    //フラグメントとタブの対応表
-    private HashMap<ActionBar.Tab, BaseTable> tabFragmentTable = new HashMap<ActionBar.Tab, BaseTable>();
-
     private FragmentManager manager;
 
     private BaseTable mFragment;
 
     private ActionBar actionBar;
 
-    private DatabaseHelper mDbHelper;
-    private SQLiteDatabase db;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //データベースを生成
-        setDatabase();
 
         //作品名を取得
         titles = getResources().getStringArray(R.array.titles);
@@ -64,7 +52,7 @@ public class MainActivity extends Activity /*implements ActionBar.TabListener*/ 
         actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-        //タブをセット
+        //FragmentManagerを生成
         manager = getFragmentManager();
 
         //タブを生成
@@ -148,25 +136,6 @@ public class MainActivity extends Activity /*implements ActionBar.TabListener*/ 
 
         return fragment;
     }
-
-    //assetsからデータベースをコピー
-    private void setDatabase() {
-        mDbHelper = new DatabaseHelper(this);
-        try {
-            mDbHelper.createEmptyDatabase();
-            db = mDbHelper.openDatabase();
-        }catch(IOException ioe) {
-            throw new Error("Unable to create database");
-        }catch(SQLException sqle) {
-            throw sqle;
-        }
-    }
-
-    //データベースの取得
-    public SQLiteDatabase getDatabase() {
-        return db;
-    }
-
 
     //オプションメニューの作成
     @Override

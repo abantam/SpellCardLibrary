@@ -67,34 +67,10 @@ public class MainActivity extends Activity /*implements ActionBar.TabListener*/ 
         //タブをセット
         manager = getFragmentManager();
 
-        actionBar.addTab(actionBar.newTab()
-                .setText(getString(R.string.kouma))
-                .setTabListener(new TabListener<Table_kouma>
-                        (new Table_kouma(), manager, getString(R.string.kouma))));
-
         //タブを生成
-//        for(String title : titles) {
-//            Bundle bundle = new Bundle();
-//            bundle.putString("title", title);
-//
-//            BaseTable fragment = new BaseTable();
-//            fragment.setArguments(bundle);
-//
-//            FragmentTransaction t = manager.beginTransaction();
-//            t.add(R.id.parentLL, fragment, title);
-//            t.commit();
-//
-//            ActionBar.Tab tab = actionBar.newTab();
-//            tab.setText(title);
-//            tab.setTabListener(new TabListener<BaseTable>(fragment, manager, title));
-//            //tab.setTabListener(this);
-//            actionBar.addTab(tab);
-//            //fragmentAndTab.put(count, title);
-//            //count++;
-//
-//            //対応表にタブとフラグメントを登録
-//            tabFragmentTable.put(tab, fragment);
-//        }
+        for(String title : titles) {
+            makeTab(actionBar, manager, title);
+        }
 
         //初回起動時に0番目のタブを表示する
         //actionBar.getTabAt(0).select();
@@ -147,34 +123,21 @@ public class MainActivity extends Activity /*implements ActionBar.TabListener*/ 
 
     }
 
-    //タブが選択された時の処理
-    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
-        String tabText = tab.getText().toString();
+    //タブを作成
+    private void makeTab(ActionBar actionBar, FragmentManager manager, String title) {
+        BaseTable fragment = makeSpellCardList(manager, title);
 
-        BaseTable fragment = tabFragmentTable.get(tab);
-
-        FragmentTransaction t = manager.beginTransaction();
-        t.add(R.id.parentLL, fragment, tabText);
-        t.commit();
+        ActionBar.Tab tab = actionBar.newTab();
+        tab.setText(title);
+        tab.setTabListener(new TabListener<BaseTable>(fragment, manager, title));
+        actionBar.addTab(tab);
     }
 
-    //タブの選択が解除された時の処理
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
-        if(mFragment != null) {
-            //FragmentManager fm = mActivity.getFragmentManager();
-            manager.beginTransaction().detach(mFragment).commit();
-        }
-    }
-
-    //タブが2度目以降に選択された時の処理
-    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
-        onTabSelected(tab, ft);
-    }
 
     //タブに表示するリストを生成
     private BaseTable makeSpellCardList(FragmentManager manager, String title) {
         Bundle bundle = new Bundle();
-        bundle.putString(title, title);
+        bundle.putString("title", title);
 
         BaseTable fragment = new BaseTable();
         fragment.setArguments(bundle);

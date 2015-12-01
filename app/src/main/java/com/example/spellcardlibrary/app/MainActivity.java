@@ -67,29 +67,34 @@ public class MainActivity extends Activity /*implements ActionBar.TabListener*/ 
         //タブをセット
         manager = getFragmentManager();
 
+        actionBar.addTab(actionBar.newTab()
+                .setText(getString(R.string.kouma))
+                .setTabListener(new TabListener<Table_kouma>
+                        (new Table_kouma(), manager, getString(R.string.kouma))));
+
         //タブを生成
-        for(String title : titles) {
-            Bundle bundle = new Bundle();
-            bundle.putString("title", title);
-
-            BaseTable fragment = new BaseTable();
-            fragment.setArguments(bundle);
-
-            FragmentTransaction t = manager.beginTransaction();
-            t.add(R.id.parentLL, fragment, title);
-            t.commit();
-
-            ActionBar.Tab tab = actionBar.newTab();
-            tab.setText(title);
-            tab.setTabListener(new TabListener<BaseTable>(fragment, manager, title));
-            //tab.setTabListener(this);
-            actionBar.addTab(tab);
-            //fragmentAndTab.put(count, title);
-            //count++;
-
-            //対応表にタブとフラグメントを登録
-            tabFragmentTable.put(tab, fragment);
-        }
+//        for(String title : titles) {
+//            Bundle bundle = new Bundle();
+//            bundle.putString("title", title);
+//
+//            BaseTable fragment = new BaseTable();
+//            fragment.setArguments(bundle);
+//
+//            FragmentTransaction t = manager.beginTransaction();
+//            t.add(R.id.parentLL, fragment, title);
+//            t.commit();
+//
+//            ActionBar.Tab tab = actionBar.newTab();
+//            tab.setText(title);
+//            tab.setTabListener(new TabListener<BaseTable>(fragment, manager, title));
+//            //tab.setTabListener(this);
+//            actionBar.addTab(tab);
+//            //fragmentAndTab.put(count, title);
+//            //count++;
+//
+//            //対応表にタブとフラグメントを登録
+//            tabFragmentTable.put(tab, fragment);
+//        }
 
         //初回起動時に0番目のタブを表示する
         //actionBar.getTabAt(0).select();

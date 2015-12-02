@@ -13,7 +13,7 @@ import android.util.Log;
  */
 public class TabListener<T extends Fragment> implements ActionBar.TabListener {
 
-    private Fragment mFragment;
+    private BaseTable mFragment;
     private FragmentManager fm;
     //private final Activity mActivity;
     private String mTag;
@@ -28,7 +28,7 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener {
 //        mFragment = mActivity.getFragmentManager().findFragmentByTag(mTag);
 //    }
 
-    public TabListener(Fragment fragment, FragmentManager manager, String tag) {
+    public TabListener(BaseTable fragment, FragmentManager manager, String tag) {
         mFragment = fragment;
         fm = manager;
         mTag = tag;
@@ -36,26 +36,28 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener {
 
     //タブが選択された時の処理
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
-        String tabText = tab.getText().toString();
-        //選択したタブのテキストとタグが一致したら処理を行う
-        //if(tabText == mTag) {
-            //Fragmentがまだない場合
-            if (mFragment == null) {
-                fm.beginTransaction().add(R.id.parentLL, mFragment, mTag).commit();
-            } else {
-                //Fragmentが生成されていて、detachされている場合、attachする
-                if (mFragment.isDetached()) {
-                    fm.beginTransaction().attach(mFragment).commit();
+        BaseTable fragment = (BaseTable)tab.getTag();
+        if(fragment == null) {
 
-                }
-            }
-        //}
+        }else {
+            fm.beginTransaction().attach(fragment).commit();
+        }
 
+//        //Fragmentがまだない場合
+//        if (mFragment == null) {
+//            fm.beginTransaction().add(R.id.parentLL, mFragment, mTag).commit();
+//        } else {
+//            //Fragmentが生成されていて、detachされている場合、attachする
+//            if (mFragment.isDetached()) {
+//                fm.beginTransaction().attach(mFragment).commit();
+//
+//            }
+//        }
     }
 
     //タブの選択が解除された時の処理
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
-        if(mFragment != null) {
+        if (mFragment != null) {
             fm.beginTransaction().detach(mFragment).commit();
         }
     }

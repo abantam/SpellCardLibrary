@@ -118,6 +118,7 @@ public class MainActivity extends Activity /*implements ActionBar.TabListener*/ 
         ActionBar.Tab tab = actionBar.newTab();
         tab.setText(title);
         tab.setTabListener(new TabListener<BaseTable>(fragment, manager, title));
+        tab.setTag(fragment);
         actionBar.addTab(tab);
     }
 

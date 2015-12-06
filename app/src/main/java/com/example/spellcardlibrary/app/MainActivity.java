@@ -131,12 +131,11 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         fragment.setTitle(title);
         tab.setTag(fragment);
         manager.beginTransaction().add(R.id.parentLL, fragment, "title").commit();
-        Log.v("title", title);
     }
 
     @Override
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
-        BaseTable fragment = (BaseTable)tab.getTag();//実行時エラー
+        BaseTable fragment = getFragmentFromTag(tab);
         if(fragment != null) {
             manager.beginTransaction().detach(fragment).commit();
         }
@@ -145,8 +144,19 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
-        BaseTable fragment = (BaseTable)tab.getTag();//実行時エラー
+        BaseTable fragment = getFragmentFromTag(tab);
         manager.beginTransaction().attach(fragment).commit();
+    }
+
+    //タブにつけられたタグからフラグメントを取り出す
+    private BaseTable getFragmentFromTag(ActionBar.Tab tab) {
+        BaseTable fragment;
+        try {
+            fragment = (BaseTable)tab.getTag();
+        }catch(ClassCastException e) {
+            throw new ClassCastException();
+        }
+        return fragment;
     }
 
     //オプションメニューの作成

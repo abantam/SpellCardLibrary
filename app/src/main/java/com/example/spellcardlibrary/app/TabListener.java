@@ -53,6 +53,7 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener {
 //
 //            }
 //        }
+        Log.v("title", fragment.getTitle());
     }
 
     //タブの選択が解除された時の処理

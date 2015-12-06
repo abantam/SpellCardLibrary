@@ -23,7 +23,7 @@ import java.util.HashMap;
 /*TabListenerの実装：http://t-horikiri.hatenablog.jp/entry/20121204/1354604306
 * TabListenerのカスタマイズ：http://yan-note.blogspot.jp/2012/10/android-fragmenttab.html*/
 
-public class MainActivity extends Activity /*implements ActionBar.TabListener*/ {
+public class MainActivity extends Activity implements ActionBar.TabListener {
 
     //メニューアイテム識別用ID
     private static final int credit_ID = 0;
@@ -114,28 +114,60 @@ public class MainActivity extends Activity /*implements ActionBar.TabListener*/ 
     //タブを作成
     private void makeTab(ActionBar actionBar, FragmentManager manager, String title) {
         BaseTable fragment = makeSpellCardList(manager, title);
+        if(fragment != null) {
+            Log.v("aaa", "aaa");
+        }
 
         ActionBar.Tab tab = actionBar.newTab();
         tab.setText(title);
-        tab.setTabListener(new TabListener<BaseTable>(fragment, manager, title));
+        tab.setTabListener(this);
         tab.setTag(fragment);
         actionBar.addTab(tab);
     }
-
 
     //タブに表示するリストを生成
     private BaseTable makeSpellCardList(FragmentManager manager, String title) {
         Bundle bundle = new Bundle();
         bundle.putString("title", title);
 
-        BaseTable fragment = new BaseTable();
-        fragment.setArguments(bundle);
+        BaseTable fragment = BaseTable.instantiate(this, BaseTable.class.toString(), bundle);
+        //fragment.setArguments(bundle);
 
         FragmentTransaction t = manager.beginTransaction();
         t.add(R.id.parentLL, fragment, title);
         t.commit();
 
         return fragment;
+    }
+
+    @Override
+    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+        String title = tab.getText().toString();
+
+        Bundle bundle = new Bundle();
+        bundle.putString("title", title);
+
+        BaseTable fragment = new BaseTable();
+        fragment.setArguments(bundle);
+        fragment.setTitle(title);
+        tab.setTag(fragment);
+        manager.beginTransaction().add(R.id.parentLL, fragment, "title").commit();
+        Log.v("title", title);
+    }
+
+    @Override
+    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
+        BaseTable fragment = (BaseTable)tab.getTag();//実行時エラー
+        if(fragment != null) {
+            manager.beginTransaction().detach(fragment).commit();
+        }
+
+    }
+
+    @Override
+    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
+        BaseTable fragment = (BaseTable)tab.getTag();//実行時エラー
+        manager.beginTransaction().attach(fragment).commit();
     }
 
     //オプションメニューの作成

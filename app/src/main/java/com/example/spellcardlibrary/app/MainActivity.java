@@ -61,7 +61,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         }
 
         //初回起動時に0番目のタブを表示する
-        //actionBar.getTabAt(0).select();
+        actionBar.getTabAt(0).select();
 
         //PagerAdapterを生成
 //        MainFragmentAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
@@ -114,9 +114,6 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
     //タブを作成
     private void makeTab(ActionBar actionBar, FragmentManager manager, String title) {
         BaseTable fragment = makeSpellCardList(manager, title);
-        if(fragment != null) {
-            Log.v("aaa", "aaa");
-        }
 
         ActionBar.Tab tab = actionBar.newTab();
         tab.setText(title);
@@ -127,15 +124,15 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 
     //タブに表示するリストを生成
     private BaseTable makeSpellCardList(FragmentManager manager, String title) {
-        Bundle bundle = new Bundle();
-        bundle.putString("title", title);
-
-        BaseTable fragment = BaseTable.instantiate(this, BaseTable.class.toString(), bundle);
-        //fragment.setArguments(bundle);
-
-        FragmentTransaction t = manager.beginTransaction();
-        t.add(R.id.parentLL, fragment, title);
-        t.commit();
+//        Bundle bundle = new Bundle();
+//        bundle.putString("title", title);
+//
+        BaseTable fragment = new BaseTable();
+//        fragment.setArguments(bundle);
+//
+//        FragmentTransaction t = manager.beginTransaction();
+//        t.add(R.id.parentLL, fragment, title);
+//        t.commit();
 
         return fragment;
     }

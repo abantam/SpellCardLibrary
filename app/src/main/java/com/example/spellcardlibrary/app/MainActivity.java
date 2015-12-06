@@ -113,28 +113,10 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 
     //タブを作成
     private void makeTab(ActionBar actionBar, FragmentManager manager, String title) {
-        BaseTable fragment = makeSpellCardList(manager, title);
-
         ActionBar.Tab tab = actionBar.newTab();
         tab.setText(title);
         tab.setTabListener(this);
-        tab.setTag(fragment);
         actionBar.addTab(tab);
-    }
-
-    //タブに表示するリストを生成
-    private BaseTable makeSpellCardList(FragmentManager manager, String title) {
-//        Bundle bundle = new Bundle();
-//        bundle.putString("title", title);
-//
-        BaseTable fragment = new BaseTable();
-//        fragment.setArguments(bundle);
-//
-//        FragmentTransaction t = manager.beginTransaction();
-//        t.add(R.id.parentLL, fragment, title);
-//        t.commit();
-
-        return fragment;
     }
 
     @Override

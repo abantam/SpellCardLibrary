@@ -22,7 +22,7 @@ public class SCInfo extends Activity {
         String query = i.getStringExtra("query");
 
         //BaseTableからデータベースを取得
-        db = BaseTable.getDatabase();
+        //db = BaseTable.getDatabase();
         Cursor c = db.rawQuery(query, null);
         c.moveToFirst();
 

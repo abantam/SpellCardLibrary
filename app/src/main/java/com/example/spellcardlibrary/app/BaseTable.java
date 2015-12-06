@@ -51,7 +51,7 @@ public class BaseTable extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        scList = new ArrayList<HashMap<String, String>>();
+        //scList = new ArrayList<HashMap<String, String>>();
         setDatabase();
         Log.v("hoge", "hoge");
     }

@@ -17,72 +17,27 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TabWidget
-                android:id="@android:id/tabs"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </TabWidget>
-
-            <FrameLayout
-                android:id="@android:id/tabcontent"
+            <android.support.v4.view.ViewPager
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <!--<fragment-->
-                    <!-- -->
-                <!--android:name="com.example.spellcardlibrary.app.BaseTable"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent" />-->
-            </FrameLayout>
+                <TabWidget
+                    android:id="@android:id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </TabWidget>
+
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </FrameLayout>
+
+            </android.support.v4.view.ViewPager>
+
+
         </LinearLayout>
     </TabHost>
 </LinearLayout>
-
-<!--<TabHost android:id="@+id/tabhost"-->
-         <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
-         <!--xmlns:tools="http://schemas.android.com/tools"-->
-         <!--android:layout_width="match_parent"-->
-         <!--android:layout_height="match_parent"-->
-         <!--tools:context="${packageName}.${activityClass}">-->
-
-    <!--<LinearLayout-->
-        <!--android:id="@+id/parentLL"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="vertical">-->
-
-        <!--<HorizontalScrollView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
-
-            <!--<TabWidget-->
-                <!--android:id="@android:id/tabs"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content">-->
-
-            <!--</TabWidget>-->
-
-        <!--</HorizontalScrollView>-->
-
-        <!--<FrameLayout-->
-            <!--android:id="@+id/tabcontent"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent">-->
-
-            <!--<fragment-->
-                <!--android:name="com.example.spellcardlibrary.app.BaseTable"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent" />-->
-
-        <!--</FrameLayout>-->
-
-    <!--</LinearLayout>-->
-
-    <!--&lt;!&ndash;<android.support.v4.view.ViewPager&ndash;&gt;-->
-    <!--&lt;!&ndash;android:id="@+id/pager"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_height="match_parent" />&ndash;&gt;-->
-
-<!--</TabHost>-->
-
 

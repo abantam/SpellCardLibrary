@@ -1,7 +1,6 @@
 package com.example.spellcardlibrary.app;
 
-import android.app.Activity;
-import android.app.ListFragment;
+import android.support.v4.app.ListFragment;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;

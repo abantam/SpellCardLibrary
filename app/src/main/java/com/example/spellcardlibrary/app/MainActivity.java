@@ -9,7 +9,8 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.app.FragmentManager;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
@@ -23,10 +24,13 @@ import java.util.HashMap;
 /*TabListenerの実装：http://t-horikiri.hatenablog.jp/entry/20121204/1354604306
 * TabListenerのカスタマイズ：http://yan-note.blogspot.jp/2012/10/android-fragmenttab.html*/
 
-public class MainActivity extends Activity implements ActionBar.TabListener {
+public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 
     //メニューアイテム識別用ID
     private static final int credit_ID = 0;
+
+    //ViewPagerを使用する際に使用するアダプター
+    private ListPagerAdapter pagerAdapter;
 
     //スワイプでタブを切り替えるためのViewPager
     ViewPager mViewPager;
@@ -53,7 +57,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         //FragmentManagerを生成
-        manager = getFragmentManager();
+        manager = getSupportFragmentManager();
 
         //タブを生成
         for(String title : titles) {
@@ -64,51 +68,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         actionBar.getTabAt(0).select();
 
         //PagerAdapterを生成
-//        MainFragmentAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
-//        mViewPager = (ViewPager)findViewById(R.id.pager);
-//        mViewPager.setAdapter(mSectionsPagerAdapter);
-//
-//        android.app.FragmentManager manager = getFragmentManager();
-//        final ViewPager viewPager = (ViewPager)findViewById(R.id.pager);
-//        final MainFragmentAdapter adapter = new MainFragmentAdapter(manager);
-//        viewPager.setAdapter(adapter);
-
-//        //タブホストのインスタンス化
-//        TabHost host = (TabHost)findViewById(R.id.tabhost);
-//        host.setup(this.getLocalActivityManager());
-//
-//        //タブに作品名を割り当てる
-//        TabHost.TabSpec spec;
-//        Intent i;
-//        for(int it = 0; it < workname.length; it++) {
-//
-//            //インテントを作成
-//            i = new Intent(this, BaseTable.class);
-//            i.putExtra("作品名", workname[it]);
-//            intentList.add(i);
-//
-//            //タブを作成しインテントを設定
-//            spec = host.newTabSpec(workname[it]);
-//            spec.setContent(intentList.get(it));
-//            spec.setIndicator(workname[it]);
-//            host.addTab(spec);
-//        }
-
-//        host.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
-//            @Override
-//            public void onTabChanged(String tabId) {
-//                mViewPager.setCurrentItem(Integer.valueOf(tabId));
-//            }
-//        });
-//
-//        mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-//            @Override
-//            public void onPageSelected(int position) {
-//                super.onPageSelected(position):
-//                host.setCurrentTab(position);
-//            }
-//        });
-
+        //mViewPager = new ListPagerAdapter(getSupportFragmentmanager());
     }
 
     //タブを作成

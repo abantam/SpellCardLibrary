@@ -1,28 +1,19 @@
 package com.example.spellcardlibrary.app;
 
 import android.app.ActionBar;
-import android.app.Activity;
-import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-
 /*TabListenerの実装：http://t-horikiri.hatenablog.jp/entry/20121204/1354604306
-* TabListenerのカスタマイズ：http://yan-note.blogspot.jp/2012/10/android-fragmenttab.html*/
+* TabListenerのカスタマイズ：http://yan-note.blogspot.jp/2012/10/android-fragmenttab.html
+* ViewPagerの実装：http://furudate.hatenablog.com/entry/2013/06/10/232244*/
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener, ViewPager.OnPageChangeListener {
 
@@ -57,6 +48,14 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         //mViewPager.setOnPageChangeListener(this);
         ListPagerAdapter adapter = new ListPagerAdapter(manager);
         mViewPager.setAdapter(adapter);
+
+        //ActスワイプしたときにもActionbarのタブ（NavigationItem）を常に表示させる処理
+        mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                actionBar.setSelectedNavigationItem(position);
+            }
+        });
 
         //作品名を取得
         titles = getResources().getStringArray(R.array.titles);

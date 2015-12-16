@@ -1,6 +1,7 @@
 package com.example.spellcardlibrary.app;
 
 import android.app.Fragment;
+import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
@@ -15,54 +16,60 @@ public class ListPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public android.support.v4.app.Fragment getItem(int position) {
+
+        //作品名をタブの位置から判断しbundleに入れる
+        Bundle bundle = new Bundle();
         switch(position) {
             case 0:
-                return new Table_kouma();
+                bundle.putString("title", "東方紅魔郷");
             case 1:
-                return new Table_youmu();
+                bundle.putString("title", "東方妖々夢");
             case 2:
-                return new Table_suimu();
+                bundle.putString("title", "東方萃夢想");
             case 3:
-                return new Table_eiya();
+                bundle.putString("title", "東方永夜抄");
             case 4:
-                return new Table_kaei();
+                bundle.putString("title", "東方花映塚");
             case 5:
-                return new Table_bunka();
+                bundle.putString("title", "東方文花帖");
             case 6:
-                return new Table_fuzin();
+                bundle.putString("title", "東方風神録");
             case 7:
-                return new Table_hisou();
+                bundle.putString("title", "東方緋想天");
             case 8:
-                return new Table_tirei();
+                bundle.putString("title", "東方地霊殿");
             case 9:
-                return new Table_seiren();
+                bundle.putString("title", "東方星蓮船");
             case 10:
-                return new Table_tensoku();
+                bundle.putString("title", "東方非想天則");
             case 11:
-                return new Table_ds();
+                bundle.putString("title", "ダブルスポイラー");
             case 12:
-                return new Table_daisen();
+                bundle.putString("title", "妖精大戦争");
             case 13:
-                return new Table_sinrei();
+                bundle.putString("title", "東方神霊廟");
             case 14:
-                return new Table_sinki();
+                bundle.putString("title", "東方心綺楼");
             case 15:
-                return new Table_kisin();
+                bundle.putString("title", "東方輝針城");
             case 16:
-                return new Table_amnjk();
-            default:
-                return null;
+                bundle.putString("title", "弾幕アマノジャク");
         }
+
+        //fragmentの生成
+        BaseTable fragment = new BaseTable();
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return 17;
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return null;
+        return "touhoukoumakyou";
     }
 
 }

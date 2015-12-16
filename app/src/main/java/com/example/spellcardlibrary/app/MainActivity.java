@@ -24,7 +24,7 @@ import java.util.HashMap;
 /*TabListenerの実装：http://t-horikiri.hatenablog.jp/entry/20121204/1354604306
 * TabListenerのカスタマイズ：http://yan-note.blogspot.jp/2012/10/android-fragmenttab.html*/
 
-public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
+public class MainActivity extends FragmentActivity implements ActionBar.TabListener, ViewPager.OnPageChangeListener {
 
     //メニューアイテム識別用ID
     private static final int credit_ID = 0;
@@ -49,15 +49,21 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //FragmentManagerを生成
+        manager = getSupportFragmentManager();
+
+        //PagerAdapterを生成
+        mViewPager = (ViewPager)findViewById(R.id.pager);
+        //mViewPager.setOnPageChangeListener(this);
+        ListPagerAdapter adapter = new ListPagerAdapter(manager);
+        mViewPager.setAdapter(adapter);
+
         //作品名を取得
         titles = getResources().getStringArray(R.array.titles);
 
         //ActionBarを作成
         actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
-        //FragmentManagerを生成
-        manager = getSupportFragmentManager();
 
         //タブを生成
         for(String title : titles) {
@@ -67,8 +73,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         //初回起動時に0番目のタブを表示する
         actionBar.getTabAt(0).select();
 
-        //PagerAdapterを生成
-        //mViewPager = new ListPagerAdapter(getSupportFragmentmanager());
     }
 
     //タブを作成
@@ -91,6 +95,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         fragment.setTitle(title);
         tab.setTag(fragment);
         manager.beginTransaction().add(R.id.parentLL, fragment, "title").commit();
+
+        mViewPager.setCurrentItem(tab.getPosition());
     }
 
     @Override
@@ -117,6 +123,21 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             throw new ClassCastException();
         }
         return fragment;
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        getActionBar().setSelectedNavigationItem(position);
     }
 
     //オプションメニューの作成

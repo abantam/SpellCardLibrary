@@ -15,7 +15,7 @@ import android.view.MenuItem;
 * TabListenerのカスタマイズ：http://yan-note.blogspot.jp/2012/10/android-fragmenttab.html
 * ViewPagerの実装：http://furudate.hatenablog.com/entry/2013/06/10/232244*/
 
-public class MainActivity extends FragmentActivity implements ActionBar.TabListener, ViewPager.OnPageChangeListener {
+public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 
     //メニューアイテム識別用ID
     private static final int credit_ID = 0;
@@ -24,7 +24,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     private ListPagerAdapter pagerAdapter;
 
     //スワイプでタブを切り替えるためのViewPager
-    ViewPager mViewPager;
+    private ViewPager mViewPager;
 
     //リソースから持ってきた作品名を格納した配列
     private String[] titles;
@@ -80,22 +80,35 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         tab.setText(title);
         tab.setTabListener(this);
         actionBar.addTab(tab);
-    }
 
-    @Override
-    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
-        String title = tab.getText().toString();
-
+        //タブにフラグメントを登録
         Bundle bundle = new Bundle();
         bundle.putString("title", title);
-
         BaseTable fragment = new BaseTable();
         fragment.setArguments(bundle);
         fragment.setTitle(title);
         tab.setTag(fragment);
         manager.beginTransaction().add(R.id.parentLL, fragment, "title").commit();
+    }
 
-        mViewPager.setCurrentItem(tab.getPosition());
+    @Override
+    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+
+//        if(tab.getTag() == null) {
+//            String title = tab.getText().toString();
+//
+//            Bundle bundle = new Bundle();
+//            bundle.putString("title", title);
+//
+//            BaseTable fragment = new BaseTable();
+//            fragment.setArguments(bundle);
+//            fragment.setTitle(title);
+//            tab.setTag(fragment);
+//            manager.beginTransaction().add(R.id.parentLL, fragment, "title").commit();
+//        }else {
+
+            mViewPager.setCurrentItem(tab.getPosition());
+        //}
     }
 
     @Override
@@ -122,21 +135,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             throw new ClassCastException();
         }
         return fragment;
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int state) {
-
-    }
-
-    @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-    }
-
-    @Override
-    public void onPageSelected(int position) {
-        getActionBar().setSelectedNavigationItem(position);
     }
 
     //オプションメニューの作成

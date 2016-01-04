@@ -82,13 +82,13 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         actionBar.addTab(tab);
 
         //タブにフラグメントを登録
-        Bundle bundle = new Bundle();
-        bundle.putString("title", title);
-        BaseTable fragment = new BaseTable();
-        fragment.setArguments(bundle);
-        fragment.setTitle(title);
-        tab.setTag(fragment);
-        manager.beginTransaction().add(R.id.parentLL, fragment, "title").commit();
+//        Bundle bundle = new Bundle();
+//        bundle.putString("title", title);
+//        BaseTable fragment = new BaseTable();
+//        fragment.setArguments(bundle);
+//        fragment.setTitle(title);
+//        tab.setTag(fragment);
+//        manager.beginTransaction().add(R.id.parentLL, fragment, "title").commit();
     }
 
     @Override
@@ -113,17 +113,17 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
     @Override
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
-        BaseTable fragment = getFragmentFromTag(tab);
-        if(fragment != null) {
-            manager.beginTransaction().detach(fragment).commit();
-        }
+//        BaseTable fragment = getFragmentFromTag(tab);
+//        if(fragment != null) {
+//            manager.beginTransaction().detach(fragment).commit();
+//        }
 
     }
 
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
-        BaseTable fragment = getFragmentFromTag(tab);
-        manager.beginTransaction().attach(fragment).commit();
+//        BaseTable fragment = getFragmentFromTag(tab);
+//        manager.beginTransaction().attach(fragment).commit();
     }
 
     //タブにつけられたタグからフラグメントを取り出す

@@ -34,6 +34,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
     private ActionBar actionBar;
     private final int TAB_COUNT = 17;//タブの総数
+    private final String BUNDLE_KEY = "title";//作品名を入れるBundleのキー
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,22 +66,14 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
         //タブを生成
         for (String title : titles) {
-            makeTab(actionBar, manager, title);
+            ActionBar.Tab tab = actionBar.newTab();
+            tab.setText(title);
+            tab.setTabListener(this);
+            actionBar.addTab(tab);
         }
 
         //初回起動時に0番目のタブを表示する
         actionBar.getTabAt(0).select();
-
-    }
-
-    //タブを作成
-    private void makeTab(ActionBar actionBar, FragmentManager manager, String title) {
-        ActionBar.Tab tab = actionBar.newTab();
-        tab.setText(title);
-        tab.setTabListener(this);
-        actionBar.addTab(tab);
-
-
     }
 
     @Override
@@ -145,7 +138,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
             //作品名をタブの位置から判断しbundleに入れる
             Bundle bundle = new Bundle();
-            bundle.putString("title", titles[position]);
+            bundle.putString(BUNDLE_KEY, titles[position]);
 
             //fragmentの生成
             BaseTable fragment = new BaseTable();

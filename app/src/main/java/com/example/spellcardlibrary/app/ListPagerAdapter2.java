@@ -1,6 +1,5 @@
 package com.example.spellcardlibrary.app;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -8,9 +7,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 /**
  * Created by takeshi on 2015/12/07.
  */
-public class ListPagerAdapter extends FragmentPagerAdapter {
+public class ListPagerAdapter2 extends FragmentPagerAdapter {
 
-    public ListPagerAdapter(FragmentManager fm) {
+    public ListPagerAdapter2(FragmentManager fm) {
         super(fm);
     }
 

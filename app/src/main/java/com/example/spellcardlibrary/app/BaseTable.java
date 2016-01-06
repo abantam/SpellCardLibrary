@@ -26,6 +26,7 @@ public class BaseTable extends ListFragment {
     private static SQLiteDatabase db;//データベースを格納
     private DatabaseHelper mDbHelper;
     private ArrayList<HashMap<String, String>> scList = new ArrayList<HashMap<String, String>>();
+    private ArrayList<String> scOnlyNameList = new ArrayList<String>();//外伝用スペルカードリスト
     private String title;//作品名
 
 //    public interface OnOkBtnClickListener {
@@ -66,8 +67,12 @@ public class BaseTable extends ListFragment {
         //カーソルを一つずづ動かして一時変数にデータを格納
         for(int i = 0; i < c.getCount(); i++, c.moveToNext()) {
             HashMap<String, String> temp = new HashMap<String, String>();
-            temp.put("Number", c.getString(1));
-            temp.put("scName", c.getString(2));
+            if(title.equals("東方萃夢想") || title.equals("東方花映塚") || title.equals("東方緋想天") || title.equals("東方非想天則") || title.equals("東方心綺楼")) {
+                temp.put("scName", c.getString(1));
+            }else {
+                temp.put("Number", c.getString(1));
+                temp.put("scName", c.getString(2));
+            }
             scList.add(temp);
         }
 

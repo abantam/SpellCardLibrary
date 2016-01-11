@@ -29,6 +29,9 @@ public class BaseTable extends ListFragment {
     private ArrayList<HashMap<String, String>> scList = new ArrayList<HashMap<String, String>>();
     private String title;//作品名
 
+    private final String PACKAGE_NAME = "com.example.spellcardlibrary.app";//遷移先クラスのパッケージ名
+    private final String CLASS_NAME = "com.example.spellcardlibrary.app.SCInfo";//遷移先クラス
+
     public BaseTable() {}
 
     @Override
@@ -72,8 +75,9 @@ public class BaseTable extends ListFragment {
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent();
-                intent.setClassName("com.example.spellcardlibrary.app", "com.example.spellcardlibrary.app.SCInfo");
-                intent.putExtra("info", "SELECT * FROM " + title + "");
+                intent.setClassName(PACKAGE_NAME, CLASS_NAME);
+                intent.putExtra("title", title);
+                intent.putExtra("number", position + 1);
                 startActivity(intent);
             }
         });

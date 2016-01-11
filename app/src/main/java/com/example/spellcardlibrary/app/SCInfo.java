@@ -3,14 +3,18 @@ package com.example.spellcardlibrary.app;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import java.io.IOException;
 
 
 public class SCInfo extends Activity {
 
     private SQLiteDatabase db;
+    private DatabaseHelper mDbHelper;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -19,11 +23,12 @@ public class SCInfo extends Activity {
 
         //インテントを取得
         Intent i = getIntent();
-        String query = i.getStringExtra("query");
+        String title = i.getStringExtra("title");
+        int number = i.getIntExtra("number", 1);
 
         //BaseTableからデータベースを取得
-        //db = BaseTable.getDatabase();
-        Cursor c = db.rawQuery(query, null);
+        setDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM " + title + " WHERE _id=" + number, null);
         c.moveToFirst();
 
         TextView name = (TextView)findViewById(R.id.name);
@@ -54,6 +59,17 @@ public class SCInfo extends Activity {
         super.onDestroy();
     }
 
-
+    //assetsからデータベースをコピー
+    private void setDatabase() {
+        mDbHelper = new DatabaseHelper(this);
+        try {
+            mDbHelper.createEmptyDatabase();
+            db = mDbHelper.openDatabase();
+        }catch(IOException ioe) {
+            throw new Error("Unable to create database");
+        }catch(SQLException sqle) {
+            throw sqle;
+        }
+    }
 
 }

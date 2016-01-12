@@ -11,7 +11,9 @@
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp"/>
 
 
     <TableLayout
@@ -24,11 +26,13 @@
             android:id="@+id/charname"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/title_charname"/>
+            android:text="@string/title_charname"
+            android:paddingRight="10sp" />
         <TextView
             android:id="@+id/charnameValue"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:textSize="20sp"/>
     </TableRow>
 
     <!--出現難易度-->
@@ -37,11 +41,14 @@
             android:id="@+id/difficulty"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/title_difficulty"/>
+            android:text="@string/title_difficulty"
+            android:singleLine="true"
+            android:paddingRight="10sp"/>
         <TextView
             android:id="@+id/difficultyValue"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:textSize="20sp"/>
     </TableRow>
 
     <!--出現ステージ-->
@@ -50,11 +57,13 @@
             android:id="@+id/stage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/title_stage"/>
+            android:text="@string/title_stage"
+            android:paddingRight="10sp"/>
         <TextView
             android:id="@+id/stageValue"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:textSize="20sp"/>
     </TableRow>
 
     <!--制限時間-->
@@ -63,11 +72,13 @@
             android:id="@+id/time"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/title_time"/>
+            android:text="@string/title_time"
+            android:paddingRight="10sp"/>
         <TextView
             android:id="@+id/timeValue"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:textSize="20sp"/>
     </TableRow>
 
     <!--SCB最大値-->
@@ -76,11 +87,13 @@
             android:id="@+id/maxSCB"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/title_maxSCB"/>
+            android:text="@string/title_maxSCB"
+            android:paddingRight="10sp"/>
         <TextView
             android:id="@+id/maxSCBValue"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:textSize="20sp"/>
     </TableRow>
 
     <!--SCB減少値-->
@@ -89,11 +102,13 @@
             android:id="@+id/redSCB"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/title_redSCB"/>
+            android:text="@string/title_redSCB"
+            android:paddingRight="10sp"/>
         <TextView
             android:id="@+id/redSCBValue"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:textSize="20sp"/>
     </TableRow>
 
     </TableLayout>

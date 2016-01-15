@@ -99,8 +99,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_activity_actions, menu);
 
-        menu.add(Menu.NONE, R.id.action_search, Menu.NONE, "検索");
-        menu.add(Menu.NONE, R.id.action_settings, Menu.NONE, "設定");
+        //menu.add(Menu.NONE, R.id.action_search, Menu.NONE, "検索");
+        //menu.add(Menu.NONE, R.id.action_settings, Menu.NONE, "設定");
         menu.add(Menu.NONE, R.id.action_credit, Menu.NONE, R.string.action_credit);
 
         return super.onCreateOptionsMenu(menu);

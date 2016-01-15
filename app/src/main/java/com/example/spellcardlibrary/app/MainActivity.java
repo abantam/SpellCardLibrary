@@ -112,12 +112,12 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
         //addした時のIDで識別
         switch (item.getItemId()) {
-            case R.id.action_search:
-                //openSearch();
-                return true;
-            case R.id.action_settings:
-                //openSettings();
-                return true;
+//            case R.id.action_search:
+//                //openSearch();
+//                return true;
+//            case R.id.action_settings:
+//                //openSettings();
+//                return true;
             case R.id.action_credit:
                 startActivity(new Intent(this, Credit.class));
             default:

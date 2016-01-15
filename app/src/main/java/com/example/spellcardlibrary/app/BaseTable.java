@@ -72,15 +72,15 @@ public class BaseTable extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         //リストをクリックしたら詳細画面のActivityに遷移
-        getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent();
-                intent.setClassName(PACKAGE_NAME, CLASS_NAME);
-                intent.putExtra("title", title);
-                intent.putExtra("number", position + 1);
-                startActivity(intent);
-            }
-        });
+//        getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent intent = new Intent();
+//                intent.setClassName(PACKAGE_NAME, CLASS_NAME);
+//                intent.putExtra("title", title);
+//                intent.putExtra("number", position + 1);
+//                startActivity(intent);
+//            }
+//        });
     }
 
     @Override

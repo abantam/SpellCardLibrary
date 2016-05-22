@@ -1,6 +1,9 @@
 package com.example.spellcardlibrary.app;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v4.app.ListFragment;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -15,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,7 +41,10 @@ public class BaseTable extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setDatabase();
+
     }
 
     @Override

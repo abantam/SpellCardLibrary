@@ -2,7 +2,10 @@ package com.example.spellcardlibrary.app;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -11,6 +14,7 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 /*TabListenerの実装：http://t-horikiri.hatenablog.jp/entry/20121204/1354604306
 * TabListenerのカスタマイズ：http://yan-note.blogspot.jp/2012/10/android-fragmenttab.html
@@ -41,39 +45,48 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //FragmentManagerを生成
-        manager = getSupportFragmentManager();
+        //ネットワーク接続が利用可能かどうか調べる
+        ConnectivityManager connMgr =(ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if(networkInfo != null && networkInfo.isConnected()) {
+//FragmentManagerを生成
+            manager = getSupportFragmentManager();
 
-        //PagerAdapterを生成
-        mViewPager = (ViewPager) findViewById(R.id.pager);
-        ListPagerAdapter adapter = new ListPagerAdapter(manager);
-        mViewPager.setAdapter(adapter);
+            //PagerAdapterを生成
+            mViewPager = (ViewPager) findViewById(R.id.pager);
+            ListPagerAdapter adapter = new ListPagerAdapter(manager);
+            mViewPager.setAdapter(adapter);
 
-        //スワイプしたときにもActionbarのタブ（NavigationItem）を常に表示させる処理
-        mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-            @Override
-            public void onPageSelected(int position) {
-                actionBar.setSelectedNavigationItem(position);
+            //スワイプしたときにもActionbarのタブ（NavigationItem）を常に表示させる処理
+            mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+                @Override
+                public void onPageSelected(int position) {
+                    actionBar.setSelectedNavigationItem(position);
+                }
+            });
+
+            //作品名を取得
+            titles = getResources().getStringArray(R.array.titles);
+
+            //ActionBarを作成
+            actionBar = getActionBar();
+            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+            //タブを生成
+            for (String title : titles) {
+                ActionBar.Tab tab = actionBar.newTab();
+                tab.setText(title);
+                tab.setTabListener(this);
+                actionBar.addTab(tab);
             }
-        });
 
-        //作品名を取得
-        titles = getResources().getStringArray(R.array.titles);
-
-        //ActionBarを作成
-        actionBar = getActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
-        //タブを生成
-        for (String title : titles) {
-            ActionBar.Tab tab = actionBar.newTab();
-            tab.setText(title);
-            tab.setTabListener(this);
-            actionBar.addTab(tab);
+            //初回起動時に0番目のタブを表示する
+            actionBar.getTabAt(0).select();
+        }else {
+            Toast.makeText(this, "インターネットに接続できません。", Toast.LENGTH_LONG);
         }
 
-        //初回起動時に0番目のタブを表示する
-        actionBar.getTabAt(0).select();
+
     }
 
     @Override

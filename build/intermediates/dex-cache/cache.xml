@@ -2,32 +2,94 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\takeshi\AndroidStudioProjects\SpellCardLibrary\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\jars\libs\internal_impl-20.0.0.jar"
+        is-multidex="false"
+        jar="C:\Users\takeshi\.android\build-cache\5e613bfcadcb2380b731ec27aa364f61311c01e5\output\jars\classes.jar"
         jumboMode="false"
-        revision="19.1.0"
-        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d">
-        <dex dex="C:\Users\takeshi\AndroidStudioProjects\SpellCardLibrary\app\build\intermediates\pre-dexed\debug\internal_impl-20.0.0-489e462f5c5900a73ae5ebf565d64ccde193d4cf.jar" />
+        optimize="true"
+        revision="25.0.0"
+        sha1="f21927d22fe31889ecce94dd697a2e75b137e0ef">
+        <dex dex="C:\Users\takeshi\AndroidStudioProjects\SpellCardLibrary\app\build\intermediates\pre-dexed\debug\classes_47921b77cf88295337c87dc00387af0299bc9581.jar" />
     </item>
     <item
+        is-multidex="true"
+        jar="C:\Users\takeshi\.android\build-cache\05c71b8dfbbe8543eef1f919cdafd169f505e261\output\jars\libs\internal_impl-20.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d">
+        <dex dex="C:\Users\takeshi\AndroidStudioProjects\SpellCardLibrary\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-20.0.0_564f200bdf96f5aefeafe5dc875b5c4d5313783b\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\takeshi\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\20.0.0\support-annotations-20.0.0.jar"
         jumboMode="false"
-        revision="19.1.0"
+        optimize="true"
+        revision="25.0.0"
         sha1="9d9013e9ff35fc3756411e62873c363c70c638fa">
-        <dex dex="C:\Users\takeshi\AndroidStudioProjects\SpellCardLibrary\app\build\intermediates\pre-dexed\debug\support-annotations-20.0.0-a9cdce9efb5abbaad1df136df1a6932d3168e601.jar" />
+        <dex dex="C:\Users\takeshi\AndroidStudioProjects\SpellCardLibrary\app\build\intermediates\pre-dexed\debug\support-annotations-20.0.0_a9cdce9efb5abbaad1df136df1a6932d3168e601.jar" />
     </item>
     <item
-        jar="C:\Users\takeshi\AndroidStudioProjects\SpellCardLibrary\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\jars\classes.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="8694693636ab36910c8100ce527c258ff3ebece0">
-        <dex dex="C:\Users\takeshi\AndroidStudioProjects\SpellCardLibrary\app\build\intermediates\pre-dexed\debug\classes-837306696a806b0006d9842053366a4541f77f43.jar" />
-    </item>
-    <item
-        jar="C:\Users\takeshi\AndroidStudioProjects\SpellCardLibrary\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\20.0.0\jars\classes.jar"
-        jumboMode="false"
-        revision="19.1.0"
+        is-multidex="true"
+        jar="C:\Users\takeshi\.android\build-cache\5e613bfcadcb2380b731ec27aa364f61311c01e5\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
         sha1="f21927d22fe31889ecce94dd697a2e75b137e0ef">
-        <dex dex="C:\Users\takeshi\AndroidStudioProjects\SpellCardLibrary\app\build\intermediates\pre-dexed\debug\classes-72cef186c276d47c56e0d232f28bb8d07cb1e220.jar" />
+        <dex dex="C:\Users\takeshi\AndroidStudioProjects\SpellCardLibrary\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_47921b77cf88295337c87dc00387af0299bc9581\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\takeshi\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\20.0.0\support-annotations-20.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9d9013e9ff35fc3756411e62873c363c70c638fa">
+        <dex dex="C:\Users\takeshi\AndroidStudioProjects\SpellCardLibrary\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-20.0.0_a9cdce9efb5abbaad1df136df1a6932d3168e601\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\takeshi\.android\build-cache\05c71b8dfbbe8543eef1f919cdafd169f505e261\output\jars\libs\internal_impl-20.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d">
+        <dex dex="C:\Users\takeshi\AndroidStudioProjects\SpellCardLibrary\app\build\intermediates\pre-dexed\debug\internal_impl-20.0.0_564f200bdf96f5aefeafe5dc875b5c4d5313783b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\takeshi\.android\build-cache\05c71b8dfbbe8543eef1f919cdafd169f505e261\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8694693636ab36910c8100ce527c258ff3ebece0">
+        <dex dex="C:\Users\takeshi\AndroidStudioProjects\SpellCardLibrary\app\build\intermediates\pre-dexed\debug\classes_2ad29a3c46705c9eec210af9047c4f24b3f78861.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\takeshi\AndroidStudioProjects\SpellCardLibrary\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f9e10f97e1bc0c71e830a36fd7530fcfe97f02eb">
+        <dex dex="C:\Users\takeshi\AndroidStudioProjects\SpellCardLibrary\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_450e7dc19fa7ea675b83b4a78b8fcb88cfa88a03\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\takeshi\AndroidStudioProjects\SpellCardLibrary\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="C:\Users\takeshi\AndroidStudioProjects\SpellCardLibrary\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_3d29b8acca0012b805c32c1b4df61feec660bf7f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\takeshi\.android\build-cache\05c71b8dfbbe8543eef1f919cdafd169f505e261\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8694693636ab36910c8100ce527c258ff3ebece0">
+        <dex dex="C:\Users\takeshi\AndroidStudioProjects\SpellCardLibrary\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_2ad29a3c46705c9eec210af9047c4f24b3f78861\classes.dex" />
     </item>
 
 </items>

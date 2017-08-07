@@ -13,6 +13,7 @@ public class Credit extends Activity {
         setContentView(R.layout.activity_credit);
 
         TextView version = (TextView)findViewById(R.id.version);
+        TextView author = (TextView)findViewById(R.id.version);
 
     }
 
